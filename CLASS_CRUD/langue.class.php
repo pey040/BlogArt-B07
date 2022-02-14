@@ -4,14 +4,13 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class LANGUE{
-	function get_AllPaysOrderBycdPays(){
-        global $db;
+	function get_AllPays(){
+    global $db;
 
-        $query = 'SELECT * FROM PAYS ORDER BY cdPays;';
-        $result = $db->query($query);
-        $allPaysOrderBycdPays = $result->fetchAll();
-        return($allPaysOrderBycdPays);
-
+    $query = 'SELECT * FROM PAYS;';
+    $result = $db->query($query);
+    $allPays = $result->fetchAll();
+    return($allPays);
 	}
 
 	function get_1Langue($numLang){
@@ -106,9 +105,9 @@ class LANGUE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO Langue (lib1Lang, lib2Lang) VALUES (?, ?)';
+			$query = 'INSERT INTO Langue (numLang, lib1Lang, lib2Lang, numPays) VALUES (?, ?, ?, ?)';
 			$request = $db->prepare($query);
-			$request->execute([$lib1Lang, $lib2Lang]);
+			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -119,12 +118,43 @@ class LANGUE{
 		}
 	}
 
-	function update($numLang, $lib1Lang, $lib2Lang, $numPays){
+	function TestIfLang($numLang, $table) {
+		global $db;
+		try {
+			$db->beginTransaction();
+
+			$query = 'SELECT * FROM '.$table.' where numLang=?';
+			$request = $db->prepare($query);
+			$request->execute([$numLang]);
+			$count = $request->rowCount();
+			$db->commit();
+			$request->closeCursor();
+			return($count);
+		}
+		catch (PDOException $e) {
+			$db->rollBack();
+			$request->closeCursor();
+			die('Erreur insert LANGUE : ' . $e->getMessage());
+		}
+	}
+
+	function LangExist($numLang) {
+		return 0==(
+			$this->TestIfLang($numLang, "motcle") +
+			$this->TestIfLang($numLang, "thematique") +
+			$this->TestIfLang($numLang, "angle")
+			);
+
+	}
+
+	function update($numLang, $lib1Lang, $lib2Lang, $numPays, $id){
 		global $db;
 
 		try {
 			$db->beginTransaction();
-
+			$query = 'UPDATE Langue set numLang=?, lib1Lang=?, lib2Lang=?, numPays=? where numLang=? ';
+			$request = $db->prepare($query);
+			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays, $id]);
 			// update
 			// prepare
 			// execute
@@ -144,7 +174,9 @@ class LANGUE{
 
 		try {
 			$db->beginTransaction();
-
+			$query = 'DELETE FROM langue where numLang=?;';
+			$request = $db->prepare($query);
+			$request->execute([$numLang]);
 			// delete
 			// prepare
 			// execute
