@@ -51,15 +51,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
         header("Location: ./createStatut.php");
-    }   // End of if ((isset($_POST["submit"])) ...
+    }
+       // End of if ((isset($_POST["submit"])) ...
     if (((isset($_POST['id'])) and !empty($_POST['id']))
         and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
-        // Saisies valides
-        $erreur = false;
 
-        $libStat = ctrlSaisies(($_POST['id']));
-        $monStatut->delete($libStat);
+
+
+        $idStat = ctrlSaisies(($_POST['id']));
+
+        $test = $monStatut->StatExist($idStat);
+
+        if ($test == true) {
+            // Saisies valides
+            $erreur = false;
+
+            $monStatut->delete($idStat);
+        } else {
+            $erreur = true;
+            $errSaisies =  "Erreur, la langue est déjà utilisé !";
+        }
+
 
         header("Location: ./statut.php");
     }   // Fin if ((isset($_POST['libStat'])) ...

@@ -5,6 +5,19 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class MEMBRE{
+
+
+
+	function get_AllStat(){
+		global $db;
+	
+		$query = 'SELECT * FROM STATUT;';
+		$result = $db->query($query);
+		$allPays = $result->fetchAll();
+		return($allStat);
+		}
+
+
 	function get_1Membre($numMemb){
 		global $db;
 
@@ -26,9 +39,9 @@ class MEMBRE{
 	function get_AllMembres(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM MEMBRE;';
+		$result = $db->query($query);
+		$allMembres = $result->fetchAll();
 		return($allMembres);
 	}
 

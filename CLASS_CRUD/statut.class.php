@@ -90,4 +90,34 @@ class STATUT
 			die('Erreur delete STATUT : ' . $e->getMessage());
 		}
 	}
-}	// End of class
+	// End of class
+
+function TestIfStat($idStat, $table) {
+	global $db;
+	try {
+		$db->beginTransaction();
+
+		$query = 'SELECT * FROM '.$table.' where idStat=?';
+		$request = $db->prepare($query);
+		$request->execute([$idStat]);
+		$count = $request->rowCount();
+		$db->commit();
+		$request->closeCursor();
+		return($count);
+	}
+	catch (PDOException $e) {
+		$db->rollBack();
+		$request->closeCursor();
+		die('Erreur insert LANGUE : ' . $e->getMessage());
+	}
+}
+
+function StatExist($idStat) {
+	return 0==(
+		$this->TestIfStat($idStat, "membre") +
+		$this->TestIfStat($idStat, "user")
+		);
+
+}
+
+}
