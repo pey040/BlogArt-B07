@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Insertion classe Article
 
 // Instanciation de la classe Article
-
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+$monArticle = new ARTICLE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -169,15 +170,35 @@ include __DIR__ . '/initArticle.php';
         <br>
         <div class="control-group">
             <div class="controls">
-                <label class="control-label" for="LibTypLang">
-                    <b>Quelle langue :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-                </label>
+            <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
+                
+                <?php
+                $numLang = "";
+                ?>
 
+                
+                <input type="hidden" id="idTypLang" name="idTypLang" value="<?= $numLang; ?>" />
+                <select size="1" name="TypLang" id="TypLang" class="form-control form-control-create" title="Sélectionnez la langue !" >
+                    <option value="-1">- - - Choisissez une langue - - -</option>
+    <?php
+                    $listNumLang = "";
+                    $listlibLang = "";
 
-
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $numAngl; ?>" autocomplete="on" />
-
-                <!-- Listbox langue => 2ème temps -->
+                    $result = $monArticle->get_AllLangues();
+                    // var_dump($result);
+                    if($result){
+                        foreach($result as $row){
+                            $listNumLang = $row["numLang"]; //
+                            $listlibLang = $row["lib1Lang"];
+    ?>
+                            <option value="<?= $listNumLang; ?>">
+                                <?= $listlibLang; ?>
+                            </option>
+    <?php
+                        } // End of foreach
+                    }   // if ($result)
+    ?>
+                </select>
 
             </div>
         </div>
@@ -198,9 +219,33 @@ include __DIR__ . '/initArticle.php';
                 </label>
 
 
-                <input type="text" name="idAngl" id="idAngl" size="5" maxlength="5" value="<?= $numAngl; ?>" autocomplete="on" />
+                <?php
+                $numAngl = "";
+                ?>
 
-                <!-- Listbox angle => 2ème temps -->
+                
+                <input type="hidden" id="idTypAngl" name="idTypAngl" value="<?= $numLang; ?>" />
+                <select size="1" name="TypAngl" id="TypAngl" class="form-control form-control-create" title="Sélectionnez l'angle'!" >
+                    <option value="-1">- - - Choisissez un angle - - -</option>
+    <?php
+                    $listNumAngl = "";
+                    $listlibAngl = "";
+
+                    $result = $monAngle->get_AllAngles();
+                    // var_dump($result);
+                    if($result){
+                        foreach($result as $row){
+                            $listNumAngl = $row["numAngl"]; //
+                            $listlibAngl = $row["libAngl"];
+    ?>
+                            <option value="<?= $listNumAngl; ?>">
+                                <?= $listlibAngl; ?>
+                            </option>
+    <?php
+                        } // End of foreach
+                    }   // if ($result)
+    ?>
+                </select>
 
             </div>
         </div>

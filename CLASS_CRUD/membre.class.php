@@ -113,7 +113,7 @@ class MEMBRE{
 				$db->commit();
 				$request2->closeCursor();
 			}
-		}
+	
 		catch (PDOException $e) {
 			$db->rollBack();
 			if ($passMemb == -1) {

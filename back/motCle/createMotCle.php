@@ -21,7 +21,8 @@ require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
 $monMotCle = new MOTCLE();
 // Instanciation de la classe MotCle
 
-
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+$maLangue = new LANGUE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -115,7 +116,7 @@ include __DIR__ . '/initMotCle.php';
                     $listNumLang = "";
                     $listlibLang = "";
 
-                    $result = $monMotCle->get_AllLangues();
+                    $result = $maLangue->get_AllLangues();
                     // var_dump($result);
                     if($result){
                         foreach($result as $row){

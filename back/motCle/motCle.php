@@ -80,7 +80,7 @@ $errDel = 0;
 <?php
     if ($errCIR == 1) {
 ?>
-        <i><div class="error"><br>=>&nbsp;Suppression impossible, existence d'article(s) associé(s) à cette thématique. Vous devez d'abord supprimer le(s) thématique(s) concernée(s).</div></i>
+        <i><div class="error"><br>=>&nbsp;Suppression impossible, existence d'article(s) associé(s) à ce mot clé. Vous devez d'abord supprimer le(s) mot(s) clé(s) concernée(s).</div></i>
 <?php
     }   // End of if ($errCIR == 1)
 ?>

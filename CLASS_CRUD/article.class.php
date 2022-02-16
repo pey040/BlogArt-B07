@@ -4,6 +4,34 @@
 require_once __DIR__ . '/../CONNECT/database.php';
 
 class ARTICLE{
+
+	function get_AllLangues(){
+		global $db;
+
+		$query = 'SELECT * FROM LANGUE;';
+		$result = $db->query($query);
+		$allLangues = $result->fetchAll();
+		return($allLangues);
+	}
+	
+	function get_AllThematiques(){
+		global $db;
+
+		$query = 'SELECT * FROM THEMATIQUE;';
+		$result = $db->query($query);
+		$allThematiques = $result->fetchAll();
+		return($allThematiques);
+	}
+
+	function get_AllAngles() {
+		global $db;
+
+		$query = 'SELECT * FROM ANGLE;';
+		$result = $db->query($query);
+		$allAngles = $result->fetchAll();
+		return($allAngles);
+	}
+
 	function get_1Article($numArt){
 		global $db;
 		
@@ -25,11 +53,19 @@ class ARTICLE{
 	function get_AllArticles(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM ARTICLE;';
+		$result = $db->query($query);
+		$allArticles = $result->fetchAll();
 		return($allArticles);
 	}
+
+
+
+
+
+
+
+	
 
 	function get_AllArticlesByNumAnglNumThem(){
 		global $db;
@@ -123,9 +159,9 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO ARTICLE (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$request = $db->prepare($query);
+			$request->execute([$dtCreArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem]);
 			$db->commit();
 			$request->closeCursor();
 		}
