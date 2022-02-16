@@ -14,7 +14,8 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
-
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+$monAngle = new ANGLE();
 // Instanciation de la classe angle
 
 
@@ -33,15 +34,38 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
-    // controle CIR
+        header("Location: ./createAngle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (((isset($_POST['id'])) and !empty($_POST['id']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    ) {
 
-    // delete effective de l'angle
+        $numAngl = ctrlSaisies(($_POST['id']));
+        
+        $test = $monAngle->AnglExist($numAngl);
+        if ($test == true) {
+            // Saisies valides
+            $erreur = false;
 
-
-
-
-
+            $monAngle->delete($numAngl);
+        } else {
+            $erreur = true;
+            $errSaisies =  "Erreur, l'angle est déjà utilisé !";
+        }
+        header("Location: ./angle.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    } 
 
 
 

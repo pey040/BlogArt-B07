@@ -14,7 +14,8 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
-
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+$monAngle = new ANGLE();
 // Instanciation de la classe angle
 
 
@@ -32,17 +33,38 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
-    // controle des saisies du formulaire
+        header("Location: ./createAngle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['TypLang']) AND !empty($_POST['TypLang'])
+        AND isset($_POST['libAngl']) AND !empty($_POST['libAngl'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
+        $erreur = false;
 
-    // modification effective du angle
+        $libAngl = ctrlSaisies($_POST['libAngl']);
+        
+        $numLang = ctrlSaisies($_POST['TypLang']);
 
+        $Angltext = "ANGL";
+    $numAngl = $monAngle->getNextNumAngl($Angltext);
 
+        $monAngle->update($numAngl, $libAngl, $numLang, $_POST["id"]);
 
-    // Gestion des erreurs => msg si saisies ko
-
-
-
+        header("Location: ./angle.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
 
 
 
@@ -96,11 +118,33 @@ include __DIR__ . '/initAngle.php';
             <label class="control-label" for="LibTypLang">
                 <b>Quelle langue :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
             </label>
-<!--  -->
+            <?php
+            $numLang = "";
+            ?>
 
-            <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $numLang; ?>" autocomplete="on" />
+            
+            <input type="hidden" id="idTypLang" name="idTypLang" value="<?= $numLang; ?>" />
+            <select size="1" name="TypLang" id="TypLang" class="form-control form-control-create" title="Sélectionnez la langue !" >
+                <option value="-1">- - - Choisissez une langue - - -</option>
+<?php
+                $listNumLang = "";
+                $listlibLang = "";
 
-            <!-- Listbox langue => 2ème temps -->
+                $result = $monAngle->get_AllLangues();
+                // var_dump($result);
+                if($result){
+                    foreach($result as $row){
+                        $listNumLang = $row["numLang"]; //
+                        $listlibLang = $row["lib1Lang"];
+?>
+                        <option value="<?= $listNumLang; ?>">
+                            <?= $listlibLang; ?>
+                        </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
 
             </div>
         </div>
