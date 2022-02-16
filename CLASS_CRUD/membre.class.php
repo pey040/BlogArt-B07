@@ -13,7 +13,7 @@ class MEMBRE{
 	
 		$query = 'SELECT * FROM STATUT;';
 		$result = $db->query($query);
-		$allPays = $result->fetchAll();
+		$allStat = $result->fetchAll();
 		return($allStat);
 		}
 
@@ -88,9 +88,9 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO Angle (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+			$request = $db->prepare($query);
+			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat]);
 			$db->commit();
 			$request->closeCursor();
 		}

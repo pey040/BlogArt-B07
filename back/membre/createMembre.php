@@ -34,16 +34,50 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
+        header("Location: ./createAngle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['TypStat']) AND !empty($_POST['TypStat'])
+        AND isset($_POST['libAngl']) AND !empty($_POST['libAngl'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
+        $erreur = false;
 
+        $prenomMenb = ctrlSaisies($_POST['prenomMenb']);
 
-    // controle des saisies du formulaire
+        $nomMenb = ctrlSaisies($_POST['nomMenb']);
 
-    // création effective du user
+        $pseudoMenb = ctrlSaisies($_POST['pseudoMenb']);
 
+        $pass1Menb = ctrlSaisies($_POST['pass1Menb']);
 
+        $pass2Menb = ctrlSaisies($_POST['pass2Menb']);
+        
+        $eMail1Menb = ctrlSaisies($_POST['eMail1Menb']);
 
-    // Gestion des erreurs => msg si saisies ko
+        $eMail2Menb = ctrlSaisies($_POST['eMail2Menb']);
+
+        $idStat = ctrlSaisies($_POST['TypStat']);
+
+        if(($pass1Menb == $pass2Menb) AND ($eMail1Menb == $eMail2Menb)){
+            $erreur = false;    
+        $monMembre->create($prenomMenb, $nomMenb, $pseudoMenb, $pass1Menb, $eMail1Menb,"2", $accordMemb, $idStat);
+        }
+        header("Location: ./angle.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
+
 
 
 
@@ -188,13 +222,34 @@ include __DIR__ . '/initMembre.php';
     <!-- Listbox statut -->
         <br><br>
         <div class="control-group">
-            <label class="control-label" for="LibTypStat"><b>Statut :&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idStat" name="idStat" value="<?= isset($_POST['idStat']) ? $_POST['idStat'] : '' ?>" />
 
-                <input type="text" name="idStat" id="idStat" size="5" maxlength="5" value="<?= $idStat; ?>" autocomplete="on" />
+        <?php
+            $libStat = "";
+            ?>
 
-                <!-- Listbox statut => 2ème temps -->
+            
+            <input type="hidden" id="idTypStat" name="idTypStat" value="<?= $libStat; ?>" />
+            <select size="1" name="TypStat" id="TypStat" class="form-control form-control-create" title="Sélectionnez un statut !" >
+                <option value="-1">- - - Choisissez un statut - - -</option>
+<?php
+                $listidStat = "";
+                $listlibStat = "";
 
+                $result = $monMembre->get_AllStat();
+                // var_dump($result);
+                if($result){
+                    foreach($result as $row){
+                        $listidStat = $row["idStat"]; //
+                        $listlibStat = $row["libStat"];
+?>
+                        <option value="<?= $listidStat; ?>">
+                            <?= $listlibStat; ?>
+                        </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
         </div>
         <br>
     <!-- FIN Listbox statut -->
