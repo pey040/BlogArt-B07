@@ -14,26 +14,46 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe MotCle
-
+require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
+$monMotCle = new MOTCLE();
 // Instanciation de la classe MotCle
 
 
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
+        header("Location: ./createMotCle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (((isset($_POST['id'])) and !empty($_POST['id']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    ) {
 
+        $numMotCle = ctrlSaisies(($_POST['id']));
+        
+        $test = $monMotCle->MotCleExist($numMotCle);
+        if ($test == true) {
+            // Saisies valides
+            $erreur = false;
 
-
-    // controle des saisies du formulaire
-
-    // modif effective de la MotCle
-
-
-
-
-
-
+            $monMotCle->delete($numMotCle);
+        } else {
+            $erreur = true;
+            $errSaisies =  "Erreur, la thématique est déjà utilisé !";
+        }
+        header("Location: ./motCle.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    } 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initMotCle.php';

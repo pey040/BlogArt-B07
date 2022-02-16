@@ -4,6 +4,16 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class MOTCLE{
+
+	function get_AllLangues(){
+		global $db;
+
+		$query = 'SELECT * FROM LANGUE;';
+		$result = $db->query($query);
+		$allLangues = $result->fetchAll();
+		return($allLangues);
+	}
+
 	function get_1MotCle($numMotCle){
 		global $db;
 
@@ -25,9 +35,9 @@ class MOTCLE{
 	function get_AllMotCles(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM MOTCLE;';
+		$result = $db->query($query);
+		$allMotCles = $result->fetchAll();
 		return($allMotCles);
 	}
 
@@ -67,61 +77,61 @@ class MOTCLE{
 	}
 
 	// Récupérer next PK de la table MOTCLE
-	function getNextNumMoCle($numLang) {
+	function getNextNumMotCle($numMotCle) {
 		global $db;
 	
 		// Découpage FK LANGUE
-		$libLangSelect = substr($numLang, 0, 4);
-		$parmNumLang = $libLangSelect . '%';
+		$libMotCleSelect = substr($numMotCle, 0, 4);
+		$parmNumMotCle = $libMotCleSelect . '%';
 	
-		$requete = "SELECT MAX(numLang) AS numLang FROM MOTCLE WHERE numLang LIKE '$parmNumLang';";
+		$requete = "SELECT MAX(numMotCle) AS numMotCle FROM MOTCLE WHERE numMotCle LIKE '$parmNumMotCle';";
 		$result = $db->query($requete);
 	
 		if ($result) {
 			$tuple = $result->fetch();
-			$numLang = $tuple["numLang"];
-			if (is_null($numLang)) {    // New lang dans MOTCLE
+			$numMotCle = $tuple["numMotCle"];
+			if (is_null($numMotCle)) {    // New lang dans MOTCLE
 				// Récup dernière PK utilisée
-				$requete = "SELECT MAX(numMoCle) AS numMoCle FROM MOTCLE;";
+				$requete = "SELECT MAX(numMotCle) AS numMotCle FROM MOTCLE;";
 				$result = $db->query($requete);
 				$tuple = $result->fetch();
-				$numMoCle = $tuple["numMoCle"];
+				$numMotCle = $tuple["numMotCle"];
 	
-				$numMoCleSelect = (int)substr($numMoCle, 4, 2);
+				$numMotCleSelect = (int)substr($numMotCle, 4, 2);
 				// No séquence suivant LANGUE
-				$numSeq1MoCle = $numMoCleSelect + 1;
+				$numSeq1MotCle = $numMotCleSelect + 1;
 				// Init no séquence MOTCLE pour nouvelle lang
-				$numSeq2MoCle = 1;
+				$numSeq2MotCle = 1;
 			} else {
 				// Récup dernière PK pour FK sélectionnée
-				$requete = "SELECT MAX(numMoCle) AS numMoCle FROM MOTCLE WHERE numLang LIKE '$parmNumLang';";
+				$requete = "SELECT MAX(numMotCle) AS numMotCle FROM MOTCLE WHERE numLang LIKE '$parmNumMotCle';";
 				$result = $db->query($requete);
 				$tuple = $result->fetch();
-				$numMoCle = $tuple["numMoCle"];
+				$numMotCle = $tuple["numMotCle"];
 	
 				// No séquence actuel LANGUE
-				$numSeq1MoCle = (int)substr($numMoCle, 4, 2);
+				$numSeq1MotCle = (int)substr($numMotCle, 4, 2);
 				// No séquence actuel MOTCLE
-				$numSeq2MoCle = (int)substr($numMoCle, 6, 2);
+				$numSeq2MotCle = (int)substr($numMotCle, 6, 2);
 				// No séquence suivant MOTCLE
-				$numSeq2MoCle++;
+				$numSeq2MotCle++;
 			}
 	
-			$libMoCleSelect = "MTCL";
+			$libMotCleSelect = "MTCL";
 			// PK reconstituée : MTCL + no seq langue
-			if ($numSeq1MoCle < 10) {
-				$numMoCle = $libMoCleSelect . "0" . $numSeq1MoCle;
+			if ($numSeq1MotCle < 10) {
+				$numMotCle = $libMotCleSelect . "0" . $numSeq1MotCle;
 			} else {
-				$numMoCle = $libMoCleSelect . $numSeq1MoCle;
+				$numMotCle = $libMotCleSelect . $numSeq1MotCle;
 			}
 			// PK reconstituée : MOCL + no seq langue + no seq mot clé
-			if ($numSeq2MoCle < 10) {
-				$numMoCle = $numMoCle . "0" . $numSeq2MoCle;
+			if ($numSeq2MotCle < 10) {
+				$numMotCle = $numMotCle . "0" . $numSeq2MotCle;
 			} else {
-				$numMoCle = $numMoCle . $numSeq2MoCle;
+				$numMotCle = $numMotCle . $numSeq2MotCle;
 			}
 		}   // End of if ($result) / no seq LANGUE
-		return $numMoCle;
+		return $numMotCle;
 	} // End of function
 
 	function create($libMotCle, $numLang){
@@ -130,9 +140,9 @@ class MOTCLE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO MOTCLE (libMotCle, numLang) VALUES (?, ?)';
+			$request = $db->prepare($query);
+			$request->execute([$libMotCle, $numLang]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -143,15 +153,15 @@ class MOTCLE{
 		}
 	}
 
-	function update($numMotCle, $libMotCle, $numLang){
+	function update($libMotCle, $numLang, $id){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query = 'UPDATE MOTCLE set libMotCle=?, numLang=? where numMotCle=? ';
+			$request = $db->prepare($query);
+			$request->execute([$libMotCle, $numLang, $id]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -168,9 +178,9 @@ class MOTCLE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query = 'DELETE FROM MOTCLE where numMotCle=?;';
+			$request = $db->prepare($query);
+			$request->execute([$numMotCle]);
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
@@ -181,5 +191,33 @@ class MOTCLE{
 			$request->closeCursor();
 			die('Erreur delete MOTCLE : ' . $e->getMessage());
 		}
+	}
+
+	function TestIfMotCle($numMotCle, $table) {
+		global $db;
+		try {
+			$db->beginTransaction();
+
+			$query = 'SELECT * FROM '.$table.' where numMotCle=?';
+			$request = $db->prepare($query);
+			$request->execute([$numMotCle]);
+			$count = $request->rowCount();
+			$db->commit();
+			$request->closeCursor();
+			return($count);
+		}
+		catch (PDOException $e) {
+			$db->rollBack();
+			$request->closeCursor();
+			die('Erreur insert LANGUE : ' . $e->getMessage());
+		}
+	}
+
+
+	function MotCleExist($numMotCle) {
+		return 0==(
+			$this->TestIfMotCle($numMotCle, "motclearticle")
+			);
+
 	}
 }	// End of class

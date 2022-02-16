@@ -14,8 +14,13 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe MotCle
-
+require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
+$monMotCle = new MOTCLE();
 // Instanciation de la classe MotCle
+
+// Ctrl CIR
+$errCIR = 0;
+$errDel = 0;
 
 
 ?>
@@ -49,30 +54,37 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 <?php
     // Appel méthode : Get toutes les mots cles en BDD
-
+    $allMotCle = $monMotCle->get_AllMotCles();
     // Boucle pour afficher
-    //foreach($all as $row) {
+    foreach($allMotCle as $row) {
 ?>
         <tr>
 
-		<td><h4>&nbsp; <?= "ici numMotCle"; ?> &nbsp;</h4></td>
+		<td><h4>&nbsp; <?= $row["numMotCle"]; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= "ici libMotCle"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libMotCle"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici lib1Lang"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["numLang"]; ?> &nbsp;</td>
 
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMotCle.php?id=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier mot clé" title="Modifier mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMotCle.php?id=<?=$row["numMotCle"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier mot clé" title="Modifier mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteMotCle.php?id=<?=1; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer mot clé" title="Supprimer mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteMotCle.php?id=<?=$row["numMotCle"]; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer mot clé" title="Supprimer mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
 
         </tr>
 <?php
-	// }	// End of foreach
+	}	// End of foreach
 ?>
     </tbody>
     </table>
-    <br /><br/>
+<?php
+    if ($errCIR == 1) {
+?>
+        <i><div class="error"><br>=>&nbsp;Suppression impossible, existence d'article(s) associé(s) à cette thématique. Vous devez d'abord supprimer le(s) thématique(s) concernée(s).</div></i>
+<?php
+    }   // End of if ($errCIR == 1)
+?>
+    <p>&nbsp;</p>
 <?php
 require_once __DIR__ . '/footer.php';
 ?>
