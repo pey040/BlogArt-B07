@@ -123,7 +123,7 @@ class THEMATIQUE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO Langue (numThem, libThem, numLang) VALUES (?, ?, ?)';
+			$query = 'INSERT INTO Thematique (numThem, libThem, numLang) VALUES (?, ?, ?)';
 			$request = $db->prepare($query);
 			$request->execute([$numThem, $libThem, $numLang]);
 			$db->commit();
@@ -136,13 +136,13 @@ class THEMATIQUE{
 		}
 	}
 
-	function update($numThem, $libThem, $numLang){
+	function update($numThem, $libThem, $numLang, $id){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE Langue set numThem=?, libThem=?, numLang=? where numThem=? ';
+			$query = 'UPDATE THEMATIQUE set numThem=?, libThem=?, numLang=? where numThem=? ';
 			$request = $db->prepare($query);
 			$request->execute([$numThem, $libThem, $numLang, $id]);
 			$db->commit();
@@ -162,7 +162,7 @@ class THEMATIQUE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'DELETE FROM langue where numThem=?;';
+			$query = 'DELETE FROM THEMATIQUE where numThem=?;';
 			$request = $db->prepare($query);
 			$request->execute([$numThem]);
 			$count = $request->rowCount();
@@ -177,7 +177,7 @@ class THEMATIQUE{
 		}
 	}
 
-	function TestIfLang($numThem, $table) {
+	function TestIfThem($numThem, $table) {
 		global $db;
 		try {
 			$db->beginTransaction();
@@ -197,9 +197,9 @@ class THEMATIQUE{
 		}
 	}
 
-	function LangExist($numThem) {
+	function ThemExist($numThem) {
 		return 0==(
-			$this->TestIfLang($numThem, "article")
+			$this->TestIfThem($numThem, "article")
 			);
 
 	}

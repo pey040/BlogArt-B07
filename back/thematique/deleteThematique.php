@@ -14,7 +14,8 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Thematique
-
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+$maThematique = new THEMATIQUE();
 // Instanciation de la classe thématique
 
 
@@ -34,18 +35,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    // controle CIR
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
-    // delete effective du user
+        header("Location: ./createThematique.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (((isset($_POST['id'])) and !empty($_POST['id']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    ) {
 
+        $numThem = ctrlSaisies(($_POST['id']));
+        
+        $test = $maThematique->ThemExist($numThem);
+        if ($test == true) {
+            // Saisies valides
+            $erreur = false;
 
-
-
-
-
-
-
-
+            $maThematique->delete($numThem);
+        } else {
+            $erreur = true;
+            $errSaisies =  "Erreur, la thématique est déjà utilisé !";
+        }
+        header("Location: ./thematique.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    } 
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
