@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "Spartan";
+    src: url("AllFont/Assets/Spartan-VariableFont_wght.ttf") format("ttf");
+   }
+
+header{
+    display: flex;
+    align-items: center;
+    background-color: #7E8ACF;
+}
+
+a{
+    font-family: "Spartan";
+    text-decoration: none;
+    color: white;
+}
