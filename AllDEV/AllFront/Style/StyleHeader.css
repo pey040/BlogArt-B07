@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Spartan";
-    src: url("Assets/Spartan-VariableFont_wght.ttf") format("ttf");
+    src: url("AllFont/Assets/Spartan-VariableFont_wght.ttf") format("ttf");
    }
 
 header{
@@ -10,5 +10,7 @@ header{
 }
 
 a{
-    font-family: ;
+    font-family: "Spartan";
+    text-decoration: none;
+    color: white;
 }
