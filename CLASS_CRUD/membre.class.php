@@ -82,15 +82,16 @@ class MEMBRE{
 	}
 
 	// Inscription membre
-	function create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat){
+	function create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $accordMemb, $idStat){
 		global $db;
+
 
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO Angle (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+			$query = 'INSERT INTO MEMBRE (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, accordMemb, idStat) VALUES ("?", "?", "?", "?", "?", NOW(), ?, ?)';
 			$request = $db->prepare($query);
-			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat]);
+			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $accordMemb, $idStat]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -101,17 +102,17 @@ class MEMBRE{
 		}
 	}
 
-	function update($numMemb, $prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat){
+	function update($prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $num){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 			
-			// update
-			// prepare
-			// execute
+			$query = 'UPDATE MEMBRE set prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?, idStat=? where numMemb=? ';
+			$request = $db->prepare($query);
+			$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $num]);
 				$db->commit();
-				$request2->closeCursor();
+				$request->closeCursor();
 			}
 	
 		catch (PDOException $e) {
@@ -119,7 +120,7 @@ class MEMBRE{
 			if ($passMemb == -1) {
 				$request1->closeCursor();
 			} else {
-				$request2->closeCursor();
+				$request->closeCursor();
 			}
 			die('Erreur update MEMBRE : ' . $e->getMessage());
 		}
@@ -132,9 +133,9 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query = 'DELETE FROM Membre where numMemb=?;';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb]);
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
@@ -146,4 +147,32 @@ class MEMBRE{
 			die('Erreur delete MEMBRE : ' . $e->getMessage());
 		}
 	}
+
+	function TestIfMemb($numMemb, $table) {
+		global $db;
+		try {
+			$db->beginTransaction();
+
+			$query = 'SELECT * FROM '.$table.' where numMemb=?';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb]);
+			$count = $request->rowCount();
+			$db->commit();
+			$request->closeCursor();
+			return($count);
+		}
+		catch (PDOException $e) {
+			$db->rollBack();
+			$request->closeCursor();
+			die('Erreur insert LANGUE : ' . $e->getMessage());
+		}
+	}
+
+	function MembExist($numMemb) {
+		return 0==(
+			$this->TestIfMemb($numMemb, "comment")+
+			$this->TestIfMemb($numMemb, "likecom")+
+			$this->TestIfMemb($numMemb, "likeart")
+			);
+}		// End of class
 }	// End of class

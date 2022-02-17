@@ -41,36 +41,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
-        header("Location: ./createAngle.php");
+        header("Location: ./createMembre.php");
     }   // End of if ((isset($_POST["submit"])) ...
     if (isset($_POST['TypStat']) AND !empty($_POST['TypStat'])
-        AND isset($_POST['libAngl']) AND !empty($_POST['libAngl'])
+        AND isset($_POST['prenomMemb']) AND !empty($_POST['prenomMemb'])
+        AND isset($_POST['nomMemb']) AND !empty($_POST['nomMemb'])
+        AND isset($_POST['pseudoMemb']) AND !empty($_POST['pseudoMemb'])
+        AND isset($_POST['pass1Memb']) AND !empty($_POST['pass1Memb'])
+        AND isset($_POST['pass2Memb']) AND !empty($_POST['pass2Memb'])
+        AND isset($_POST['eMail1Memb']) AND !empty($_POST['eMail1Memb'])
+        AND isset($_POST['eMail2Memb']) AND !empty($_POST['eMail2Memb'])
         AND !empty($_POST['Submit']) AND $Submit === "Valider") {
     
         // Saisies valides
-        $erreur = false;
 
-        $prenomMenb = ctrlSaisies($_POST['prenomMenb']);
+        $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
 
-        $nomMenb = ctrlSaisies($_POST['nomMenb']);
+        $nomMemb = ctrlSaisies($_POST['nomMemb']);
 
-        $pseudoMenb = ctrlSaisies($_POST['pseudoMenb']);
+        $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
 
-        $pass1Menb = ctrlSaisies($_POST['pass1Menb']);
+        $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
 
-        $pass2Menb = ctrlSaisies($_POST['pass2Menb']);
+        $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
         
-        $eMail1Menb = ctrlSaisies($_POST['eMail1Menb']);
+        $eMail1Memb = ctrlSaisies($_POST['eMail1Memb']);
 
-        $eMail2Menb = ctrlSaisies($_POST['eMail2Menb']);
+        $eMail2Memb = ctrlSaisies($_POST['eMail2Memb']);
 
         $idStat = ctrlSaisies($_POST['TypStat']);
+        
+        $accordMemb = "";
 
-        if(($pass1Menb == $pass2Menb) AND ($eMail1Menb == $eMail2Menb)){
-            $erreur = false;    
-        $monMembre->create($prenomMenb, $nomMenb, $pseudoMenb, $pass1Menb, $eMail1Menb,"2", $accordMemb, $idStat);
+        $boolaccordMemb ="";
+
+        if ($accordMemb == "on"){
+            $boolaccordMemb = 1;
+        } elseif ($accordMemb == "off"){
+            $boolaccordMemb = 0;
         }
-        header("Location: ./angle.php");
+
+        $date = "11/11/11";
+
+        if(($pass1Memb === $pass2Memb) AND ($eMail1Memb === $eMail2Memb)){
+            $erreur = false;    
+        $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $pass1Memb, $eMail1Memb, 1, $idStat);
+        }
+        else{
+            $erreur = true;
+            $errSaisies =  "Erreur, les deux mot de passe ou les deux emails ne sont pas identique !";
+        }
+        header("Location: ./Membre.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
     else {
         // Saisies invalides
@@ -152,25 +173,25 @@ include __DIR__ . '/initMembre.php';
 
         <div class="control-group">
             <label class="control-label" for="prenomMemb"><b>Prénom<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="prenomMemb" id="prenomMemb" size="80" maxlength="80" value="<? if(isset($_POST['prenomMemb'])) echo $_POST['prenomMemb']; ?>" autocomplete="on" autofocus="autofocus" />
+            <input type="text" name="prenomMemb" id="prenomMemb" size="80" maxlength="80" value="" autocomplete="on" autofocus="autofocus" />
         </div>
 
         <br>
         <div class="control-group">
             <label class="control-label" for="nomMemb"><b>Nom<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="nomMemb" id="nomMemb" size="80" maxlength="80" value="<? if(isset($_POST['nomMemb'])) echo $_POST['nomMemb']; ?>" autocomplete="on" />
+            <input type="text" name="nomMemb" id="nomMemb" size="80" maxlength="80" value="" autocomplete="on" />
         </div>
 
         <br>
         <div class="control-group">
             <label class="control-label" for="pseudoMemb"><b>Pseudonyme<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="pseudoMemb" id="pseudoMemb" size="80" maxlength="80" value="<? if(isset($_POST['pseudoMemb'])) echo $_POST['pseudoMemb']; ?>" placeholder="6 car. minimum" autocomplete="on" />
+            <input type="text" name="pseudoMemb" id="pseudoMemb" size="80" maxlength="80" value="" placeholder="6 car. minimum" autocomplete="on" />
         </div>
 
         <br>
         <div class="control-group">
             <label class="control-label" for="pass1Memb"><b>Mot passe<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="password" name="pass1Memb" id="myInput1" size="80" maxlength="80" value="<? if(isset($_POST['pass1Memb'])) echo $_POST['pass1Memb']; ?>" autocomplete="on" />
+            <input type="password" name="pass1Memb" id="myInput1" size="80" maxlength="80" value="" autocomplete="on" />
             <br>
             <input type="checkbox" onclick="myFunction('myInput1')">
             &nbsp;&nbsp;
@@ -180,7 +201,7 @@ include __DIR__ . '/initMembre.php';
         <br>
         <div class="control-group">
             <label class="control-label" for="pass2Memb"><b>Confirmez la Mot passe<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="password" name="pass2Memb" id="myInput2" size="80" maxlength="80" value="<? if(isset($_POST['pass2Memb'])) echo $_POST['pass2Memb']; ?>" autocomplete="on" />
+            <input type="password" name="pass2Memb" id="myInput2" size="80" maxlength="80" value="" autocomplete="on" />
             <br>
             <input type="checkbox" onclick="myFunction('myInput2')">
             &nbsp;&nbsp;
@@ -190,13 +211,13 @@ include __DIR__ . '/initMembre.php';
         <br>
         <div class="control-group">
             <label class="control-label" for="eMail1Memb"><b>eMail<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="email" name="eMail1Memb" id="eMail1Memb" size="80" maxlength="80" value="<? if(isset($_POST['eMail1Memb'])) echo $_POST['eMail1Memb']; ?>" autocomplete="on" />
+            <input type="email" name="eMail1Memb" id="eMail1Memb" size="80" maxlength="80" value="" autocomplete="on" />
         </div>
 
         <br>
         <div class="control-group">
             <label class="control-label" for="eMail2Memb"><b>Confirmez l'eMail<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="email" name="eMail2Memb" id="eMail2Memb" size="80" maxlength="80" value="<? if(isset($_POST['eMail2Memb'])) echo $_POST['eMail2Memb']; ?>" autocomplete="on" />
+            <input type="email" name="eMail2Memb" id="eMail2Memb" size="80" maxlength="80" value="" autocomplete="on" />
         </div>
 
         <br>

@@ -17,7 +17,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
-
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+$monMembre = new MEMBRE();
 // Instanciation de la classe Membre
 
 
@@ -29,26 +30,56 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
+        header("Location: ./createMembre.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['TypStat']) AND !empty($_POST['TypStat'])
+        AND isset($_POST['prenomMemb']) AND !empty($_POST['prenomMemb'])
+        AND isset($_POST['nomMemb']) AND !empty($_POST['nomMemb'])
+        AND isset($_POST['pass1Memb']) AND !empty($_POST['pass1Memb'])
+        AND isset($_POST['pass2Memb']) AND !empty($_POST['pass2Memb'])
+        AND isset($_POST['eMail1Memb']) AND !empty($_POST['eMail1Memb'])
+        AND isset($_POST['eMail2Memb']) AND !empty($_POST['eMail2Memb'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
 
-    // controle des saisies du formulaire
+        $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
 
-    // modification effective du membre
+        $nomMemb = ctrlSaisies($_POST['nomMemb']);
 
+        $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
 
+        $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
+        
+        $eMail1Memb = ctrlSaisies($_POST['eMail1Memb']);
 
-    // Gestion des erreurs => msg si saisies ko
+        $eMail2Memb = ctrlSaisies($_POST['eMail2Memb']);
 
-            // CTRL saisies
-            // VALIDITÉ MAIL
+        $idStat = ctrlSaisies($_POST['TypStat']);
+        
 
-            // MAIL IDENTIQUE
-            // TEST MODIF PASS
-
-
-
-
-
+        if(($pass1Memb === $pass2Memb) AND ($eMail1Memb === $eMail2Memb)){
+            $erreur = false;    
+        $monMembre->update($prenomMemb, $nomMemb, $pass1Memb, $eMail1Memb, $idStat, $_POST["id"]);
+        }
+        else{
+            $erreur = true;
+            $errSaisies =  "Erreur, les deux mot de passe ou les deux emails ne sont pas identique !";
+        }
+        header("Location: ./Membre.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initMembre.php';
@@ -178,11 +209,34 @@ include __DIR__ . '/initMembre.php';
     <!-- Listbox statut -->
         <div class="control-group">
             <label class="control-label" for="LibTypStat"><b>Statut :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idStat" name="idStat" value="<?= isset($_GET['idStat']) ? $_GET['idStat'] : '' ?>" />
 
-                <input type="text" name="idStat" id="idStat" size="5" maxlength="5" value="<?= $idStat; ?>" autocomplete="on" />
+            <?php
+            $libStat = "";
+            ?>
 
-                <!-- Listbox statut => 2ème temps -->
+            
+            <input type="hidden" id="idTypStat" name="idTypStat" value="<?= $libStat; ?>" />
+            <select size="1" name="TypStat" id="TypStat" class="form-control form-control-create" title="Sélectionnez un statut !" >
+                <option value="-1">- - - Choisissez un statut - - -</option>
+<?php
+                $listidStat = "";
+                $listlibStat = "";
+
+                $result = $monMembre->get_AllStat();
+                // var_dump($result);
+                if($result){
+                    foreach($result as $row){
+                        $listidStat = $row["idStat"]; //
+                        $listlibStat = $row["libStat"];
+?>
+                        <option value="<?= $listidStat; ?>">
+                            <?= $listlibStat; ?>
+                        </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
 
         </div>
     <!-- FIN Listbox statut -->
