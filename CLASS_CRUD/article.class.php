@@ -5,14 +5,14 @@ require_once __DIR__ . '/../CONNECT/database.php';
 
 class ARTICLE{
 
-	function get_AllLangues(){
-		global $db;
+	// function get_AllLangues(){
+	// 	global $db;
 
-		$query = 'SELECT * FROM LANGUE;';
-		$result = $db->query($query);
-		$allLangues = $result->fetchAll();
-		return($allLangues);
-	}
+	// 	$query = 'SELECT * FROM LANGUE;';
+	// 	$result = $db->query($query);
+	// 	$allLangues = $result->fetchAll();
+	// 	return($allLangues);
+	// }
 	
 	function get_AllThematiques(){
 		global $db;
