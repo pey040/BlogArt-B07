@@ -158,6 +158,13 @@ include __DIR__ . '/initArticle.php';
             </div>
         </div>
         <br>
+
+
+
+        
+
+
+
         <div class="control-group">
             <label class="control-label" for="urlPhotArt"><b>Importez l'illustration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
