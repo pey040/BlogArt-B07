@@ -25,19 +25,17 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Mise en forme date
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
-// Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+$monArticle = new ARTICLE();
 
-// Instanciation de la classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+$maLangue = new LANGUE();
 
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+$monAngle = new ANGLE();
 
-// Insertion classe MotCleArticle
-
-// Instanciation de la classe MotCleArticle
-
-
-// Insertion classe MotCle
-
-// Instanciation de la classe MotCle
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+$maThematique = new THEMATIQUE();
 
 
 
@@ -52,20 +50,38 @@ $targetDir = TARGET;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
-    // controle des saisies du formulaire
+        header("Location: ./createAngle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['urlPhotArt']) AND !empty($_POST['urlPhotArt'])
+        AND isset($_POST['TypThem']) AND !empty($_POST['TypThem'])
+        AND isset($_POST['TypAngl']) AND !empty($_POST['TypAngl'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
+        $erreur = false;
 
-    // modification effective du article
+        $urlPhotArt = ctrlSaisies($_POST['urlPhotArt']);
+        
+        $numThem = ctrlSaisies($_POST['TypThem']);
 
+        $numAngl = ctrlSaisies($_POST['TypAngl']);
 
+        $monArticle->testupdate($urlPhotArt, $numThem, $numAngl, $POST_['id']);
 
-    // Gestion des erreurs => msg si saisies ko
-
-
-    // Traitnemnt : upload image => Chnager image
-    // Nom image à la volée
-
-
+        header("Location: ./article.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
 
 
 
@@ -212,21 +228,43 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Langue -->
-        <br>
+    <br>
         <div class="control-group">
             <div class="controls">
-                <label class="control-label" for="LibTypLang">
-                    <b>Quelle langue :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-                </label>
+            <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
+                
+                <?php
+                $numLang = "";
+                ?>
 
+                
+                <input type="hidden" id="idTypLang" name="idTypLang" value="<?= $numLang; ?>" />
+                <select size="1" name="TypLang" id="TypLang" class="form-control form-control-create" title="Sélectionnez la langue !" >
+                    <option value="-1">- - - Choisissez une langue - - -</option>
+    <?php
+                    $listNumLang = "";
+                    $listlibLang = "";
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $numAngl; ?>" autocomplete="on" />
-
-                <!-- Listbox langue => 2ème temps -->
+                    $result = $maLangue->get_AllLangues();
+                    // var_dump($result);
+                    if($result){
+                        foreach($result as $row){
+                            $listNumLang = $row["numLang"]; //
+                            $listlibLang = $row["lib1Lang"];
+    ?>
+                            <option value="<?= $listNumLang; ?>">
+                                <?= $listlibLang; ?>
+                            </option>
+    <?php
+                        } // End of foreach
+                    }   // if ($result)
+    ?>
+                </select>
 
             </div>
         </div>
     <!-- FIN Listbox Langue -->
+<!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
 
 <!-- --------------------------------------------------------------- -->
@@ -242,9 +280,33 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                 </label>
 
 
-                <input type="text" name="idAngl" id="idAngl" size="5" maxlength="5" value="<?= $numAngl; ?>" autocomplete="on" />
+                <?php
+                $numAngl = "";
+                ?>
 
-                <!-- Listbox angle => 2ème temps -->
+                
+                <input type="hidden" id="idTypAngl" name="idTypAngl" value="<?= $numLang; ?>" />
+                <select size="1" name="TypAngl" id="TypAngl" class="form-control form-control-create" title="Sélectionnez l'angle'!" >
+                    <option value="-1">- - - Choisissez un angle - - -</option>
+    <?php
+                    $listNumAngl = "";
+                    $listlibAngl = "";
+
+                    $result = $monAngle->get_AllAngles();
+                    // var_dump($result);
+                    if($result){
+                        foreach($result as $row){
+                            $listNumAngl = $row["numAngl"]; //
+                            $listlibAngl = $row["libAngl"];
+    ?>
+                            <option value="<?= $listNumAngl; ?>">
+                                <?= $listlibAngl; ?>
+                            </option>
+    <?php
+                        } // End of foreach
+                    }   // if ($result)
+    ?>
+                </select>
 
             </div>
         </div>
@@ -252,23 +314,47 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Thématique -->
+    <!-- Grp 7 -->
         <br>
         <div class="control-group">
             <div class="controls">
                 <label class="control-label" for="LibTypThem">
                     <b>Quelle thématique :&nbsp;&nbsp;&nbsp;</b>
                 </label>
+                <?php
+                $numThem = "";
+                ?>
 
+                
+                <input type="hidden" id="idTypThem" name="idTypThem" value="<?= $numThem; ?>" />
+                <select size="1" name="TypThem" id="TypThem" class="form-control form-control-create" title="Sélectionnez la thématique !" >
+                    <option value="-1">- - - Choisissez une thématique - - -</option>
+    <?php
+                    $listNumThem = "";
+                    $listlibThem = "";
 
-                <input type="text" name="idThem" id="idThem" size="5" maxlength="5" value="<?= $numThem; ?>" autocomplete="on" />
-
-                <!-- Listbox thematique => 2ème temps -->
+                    $result = $maThematique->get_AllThematiques();
+                    // var_dump($result);
+                    if($result){
+                        foreach($result as $row){
+                            $listNumThem = $row["numThem"]; //
+                            $listlibThem = $row["libThem"];
+    ?>
+                            <option value="<?= $listNumThem; ?>">
+                                <?= $listlibThem; ?>
+                            </option>
+    <?php
+                        } // End of foreach
+                    }   // if ($result)
+    ?>
+                </select>
 
             </div>
         </div>
     <!-- FIN Listbox Thématique -->
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
+
 <!-- --------------------------------------------------------------- -->
     <!-- Drag and drop Mot Clé -->
 <!-- --------------------------------------------------------------- -->

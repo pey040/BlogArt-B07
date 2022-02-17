@@ -89,7 +89,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO MEMBRE (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, accordMemb, idStat) VALUES ("?", "?", "?", "?", "?", NOW(), ?, ?)';
+			$query = 'INSERT INTO MEMBRE (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?, ?, ?, ?, ?, NOW(), ?, ?)';
 			$request = $db->prepare($query);
 			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $accordMemb, $idStat]);
 			$db->commit();
