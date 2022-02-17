@@ -27,6 +27,15 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 $monArticle = new ARTICLE();
 
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+$maLangue = new LANGUE();
+
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+$monAngle = new ANGLE();
+
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+$maThematique = new THEMATIQUE();
+
 // Gestion des erreurs de saisie
 $erreur = false;
 
@@ -184,7 +193,7 @@ include __DIR__ . '/initArticle.php';
                     $listNumLang = "";
                     $listlibLang = "";
 
-                    $result = $monArticle->get_AllLangues();
+                    $result = $maLangue->get_AllLangues();
                     // var_dump($result);
                     if($result){
                         foreach($result as $row){
@@ -260,11 +269,33 @@ include __DIR__ . '/initArticle.php';
                 <label class="control-label" for="LibTypThem">
                     <b>Quelle thématique :&nbsp;&nbsp;&nbsp;</b>
                 </label>
+                <?php
+                $numThem = "";
+                ?>
 
+                
+                <input type="hidden" id="idTypThem" name="idTypThem" value="<?= $numThem; ?>" />
+                <select size="1" name="TypThem" id="TypThem" class="form-control form-control-create" title="Sélectionnez la thématique !" >
+                    <option value="-1">- - - Choisissez une thématique - - -</option>
+    <?php
+                    $listNumThem = "";
+                    $listlibThem = "";
 
-                <input type="text" name="idThem" id="idThem" size="5" maxlength="5" value="<?= $numThem; ?>" autocomplete="on" />
-
-                <!-- Listbox thematique => 2ème temps -->
+                    $result = $maThematique->get_AllThematiques();
+                    // var_dump($result);
+                    if($result){
+                        foreach($result as $row){
+                            $listNumThem = $row["numThem"]; //
+                            $listlibThem = $row["libThem"];
+    ?>
+                            <option value="<?= $listNumThem; ?>">
+                                <?= $listlibThem; ?>
+                            </option>
+    <?php
+                        } // End of foreach
+                    }   // if ($result)
+    ?>
+                </select>
 
             </div>
         </div>
