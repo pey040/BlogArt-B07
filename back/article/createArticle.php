@@ -21,6 +21,9 @@ include __DIR__ . '/initVar.php';
 // controle des saisies du formulaire
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
+
+require_once __DIR__ . '/../../back/article/ctrlerUploadImage.php';
+
 // Insertion classe Article
 
 // Instanciation de la classe Article
