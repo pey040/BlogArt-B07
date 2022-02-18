@@ -1,0 +1,65 @@
+:root{
+    --white: #F6F6F6;
+    --blue: #7E8ACF;
+    --gold: #FCC967;
+    --grey: #56504D;
+    --black: #000000;
+}
+
+body{
+    margin: 0;
+}
+
+
+footer{
+    color: var(--white);
+    padding: 0.2%;
+    background-color: var(--blue);
+    
+
+
+}
+
+.sculpHome{
+    font-size: 35px;
+}
+
+.sculpHome:hover{
+    color: var(--white);
+}
+
+.footerButtons a{
+    margin: 1%;
+    flex-direction: column;
+    display: flex;
+    margin-left: 25px;
+    margin-right: 25px;
+
+    
+
+}
+
+.foot1 a{
+    margin-bottom: 15%;
+}
+
+a{
+    font-family: 'Spartan', sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    color: var(--white);
+    transition: 0.3s ease-out;
+    
+}
+
+a:hover{
+    color: var(--gold);
+    transition: 0.3s ease-out;
+}
+
+.subFooter{
+    font-size: 20px;
+    vertical-align: middle;
+    justify-content: space-between;
+    display: flex;
+}
