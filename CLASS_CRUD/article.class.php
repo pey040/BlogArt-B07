@@ -35,10 +35,12 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+
+		$query = 'SELECT * FROM ARTICLE WHERE numArt=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numArt]);
+		$oneArticle = $request->fetch();
+		return($oneArticle);
 	}
 
 	function get_1ArticleAnd3FK($numArt){

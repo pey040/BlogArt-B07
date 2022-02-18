@@ -59,21 +59,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         header("Location: ./createAngle.php");
     }   // End of if ((isset($_POST["submit"])) ...
-    if (isset($_POST['urlPhotArt']) AND !empty($_POST['urlPhotArt'])
-        AND isset($_POST['TypThem']) AND !empty($_POST['TypThem'])
+    if (isset($_POST['TypThem']) AND !empty($_POST['TypThem'])
+        AND isset($_FILES['monfichier']['tmp_name']) AND !empty($_FILES['monfichier']['tmp_name'])
         AND isset($_POST['TypAngl']) AND !empty($_POST['TypAngl'])
         AND !empty($_POST['Submit']) AND $Submit === "Valider") {
     
         // Saisies valides
         $erreur = false;
 
-        $urlPhotArt = ctrlSaisies($_POST['urlPhotArt']);
+        require_once __DIR__ . './ctrlerUploadImage.php';
         
         $numThem = ctrlSaisies($_POST['TypThem']);
 
         $numAngl = ctrlSaisies($_POST['TypAngl']);
 
-        $monArticle->testupdate($urlPhotArt, $numThem, $numAngl, $POST_['id']);
+        $urlPhotArt = $nomImage;
+
+        $monArticle->testupdate($urlPhotArt, $numAngl, $numThem, $POST_['id']);
 
         header("Location: ./article.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
@@ -81,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Saisies invalides
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
+        var_dump($_POST);
     }   // End of else erreur saisies
 
 
@@ -219,8 +222,12 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                     "(lageur, hauteur, taille max : 80000px, 80000px, 200 000 Go)";
                   echo "<i>" . $msgImagesOK . "</i>";
 ?>
+
                 </p>
-                <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($urlPhotArt); ?>" height="183" width="275" /></i></b></p>
+                <?php
+                $recupImage
+                ?>
+                <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($row["numArt"]); ?>" height="183" width="275" /></i></b></p>
 
             </div>
         </div>
