@@ -25,6 +25,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Mise en forme date
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
+
+// Insertion classe Article
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 $monArticle = new ARTICLE();
 
@@ -242,7 +244,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             <div class="controls">
             <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
                 
-                <?php
+            <?php
                 $numLang = "";
                 ?>
 
@@ -287,8 +289,6 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                 <label class="control-label" for="LibTypAngl">
                     <b>Quel angle :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
                 </label>
-
-
                 <?php
                 $numAngl = "";
                 ?>
@@ -357,6 +357,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                     }   // if ($result)
     ?>
                 </select>
+
 
             </div>
         </div>

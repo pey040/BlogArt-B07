@@ -14,8 +14,8 @@
                         <a href="accueil.php">Accueil</a>
                         <a href="connexion.php">Connexion</a>
                     </div>
-                    <a href="MentionLegales.html">Mentions <br/> légales</a>
-                    <a href="Apropos.html">À propos <br/> de nous</a>
+                    <a href="mentionslegales.php">Mentions <br/> légales</a>
+                    <a href="apropos.php">À propos <br/> de nous</a>
                 </div>
             </div>
         </footer>
