@@ -9,7 +9,9 @@
     --black: #000000;
 }
 
-
+p{
+    color: var(--grey);
+}
 
 .dessinMontaigne{
     width: 40%;
