@@ -10,29 +10,43 @@
 }
 
 .dessinMontaigne{
-    width: 50%;
+    width: 25%;
     height: auto;
+    margin-right: 2%;
 }
 
 .pageMentionsLegales{
     display: flex;
     justify-content: space-evenly;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding: 2%;
-    
+    text-align: start;
+    margin: 3%;
 }
 
-.textmlegales1 {
+.toppage{
+    display: flex;
+}
+
+.textML{
+    display: flex;
+    flex-direction: column;
+}
+
+.textmlegalestitle1 {
     font-family: 'STIX Two Text', serif;
     font-size: 60px;
     color: var(--grey) !important;
 }
 
-.textmlegales2 {
-    font-family: 'Spartan', serif;
+.textmlegalestitle {
+    font-family: 'STIX Two Text', serif;
     font-size: 30px;
+}
+
+.textmlegalestext {
+    font-family: 'Spartan', serif;
+    font-size: 20px;
     font-weight: 300;
     color: var(--grey) !important;
 }

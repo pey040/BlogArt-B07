@@ -63,3 +63,8 @@ a:hover{
     justify-content: space-between;
     display: flex;
 }
+
+.MLButton{
+    flex-direction: column;
+    columns: 1;
+}

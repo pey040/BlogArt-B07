@@ -10,18 +10,29 @@
 }
 
 .dessinTortue{
-    width: 50%;
+    display: flex;
+    width: 30%;
     height: auto;
+    margin: 2%;
+    align-items: center;
+    justify-content: center;
 }
 
 .pageAPropos{
+    align-items: center;
+    text-align: start;
+    padding: 2%;
+    margin-left: 2%;
+}
+
+.AProposPart{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    align-items: center;
-    text-align: center;
-    padding: 2%;
+    vertical-align: middle;
+    align-items: flex-end;
 }
+
 
 .textapropos1 {
     font-family: 'STIX Two Text', serif;
@@ -31,7 +42,47 @@
 
 .textapropos2 {
     font-family: 'Spartan', serif;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 300;
     color: var(--grey) !important;
+}
+
+.EquipePart {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    vertical-align: middle;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.EquipeSlot {
+    transition: 0.4s ease-out;
+    display: flex;
+    padding: 5%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.EquipeSlot:hover {
+    transition: 0.2s ease-out;
+    border-radius: 100px;
+    background-color: var(--gold);
+}
+
+.MembreEquipe{
+    width: 90%;
+    height: auto;
+}
+
+.SeeLinkedin {
+    font-family: 'Spartan', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--grey) !important;
+}
+
+.LogoLinkedin img{
+    width: 95% !important;
+    height: 95% !important;
 }
