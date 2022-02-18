@@ -46,19 +46,41 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
+        header("Location: ./createAngle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['TypThem']) AND !empty($_POST['TypThem'])
+        AND isset($_FILES['monfichier']['tmp_name']) AND !empty($_FILES['monfichier']['tmp_name'])
+        AND isset($_POST['TypAngl']) AND !empty($_POST['TypAngl'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
+        $erreur = false;
 
-    // controle des saisies du formulaire
+        require_once __DIR__ . './ctrlerUploadImage.php';
+        
+        $numThem = ctrlSaisies($_POST['TypThem']);
 
-    // création effective de l'article
+        $numAngl = ctrlSaisies($_POST['TypAngl']);
 
+        $urlPhotArt = $nomImage;
 
+        $monArticle->testcreate($urlPhotArt, $numAngl, $numThem);
 
-    // Gestion des erreurs => msg si saisies ko
-
-
-
-    // Traitnemnt : upload image => Nom image à la volée
+        header("Location: ./article.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+        var_dump($_POST);
+    }   // End of else erreur saisies
 
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")

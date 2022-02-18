@@ -35,10 +35,12 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+
+		$query = 'SELECT * FROM ARTICLE WHERE numArt=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numArt]);
+		$oneArticle = $request->fetch();
+		return($oneArticle);
 	}
 
 	function get_1ArticleAnd3FK($numArt){
@@ -172,6 +174,25 @@ class ARTICLE{
 		}
 	}
 
+	function testcreate($urlPhotArt, $numAngl, $numThem){
+		global $db;
+
+		try {
+			$db->beginTransaction();
+
+			$query = 'INSERT INTO ARTICLE (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (NOW(), "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", ?, ?, ?);';
+			$request = $db->prepare($query);
+			$request->execute([$urlPhotArt, $numAngl, $numThem]);
+			$db->commit();
+			$request->closeCursor();
+		}
+		catch (PDOException $e) {
+			$db->rollBack();
+			$request->closeCursor();
+			die('Erreur insert ARTICLE : ' . $e->getMessage());
+		}
+	}
+
 	function update($numArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem){
 		global $db;
 
@@ -181,6 +202,25 @@ class ARTICLE{
 			// update
 			// prepare
 			// execute
+			$db->commit();
+			$request->closeCursor();
+		}
+		catch (PDOException $e) {
+			$db->rollBack();
+			$request->closeCursor();
+			die('Erreur update ARTICLE : ' . $e->getMessage());
+		}
+	}
+
+	function testupdate($urlPhotArt, $numAngl, $numThem, $id){
+		global $db;
+
+		try {
+			$db->beginTransaction();
+
+			$query = 'UPDATE ARTICLE set urlPhotArt=?, numAngl=?, numThem=? where numArt=? ';
+			$request = $db->prepare($query);
+			$request->execute([$urlPhotArt, $numAngl, $numThem, $id]);
 			$db->commit();
 			$request->closeCursor();
 		}

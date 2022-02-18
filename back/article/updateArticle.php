@@ -26,21 +26,18 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 
-require_once __DIR__ . '/../../back/article/ctrlerUploadImage.php';
-
 // Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+$monArticle = new ARTICLE();
 
-// Instanciation de la classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+$maLangue = new LANGUE();
 
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+$monAngle = new ANGLE();
 
-// Insertion classe MotCleArticle
-
-// Instanciation de la classe MotCleArticle
-
-
-// Insertion classe MotCle
-
-// Instanciation de la classe MotCle
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+$maThematique = new THEMATIQUE();
 
 
 
@@ -55,20 +52,41 @@ $targetDir = TARGET;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
-    // controle des saisies du formulaire
+        header("Location: ./createAngle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['TypThem']) AND !empty($_POST['TypThem'])
+        AND isset($_FILES['monfichier']['tmp_name']) AND !empty($_FILES['monfichier']['tmp_name'])
+        AND isset($_POST['TypAngl']) AND !empty($_POST['TypAngl'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
+        $erreur = false;
 
-    // modification effective du article
+        require_once __DIR__ . './ctrlerUploadImage.php';
+        
+        $numThem = ctrlSaisies($_POST['TypThem']);
 
+        $numAngl = ctrlSaisies($_POST['TypAngl']);
 
+        $urlPhotArt = $nomImage;
 
-    // Gestion des erreurs => msg si saisies ko
+        $monArticle->testupdate($urlPhotArt, $numAngl, $numThem, $POST_['id']);
 
-
-    // Traitnemnt : upload image => Chnager image
-    // Nom image à la volée
-
-
+        header("Location: ./article.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+        var_dump($_POST);
+    }   // End of else erreur saisies
 
 
 
@@ -206,8 +224,12 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                     "(lageur, hauteur, taille max : 80000px, 80000px, 200 000 Go)";
                   echo "<i>" . $msgImagesOK . "</i>";
 ?>
+
                 </p>
-                <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($urlPhotArt); ?>" height="183" width="275" /></i></b></p>
+                <?php
+                $recupImage
+                ?>
+                <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($row["numArt"]); ?>" height="183" width="275" /></i></b></p>
 
             </div>
         </div>
@@ -215,13 +237,12 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Langue -->
-        <br>
+    <br>
         <div class="control-group">
             <div class="controls">
-                <label class="control-label" for="LibTypLang">
-                    <b>Quelle langue :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-                </label>
-                <?php
+            <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
+                
+            <?php
                 $numLang = "";
                 ?>
 
@@ -252,6 +273,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             </div>
         </div>
     <!-- FIN Listbox Langue -->
+<!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
 
 <!-- --------------------------------------------------------------- -->
@@ -299,13 +321,13 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Thématique -->
+    <!-- Grp 7 -->
         <br>
         <div class="control-group">
             <div class="controls">
                 <label class="control-label" for="LibTypThem">
                     <b>Quelle thématique :&nbsp;&nbsp;&nbsp;</b>
                 </label>
-
                 <?php
                 $numThem = "";
                 ?>
@@ -334,11 +356,13 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     ?>
                 </select>
 
+
             </div>
         </div>
     <!-- FIN Listbox Thématique -->
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
+
 <!-- --------------------------------------------------------------- -->
     <!-- Drag and drop Mot Clé -->
 <!-- --------------------------------------------------------------- -->

@@ -16,7 +16,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
-
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+$monMembre = new MEMBRE();
 // Instanciation de la classe Membre
 
 
@@ -28,20 +29,38 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
+        header("Location: ./createMembre.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (((isset($_POST['id'])) and !empty($_POST['id']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    ) {
 
-    // controle CIR
+        $numMemb = ctrlSaisies(($_POST['id']));
+        
+        $test = $monMembre->MembExist($numMemb);
+        if ($test == true) {
+            // Saisies valides
+            $erreur = false;
 
-    // delete effective du user
-
-
-
-
-
-
-
-
-
+            $monMembre->delete($numMemb);
+        } else {
+            $erreur = true;
+            $errSaisies =  "Erreur, l'utilisateur est déjà utilisé !";
+        }
+        header("Location: ./membre.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    } 
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
@@ -113,10 +132,10 @@ include __DIR__ . '/initMembre.php';
                <fieldset>
                   <input type="radio" name="accordMemb"
                   <? if($accordMemb == 1) echo 'checked="checked"'; ?>
-                  value="on" disabled />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+                  Oui
                   <input type="radio" name="accordMemb"
                   <? if($accordMemb == 0) echo 'checked="checked"'; ?>
-                  value="off" disabled />&nbsp;&nbsp;Non
+                  Non
                </fieldset>
             </div>
         </div>
