@@ -17,10 +17,10 @@ class THEMATIQUE{
 	function get_1Thematique($numThem){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		$query = 'SELECT * FROM THEMATIQUE WHERE numThem=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numThem]);
+		return($request->fetch());
 	}
 
 	function get_1ThematiqueByLang($numThem){

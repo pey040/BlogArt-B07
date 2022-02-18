@@ -16,10 +16,11 @@ class LANGUE{
 	function get_1Langue($numLang){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+
+		$query = 'SELECT * FROM LANGUE WHERE numLang=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numLang]);
+		return($request->fetch());
 	}
 
 	function get_1LangueByPays($numLang){

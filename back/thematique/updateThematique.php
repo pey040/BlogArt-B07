@@ -84,13 +84,13 @@ include __DIR__ . '/initThematique.php';
     <h1>BLOGART22 Admin - CRUD Thematique</h1>
     <h2>Modification d'une Thematique</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $maThematique->get_1Thematique($id);
+        $id = $row["numThem"];
+        $libThem = $row["libThem"];
+        $idLang = $row["numLang"];
+    }
 
 
 ?>

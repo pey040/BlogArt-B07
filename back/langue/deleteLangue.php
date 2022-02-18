@@ -130,6 +130,14 @@ include __DIR__ . '/initLangue.php';
     // Supp : récup id à supprimer
     // id passé en GET
 
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $maLangue->get_1Langue($id);
+        $id = $row["numLang"];
+        $lib1Lang = $row["lib1Lang"];
+        $lib2Lang = $row["lib2Lang"];
+        $numPays = $row["numPays"];
+    }
 
 
 

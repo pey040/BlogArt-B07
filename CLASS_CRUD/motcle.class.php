@@ -17,10 +17,10 @@ class MOTCLE{
 	function get_1MotCle($numMotCle){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		$query = 'SELECT * FROM MOTCLE WHERE numMotCle=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numMotCle]);
+		return($request->fetch());
 	}
 
 	function get_1MotCleByLang($numMotCle){

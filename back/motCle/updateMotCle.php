@@ -80,14 +80,13 @@ include __DIR__ . '/initMotCle.php';
     <h1>BLOGART22 Admin - CRUD Mot Clé</h1>
     <h2>Modification d'un Mot Clé</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monMotCle->get_1MotCle($id);
+        $id = $row["numMotCle"];
+        $libMotCle = $row["libMotCle"];
+        $numLang = $row["numLang"];
+    }
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
