@@ -21,10 +21,11 @@ class MEMBRE{
 	function get_1Membre($numMemb){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+
+		$query = 'SELECT * FROM MEMBRE WHERE numMemb=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numMemb]);
+		return($request->fetch());
 	}
 
 	function get_1MembreByEmail($eMailMemb){

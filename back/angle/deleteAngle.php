@@ -97,12 +97,13 @@ include __DIR__ . '/initAngle.php';
     <h1>BLOGART22 Admin - CRUD Angle</h1>
     <h2>Suppression d'un angle</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monAngle->get_1Angle($id);
+        $id = $row["numAngl"];
+        $libAngl = $row["libAngl"];
+        $numLang = $row["numLang"];
+    }
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">

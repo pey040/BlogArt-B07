@@ -88,12 +88,13 @@ include __DIR__ . '/initMotCle.php';
     <h1>BLOGART22 Admin - CRUD Mot Clé</h1>
     <h2>Suppression d'un Mot Clé</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monMotCle->get_1MotCle($id);
+        $id = $row["numMotCle"];
+        $libMotCle = $row["libMotCle"];
+        $idLang = $row["numLang"];
+    }
 
 
 

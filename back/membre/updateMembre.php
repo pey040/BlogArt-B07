@@ -119,13 +119,18 @@ include __DIR__ . '/initMembre.php';
     <h1>BLOGART22 Admin - CRUD Membre</h1>
     <h2>Modification d'un membre</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monMembre->get_1Membre($id);
+        $id = $row["numMemb"];
+        $prenomMemb = $row["prenomMemb"];
+        $nomMemb = $row["nomMemb"];
+        $pseudoMemb = $row["pseudoMemb"];
+        $eMail1Memb = $row["eMailMemb"];
+        $dtCreaMemb = $row["dtCreaMemb"];
+        $accordMemb = $row["accordMemb"];
+        $idStat = $row["idStat"];
+    }
 
 
 ?>

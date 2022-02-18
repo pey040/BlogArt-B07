@@ -127,12 +127,12 @@ include __DIR__ . '/initStatut.php';
     <h1>BLOGART22 Admin - CRUD Statut</h1>
     <h2>Suppression d'un statut</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monStatut->get_1Statut($id);
+        $id = $row["idStat"];
+        $libStat = $row["libStat"];
+    }
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
@@ -143,7 +143,7 @@ include __DIR__ . '/initStatut.php';
 
         <div class="control-group">
             <label class="control-label" for="libStat"><b>Nom :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat; ?>" disabled="disabled" />
+            <input type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?php if (isset($_GET["id"])) {echo $libStat;} ?>" disabled="disabled" />
         </div>
 
         <div class="control-group">

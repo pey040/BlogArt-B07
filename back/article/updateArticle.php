@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $urlPhotArt = $nomImage;
 
-        $monArticle->testupdate($urlPhotArt, $numAngl, $numThem, $POST_['id']);
+        $monArticle->testupdate($urlPhotArt, $numAngl, $numThem, $_POST["id"]);
 
         header("Location: ./article.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
@@ -225,9 +225,11 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 
                 </p>
                 <?php
-                $recupImage
+                
+                $numArt = $_POST["id"];
+                $recupImage = $monArticle->get_1Article($numArt);
                 ?>
-                <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($row["numArt"]); ?>" height="183" width="275" /></i></b></p>
+                <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($recupImage["urlPhotArt"]); ?>" height="183" width="275" /></i></b></p>
 
             </div>
         </div>
