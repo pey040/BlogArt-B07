@@ -17,10 +17,11 @@ class ANGLE{
 	function get_1Angle(string $numAngl) {
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+
+		$query = 'SELECT * FROM ANGLE WHERE numAngl=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numAngl]);
+		return($request->fetch());
 	}
 
 	function get_1AngleByLang(string $numAngl) {

@@ -94,14 +94,14 @@ include __DIR__ . '/initLangue.php';
     <h1>BLOGART22 Admin - CRUD Langue</h1>
     <h2>Modification d'une langue</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $maLangue->get_1Langue($id);
+        $id = $row["numLang"];
+        $lib1Lang = $row["lib1Lang"];
+        $lib2Lang = $row["lib2Lang"];
+        $numPays = $row["numPays"];
+    }
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">

@@ -87,13 +87,13 @@ include __DIR__ . '/initAngle.php';
     <h1>BLOGART22 Admin - CRUD Angle</h1>
     <h2>Modification d'un angle</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monAngle->get_1Angle($id);
+        $id = $row["numAngl"];
+        $libAngl = $row["libAngl"];
+        $numLang = $row["numLang"];
+    }
 
 
 ?>
@@ -106,7 +106,7 @@ include __DIR__ . '/initAngle.php';
 
         <div class="control-group">
             <label class="control-label" for="libAngl"><b>Libellé :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl; ?>" tabindex="10" autofocus="autofocus" />
+            <input type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?php if (isset($_GET["id"])) {echo $libAngl;}?>" tabindex="10" autofocus="autofocus" />
         </div>
         <br>
 <!-- ---------------------------------------------------------------------- -->
