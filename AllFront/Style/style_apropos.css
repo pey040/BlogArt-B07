@@ -9,28 +9,27 @@
     --black: #000000;
 }
 
-.dessinMontaigne{
+.dessinTortue{
     width: 50%;
     height: auto;
 }
 
-.pageMentionsLegales{
+.pageAPropos{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
     text-align: center;
     padding: 2%;
-    
 }
 
-.textmlegales1 {
+.textapropos1 {
     font-family: 'STIX Two Text', serif;
     font-size: 60px;
     color: var(--grey) !important;
 }
 
-.textmlegales2 {
+.textapropos2 {
     font-family: 'Spartan', serif;
     font-size: 30px;
     font-weight: 300;

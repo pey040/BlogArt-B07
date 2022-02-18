@@ -1,45 +1,24 @@
+<?php require_once('../AllFront/header.php') ?>
+
 <html>
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="Style/style_header.css">
-        <link rel="stylesheet" href="Style/style_footer.css">
+        <link rel="stylesheet" href="Style/style_apropos.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <a href="Accueil.html"><img src="Assets/LogoSculpeaux.png" alt="Sculp'eaux" width="332px" height="135px"></a>
-            <div class="headerButtons">
-                <a href="Accueil.html">Accueil</a>
-                <a href="Connexion.html">Connexion</a>
-                <a href="Connexion.html"><img src="Assets/recherche.png" alt="BarredeRecherche" width="175" height="55"></a>
-                
-                <!--Barre de recherche-->
+        <section class="AProposUpperPart">
+            <div>
+                <p class="textapropos1">À propos de nous</p>
+                <p class="textapropos2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, porro! Ducimus ipsa natus vero esse incidunt assumenda doloremque in iste ipsum, harum iusto consequatur sequi recusandae? Reprehenderit temporibus reiciendis repudiandae?</p>
             </div>
-
-        
-        <!--<header>
-            <a href="Accueil.html"><img src="Assets/" alt="Sculp'eaux" ></a>
-            <a href="Accueil.html">Accueil</a>
-            <a href="Connexion.html">Connexion</a>
-            Barre de recherche -->
-        </header>
-        
-        <h1>A propos de nous</h1>
-
-    
+            <img class="dessinTortue" src="Assets/dessin_tortue.png" alt="">
+        </section>
     </body>
-    <footer>
-        <div class="footerButtons">
-            <a class ="sculpHome" href="Accueil.html">SCULP'EAUX </a>
-            <div class ="subFooter">
-                <div class="foot1">
-                    <a href="Accueil.html">Accueil</a>
-                    <a href="Connexion.html">Connexion</a>
-                </div>
-                <a href="MentionLegales.html">Mentions légales</a>
-                <a href="Apropos.html">À propos de nous</a>
-            </div>
-        </div>
-    </footer>
 </html>
+
+<?php require_once('../AllFront/footer.php') ?>
