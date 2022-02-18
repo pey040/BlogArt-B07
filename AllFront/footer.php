@@ -8,14 +8,14 @@
     <body>
         <footer>
             <div class="footerButtons">
-                <a class ="sculpHome" href="Accueil.html">SCULP'EAUX </a>
+                <a class ="sculpHome" href="accueil.php">SCULP'EAUX </a>
                 <div class ="subFooter">
                     <div class="foot1">
-                        <a href="Accueil.html">Accueil</a>
-                        <a href="Connexion.html">Connexion</a>
+                        <a href="accueil.php">Accueil</a>
+                        <a href="connexion.php">Connexion</a>
                     </div>
-                    <a href="MentionLegales.html">Mentions légales</a>
-                    <a href="Apropos.html">À propos de nous</a>
+                    <a href="MentionLegales.html">Mentions <br/> légales</a>
+                    <a href="Apropos.html">À propos <br/> de nous</a>
                 </div>
             </div>
         </footer>

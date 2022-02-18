@@ -49,6 +49,7 @@ a{
     text-decoration: none;
     color: var(--white);
     transition: 0.3s ease-out;
+    
 }
 
 a:hover{
@@ -62,5 +63,3 @@ a:hover{
     justify-content: space-between;
     display: flex;
 }
-
-    
