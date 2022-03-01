@@ -36,29 +36,32 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
         echo 'Bonjour ' . $_COOKIE['user'] . '<br>';
     }
 } else {
-    echo "Connexion" . '<br>';
+    echo "Connexionpodvsipvnisdvsiunvsihbvhdbvsjsdjvbqjcfbqbc suhbvsjbvsbvjdshbvcksdvbsdcbqsjkscb, cela commence à me courir sur le haricot :) hahahaa" . '<br>';
 }
 ?>
 
 <!--login form-->
 <html>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <fieldset>
-        <div class="control-group">
-            <label class="control-label" for="user">User</label>
-            <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="pass">Password</label>
-            <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" />
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" value="Se connecter" style="cursor:pointer; padding:5px 20px; background-color:#FCC967;" name="Valider" />
+    <div class="connexion-case">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <fieldset>
+            <h2>CONNEXION</a></h2>
+            <div class="control-group">
+                <label class="control-label" for="user">User</label>
+                <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
             </div>
-        </div>
-        <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
-    </fieldset>
+            <div class="control-group">
+                <label class="control-label" for="pass">Password</label>
+                <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" />
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" value="Se connecter" style="cursor:pointer; padding:10px 40px; background-color:#FCC967;" name="Valider" />
+                </div>
+            </div>
+            <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
+        </fieldset>
+    </div>
 </html>
 
 <?php require_once('../AllFront/footer.php') ?>

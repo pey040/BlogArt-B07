@@ -15,8 +15,7 @@
 <html>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <fieldset>
-        <legend class="legend1">Login</legend>
-        <div class="control-group">
+    <div class="control-group">
             <label class="control-label" for="user">User</label>
             <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
         </div>
@@ -26,7 +25,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <input type="submit" value="Login" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="S'inscrire" style="cursor:pointer; padding:5px 20px; background-color:#FCC967;" name="Valider" />
             </div>
         </div>
         <h2>Vous avez déjà un compte, <a href="connexion.php">Connectez-vous</a></h2>
