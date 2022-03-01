@@ -92,7 +92,7 @@ include __DIR__ . '/initAngle.php';
         $row = $monAngle->get_1Angle($id);
         $id = $row["numAngl"];
         $libAngl = $row["libAngl"];
-        $numLang = $row["numLang"];
+        $idLang = $row["numLang"];
     }
 
 
@@ -136,10 +136,18 @@ include __DIR__ . '/initAngle.php';
                     foreach($result as $row){
                         $listNumLang = $row["numLang"]; //
                         $listlibLang = $row["lib1Lang"];
-?>
-                        <option value="<?= $listNumLang; ?>">
+
+                        if ($listNumLang == $idLang){
+                            ?>          <option value="<?= $listNumLang; ?>" selected>
                             <?= $listlibLang; ?>
-                        </option>
+                        </option>  
+                        <?php ;}?>
+                      
+                    <?php    if ($listNumLang != $idLang){
+                            ?>          <option value="<?= $listNumLang; ?>" >
+                            <?= $listlibLang; ?>
+                        </option>  
+                        <?php ;}?>
 <?php
                     } // End of foreach
                 }   // if ($result)

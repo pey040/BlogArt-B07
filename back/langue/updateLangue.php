@@ -132,7 +132,9 @@ include __DIR__ . '/initLangue.php';
 
 
                 <?php
-            $numPays = "";
+                if (isset($_GET["id"])) {
+                    $numPays = $row["numPays"];
+                }
             ?>
 
             
@@ -149,10 +151,18 @@ include __DIR__ . '/initLangue.php';
                     foreach($result as $row){
                         $listNumPays = $row["numPays"]; //
                         $listfrPays = $row["frPays"];
-?>
-                        <option value="<?= $listNumPays; ?>">
+
+                        if ($listNumPays == $numPays){
+                            ?>          <option value="<?= $listNumPays; ?>" selected>
                             <?= $listfrPays; ?>
-                        </option>
+                        </option>  
+                        <?php ;}?>
+                      
+                    <?php    if ($listNumPays != $numPays){
+                            ?>          <option value="<?= $listNumPays; ?>" >
+                            <?= $listfrPays; ?>
+                        </option>  
+                        <?php ;}?>
 <?php
                     } // End of foreach
                 }   // if ($result)

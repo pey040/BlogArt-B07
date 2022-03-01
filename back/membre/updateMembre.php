@@ -233,10 +233,18 @@ include __DIR__ . '/initMembre.php';
                     foreach($result as $row){
                         $listidStat = $row["idStat"]; //
                         $listlibStat = $row["libStat"];
-?>
-                        <option value="<?= $listidStat; ?>">
+                        
+                        if ($listidStat == $idStat){
+                            ?>          <option value="<?= $listidStat; ?>" selected>
                             <?= $listlibStat; ?>
-                        </option>
+                        </option>  
+                        <?php ;}?>
+                      
+                    <?php    if ($listidStat != $idStat){
+                            ?>          <option value="<?= $listidStat; ?>" >
+                            <?= $listlibStat; ?>
+                        </option>  
+                        <?php ;}?>
 <?php
                     } // End of foreach
                 }   // if ($result)

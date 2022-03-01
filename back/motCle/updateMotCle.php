@@ -85,7 +85,7 @@ include __DIR__ . '/initMotCle.php';
         $row = $monMotCle->get_1MotCle($id);
         $id = $row["numMotCle"];
         $libMotCle = $row["libMotCle"];
-        $numLang = $row["numLang"];
+        $idLang = $row["numLang"];
     }
 
 ?>
@@ -131,10 +131,18 @@ include __DIR__ . '/initMotCle.php';
                     foreach($result as $row){
                         $listNumLang = $row["numLang"]; //
                         $listlibLang = $row["lib1Lang"];
-?>
-                        <option value="<?= $listNumLang; ?>">
-                            <?= $listlibLang; ?>
-                        </option>
+
+                if ($listNumLang == $idLang){
+                    ?>          <option value="<?= $listNumLang; ?>" selected>
+                    <?= $listlibLang; ?>
+                </option>  
+                <?php ;}?>
+              
+            <?php    if ($listNumLang != $idLang){
+                    ?>          <option value="<?= $listNumLang; ?>" >
+                    <?= $listlibLang; ?>
+                </option>  
+                <?php ;}?>
 <?php
                     } // End of foreach
                 }   // if ($result)
