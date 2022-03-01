@@ -21,6 +21,7 @@
 }
 
 
+
 .cookies a {
     text-decoration: none;
     color: var(--gold);
@@ -29,16 +30,29 @@
 
 .cookies a:hover {
     text-decoration: none;
-    color: var(--blue);
+    color: var(--gold);
+    font-size: large;
     margin-top: 8px
 }
-
-
-/* Popup container */
-.popup {
+  /* Popup container */
+  .popup {
+    display: flex;
     position: relative;
     cursor: pointer;
-    justify-content: center;
+    /* justify-content: center;  */
+    justify-content: flex-end;
+  }
+
+  div .cookies{
+    background-color: rgba(88, 100, 172 , 0.8);
+    border: 1px solid #FCC967;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    text-align: center;
   }
   
   /* The actual popup (appears on top) */
@@ -46,7 +60,7 @@
     visibility: hidden;
     width: 160px;
     background-color: var(--blue);
-    color: var(--grey);
+    color: var(--gold);
     text-align: center;
     border-radius: 6px;
     padding: 8px 0;
@@ -55,6 +69,13 @@
     bottom: 125%;
     left: 50%;
     margin-left: -80px;
+  }
+
+  button {
+    background-color: var(--gold);
+    border: none;
+    font-family: "Spartan" ;
+    color: var(--grey);
   }
   
   /* Popup arrow
@@ -76,7 +97,7 @@
     animation: fadeIn 1s
   } */
   
-  /* Add animation (fade in the popup) */
+  /* Add animation (fade in the popup)
   @-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -85,4 +106,6 @@
   @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
-  }
+  } */
+
+
