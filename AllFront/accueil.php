@@ -20,12 +20,6 @@ $monArticle = new ARTICLE();
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
     </head>
 
-<!-- Cookie -->
-<!-- 
-<a href="javascript:PopupCentrer('popup.php',300,150,'menubar=no,status=no')">popup centré de 300 par 150 pixels</a>
-       -->
-
-<!-- end Cookie -->
 
 
     <body>
@@ -46,10 +40,7 @@ $monArticle = new ARTICLE();
 
         <img class="dessinQuinconces" src="Assets/statuequinconces.png" alt="">
         </div>
-        
-
-
-    
+  
 
 
     </body>
@@ -59,21 +50,6 @@ $monArticle = new ARTICLE();
 
 
 <script>
-// When the user clicks on <div>, open the popup
-// function myFunction() {
-//   var popup = document.getElementById("myPopup");
-//   popup.classList.toggle("show");
-// }
-
-// function PopupCentrer(page, largeur, hauteur, options) {
-//   var top=(screen.height-hauteur)/2;
-//   var left=(screen.width-largeur)/2;
-//   window.open(page,"","top="+top+",left="+left+",width="+largeur+",height="+hauteur+","+options);
-// }
-
-// window.onload=function() { // Au chargement de la page
-//   window.open("popup.php"); // On ouvre la popup
-// };
 
 popup = document.getElementById("popup");
 acceptPopupButton = document.getElementById("acceptPopupButton")
