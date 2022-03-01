@@ -9,9 +9,14 @@
     --black: #000000;
 }
 
+p{
+    color: var(--grey);
+}
+
 .dessinMontaigne{
-    width: 40%;
+    width: 25%;
     height: auto;
+    margin-right: 2%;
 }
 
 .pageMentionsLegales{
@@ -21,6 +26,7 @@
     align-items: center;
     text-align: start;
     margin: 3%;
+    
 }
 
 .toppage{
@@ -35,6 +41,7 @@
 .textmlegalestitle1 {
     font-family: 'STIX Two Text', serif;
     font-size: 60px;
+    color: var(--grey) !important;
 }
 
 .textmlegalestitle {
@@ -44,6 +51,7 @@
 
 .textmlegalestext {
     font-family: 'Spartan', serif;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 300;
+    color: var(--grey) !important;
 }

@@ -26,10 +26,12 @@
 .texterror1 {
     font-family: 'STIX Two Text', serif;
     font-size: 60px;
+    color: var(--grey) !important;
 }
 
 .texterror2 {
     font-family: 'Spartan', serif;
     font-size: 30px;
     font-weight: 300;
+    color: var(--grey) !important;
 }
