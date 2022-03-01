@@ -14,8 +14,9 @@ p{
 }
 
 .dessinMontaigne{
-    width: 40%;
+    width: 25%;
     height: auto;
+    margin-right: 2%;
 }
 
 .pageMentionsLegales{
@@ -40,6 +41,7 @@ p{
 .textmlegalestitle1 {
     font-family: 'STIX Two Text', serif;
     font-size: 60px;
+    color: var(--grey) !important;
 }
 
 .textmlegalestitle {
@@ -49,6 +51,7 @@ p{
 
 .textmlegalestext {
     font-family: 'Spartan', serif;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 300;
+    color: var(--grey) !important;
 }
