@@ -1,0 +1,88 @@
+/* .card {
+    width: 350px;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #d2d2dc;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+} */
+
+:root{
+    --white: #F6F6F6;
+    --blue: #7E8ACF;
+    --gold: #FCC967;
+    --grey: #56504D;
+    --black: #000000;
+}
+
+
+.cookies a {
+    text-decoration: none;
+    color: var(--gold);
+    margin-top: 8px
+}
+
+.cookies a:hover {
+    text-decoration: none;
+    color: var(--blue);
+    margin-top: 8px
+}
+
+
+/* Popup container */
+.popup {
+    position: relative;
+    cursor: pointer;
+    justify-content: center;
+  }
+  
+  /* The actual popup (appears on top) */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: var(--blue);
+    color: var(--grey);
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  } */
+  
+  /* Toggle this class when clicking on the popup container (hide and show the popup)
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  } */
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }

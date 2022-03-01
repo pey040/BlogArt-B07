@@ -1,9 +1,17 @@
-<?php require_once('../AllFront/header.php') ?>
+<?php 
+require_once('../AllFront/header.php');
+
+// Insertion classe Article
+require_once __DIR__ . '../../CLASS_CRUD/article.class.php';
+$monArticle = new ARTICLE();
+?>
 
 <html>
+
     <head>
         <!-- <link rel="stylesheet" href="Style/style_header.css"> -->
         <link rel="stylesheet" href="Style/style_accueil.css">
+        <link rel="stylesheet" href="Style/style_cookies.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
@@ -11,6 +19,15 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
     </head>
+
+<!-- Cookie -->
+<!-- 
+<a href="javascript:PopupCentrer('popup.php',300,150,'menubar=no,status=no')">popup centré de 300 par 150 pixels</a>
+       -->
+
+<!-- end Cookie -->
+
+
     <body>
         
         <div class="accueilTop">
@@ -32,9 +49,53 @@
         
 
 
+    
+
+
     </body>
 </html>
-
+<?php include('../AllFront/popup.php') ?>
 <?php require_once('../AllFront/footer.php') ?>
+
+
+<script>
+// When the user clicks on <div>, open the popup
+// function myFunction() {
+//   var popup = document.getElementById("myPopup");
+//   popup.classList.toggle("show");
+// }
+
+// function PopupCentrer(page, largeur, hauteur, options) {
+//   var top=(screen.height-hauteur)/2;
+//   var left=(screen.width-largeur)/2;
+//   window.open(page,"","top="+top+",left="+left+",width="+largeur+",height="+hauteur+","+options);
+// }
+
+// window.onload=function() { // Au chargement de la page
+//   window.open("popup.php"); // On ouvre la popup
+// };
+
+popup = document.getElementById("popup");
+acceptPopupButton = document.getElementById("acceptPopupButton")
+var cookiesAuthorized = false;
+
+function closePopup() {
+    popup.style.display = "none";
+    closeButton.style.display = "none";
+    burgerButton.style.display = "flex";
+}
+
+function acceptCookies() {
+    cookiesAuthorized = true;
+    popup.style.display = "none";
+    localStorage.setItem("cookiesAuthorized", JSON.stringify(cookiesAuthorized));
+}
+
+if (localStorage.getItem("cookiesAuthorized") === "true") {
+    popup.style.display = "none";
+} else {
+    popup.style.display = "flex"
+}
+</script>
 
 
