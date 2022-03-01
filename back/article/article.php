@@ -66,7 +66,7 @@ $monArticle = new ARTICLE();
     <tbody>
 <?php
     // Appel méthode : Get tous les articles en BDD
-    $allArticles = $monArticle->get_AllArticles();
+    $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
     // Boucle pour afficher
     foreach($allArticles as $row) {
 
@@ -82,9 +82,9 @@ $monArticle = new ARTICLE();
 
         <td>&nbsp; <?= $row["libAccrochArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row["numAngl"]; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libAngl"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row["numThem"]; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libThem"]; ?> &nbsp;</td>
 
 		<td>&nbsp;&nbsp;<a href="./updateArticle.php?id=<?=$row["numArt"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier article" title="Modifier article" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>

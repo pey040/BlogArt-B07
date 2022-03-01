@@ -81,7 +81,7 @@ $errDel = 0;
     <tbody>
 <?php
     // Appel méthode : Get toutes les Thematiques en BDD
-    $allThematique = $maThematique->get_AllThematiques();
+    $allThematique = $maThematique->get_AllThematiquesByLang();
     // Boucle pour afficher
     foreach($allThematique as $row) {
 ?>
@@ -91,7 +91,7 @@ $errDel = 0;
 
         <td>&nbsp; <?= $row["libThem"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row["numLang"]; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["lib2Lang"]; ?> &nbsp;</td>
 
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateThematique.php?id=<?=$row["numThem"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier thématique" title="Modifier thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
