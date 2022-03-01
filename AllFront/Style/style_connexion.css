@@ -1,0 +1,13 @@
+:root{
+    --white: #F6F6F6;
+    --blue: #7E8ACF;
+    --gold: #FCC967;
+    --grey: #56504D;
+    --black: #000000;
+}
+
+*{
+    font-family: 'Spartan', sans-serif;
+    font-weight: 300;
+    text-decoration: none
+}

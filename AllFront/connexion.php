@@ -5,7 +5,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="Style/style_apropos.css">
+        <link rel="stylesheet" href="Style/style_connexion.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
@@ -44,7 +44,6 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
 <html>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <fieldset>
-        <legend class="legend1">Login</legend>
         <div class="control-group">
             <label class="control-label" for="user">User</label>
             <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
@@ -55,7 +54,7 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
         </div>
         <div class="control-group">
             <div class="controls">
-                <input type="submit" value="Login" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Se connecter" style="cursor:pointer; padding:5px 20px; background-color:#FCC967;" name="Valider" />
             </div>
         </div>
         <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
