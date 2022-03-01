@@ -56,7 +56,7 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <input type="submit" value="Se connecter" style="cursor:pointer; padding:5px 20px; background-color:#FCC967;" name="Valider" />
+                    <input type="submit" value="Se connecter" style="cursor:pointer; padding:10px 40px; background-color:#FCC967;" name="Valider" />
                 </div>
             </div>
             <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
