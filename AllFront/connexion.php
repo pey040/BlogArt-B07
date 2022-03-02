@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach($allMembres as $row) {
         if (($_POST['eMail'] == $row['eMailMemb']) AND ($_POST['pass'] == $row['passMemb'])){
-            setcookie('user', $row['pseudoMemb']);  
+            setcookie('user', $row['pseudoMemb'], time() + 7400, '/');  
         }
 
         
@@ -62,20 +62,20 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
             <div class="control-group">
                 <div class="controls">
                     <input type="submit" value="Se connecter" style="cursor:pointer; padding:10px 40px; background-color:#FCC967;" name="Valider" />
-                    </div>
+                </div>
             </div>
             <?php   
             
             if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
             AND isset($_POST['pass']) AND !empty($_POST['pass'])){
 
-              if (isset($_COOKIE['user']) == false){
-
-                   ?> <html><div class="error-login"> <h2>Le mot de passe et/ou l'adrese mail ne sont pas correct(s)</h2></div></html> <?php
+                if (isset($_COOKIE['user']) == false){
+                    ?> <html><div class="error-login"> <h2>Le mot de passe et/ou l'adrese mail ne sont pas correct(s)</h2></div></html> <?php
                 }
             }
             ?>
             <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
+            <h3><a href="deconnexion.php">Se déconnecter</a></h3>
         </fieldset>
     </div>
 </html>
