@@ -13,23 +13,26 @@
 </html>
 
 <html>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <fieldset>
-    <div class="control-group">
-            <label class="control-label" for="user">User</label>
-            <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="pass">Password</label>
-            <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" />
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" value="S'inscrire" style="cursor:pointer; padding:5px 20px; background-color:#FCC967;" name="Valider" />
-            </div>
-        </div>
-        <h2>Vous avez déjà un compte, <a href="connexion.php">Connectez-vous</a></h2>
-    </fieldset>
+    <div class="inscription-case">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <fieldset>
+            <h2>CONNEXION</a></h2>
+                <div class="control-group">
+                    <label class="control-label" for="user">User</label>
+                    <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="pass">Password</label>
+                    <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" />
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" value="Se connecter" style="cursor:pointer; padding:10px 40px; background-color:#FCC967;" name="Valider" />
+                    </div>
+                </div>
+            <h2>Vous avez déjà un compte, <a href="connexion.php">Connectez-vous</a></h2>
+        </fieldset>
+    </div>        
 </html>
 
 
