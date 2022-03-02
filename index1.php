@@ -9,6 +9,7 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
+require_once('AllFront/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -18,6 +19,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +48,6 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			padding-top: 60px;
 			padding-bottom: 40px;
 			margin-bottom: 0px;
-			margin-left: 60px;
 			display: flex;
 		}
         /* span {
@@ -60,11 +61,15 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			padding: 20px;
 		}
 
+		a:visited{
+			color: var(--grey);
+		}
+
 		hr {
 			border: none;
 			height: 3px;
 			/* Set the hr color */
-			color: #333; /* old IE */
+			color: var(--grey); /* old IE */
 			background-color: #333; /* Modern Browsers */
 		}
 		.hr1 {
@@ -84,13 +89,22 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			flex-direction: column;
 			/* justify-content: space-between; */
 			padding: 10px;
-			/* margin: 6%; */
+			margin: 6%;
 			
 		}
 		
 		.element{
 			background-color: var(--gold);
+			color: var(--grey);
+			margin: 30px;
 		}
+
+		.recherche a{
+			background-color: var(--blue);
+			padding: 10px;
+			color: var(--grey);
+		}
+
 
 		
     </style>
@@ -101,7 +115,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 <body>
 	<br />
 	<h1>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h1>
-	<small><span><i>CRUD fini et valide (reste à intégrer et à tester)</i></span></small>
+	<small><span><i>CRUD fini et valide</i></span></small>
 	<br /><br /><hr />
 	<p>
 		<h2>Connexion...</h2>
@@ -176,20 +190,30 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		<div class="grid-item"></div>
 	</div>
 
+	<item class="recherche">
+		Barre de recherche :
+		<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles (*)</span></a>
+		<br>(F1 en GET)
+		<br /><br /> <br>
+	</item>
+	<item class="recherche">
+		Barre de recherche :
+		<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques (*)</span></a>
+		<br /><br /><br>
+	</item>
+	<item class="recherche">
+		Barre de recherche :
+		<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article (*)</span></a>
+		<br /><br /><br>
+	</item>
+	<item class="recherche">
+		Barre de recherche :
+		<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
+		<br /><br /><br>
+	</item>
 	
-	Barre de recherche :
-	<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles (*)</span></a>
-	<br>(F1 en GET)
-	<br /><br />
-	Barre de recherche :
-	<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques (*)</span></a>
-	<br /><br />
-	Barre de recherche :
-	<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article (*)</span></a>
-	<br /><br />
-	Barre de recherche :
-	<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
-	<br /><br />
+	
+	
 	
 	
 		
@@ -200,6 +224,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	
 <?php
 require_once __DIR__ . '/footer.php';
+require_once ('AllFront/footer.php');
 ?>
 </body>
 </html>

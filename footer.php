@@ -16,3 +16,9 @@ require_once __DIR__ . '/util/utilErrOn.php';
     <h2>Retour à la gestion de tous les CRUD : <a href="./index1.php">Accueil</a></h2>
     <hr /><br />
 </footer>
+
+<style>
+    h2{
+        text-align: center;
+    }
+</style>
