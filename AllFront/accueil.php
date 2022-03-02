@@ -66,14 +66,16 @@ $monArticle = new ARTICLE();
                 if($pair == 0){
                     $allArticles2[$i][$j] = $row['libTitrArt'];
                     $allArticles2[$i][$j+1] = $row['libChapoArt'];
+                    $allArticles2[$i][$j+2] = $row['urlPhotArt'];
 
                     $pair = 1;
                     $nombreInit ++;
                     
                 }
                 else{ //pair
-                    $allArticles2[$i][$j+2] = $row['libTitrArt'];
-                    $allArticles2[$i][$j+3] = $row['libChapoArt'];
+                    $allArticles2[$i][$j+3] = $row['libTitrArt'];
+                    $allArticles2[$i][$j+4] = $row['libChapoArt'];
+                    $allArticles2[$i][$j+5] = $row['urlPhotArt'];
 
                     $pair = 0;
                     $nombreInit ++;
@@ -96,7 +98,7 @@ $monArticle = new ARTICLE();
             if ( $rest != 0 AND $i >= $nombreMax2-1){ ?>
                 <div class="accueilMiddle grid-container">
                 <div class="article1 grid-item">
-                <div><img src="http://placekitten.com/500/200" alt=""></div>
+                <div><img class="imageArticle" src="../uploads/<?= $allArticles2[$i][2]; ?>" alt=""></div>
                 <div>
                     <h3><?= $allArticles2[$i][0]; ?></h3>
                     <p>
@@ -114,7 +116,7 @@ $monArticle = new ARTICLE();
             
             <div class="accueilMiddle grid-container">
             <div class="article1 grid-item">
-                <div><img src="http://placekitten.com/500/200" alt=""></div>
+                <div><img class="imageArticle" src="../uploads/<?= $allArticles2[$i][2]; ?>" alt=""></div>
                 <div>
                     <h3><?= $allArticles2[$i][0]; ?></h3>
                     <p>
@@ -127,12 +129,12 @@ $monArticle = new ARTICLE();
 
             <div class="article2 grid-item">
                 <div>
-                    <h3><?= $allArticles2[$i][2]; ?></h3>
+                    <h3><?= $allArticles2[$i][3]; ?></h3>
                     <p>
-                    <?= $allArticles2[$i][3]; ?>
+                    <?= $allArticles2[$i][4]; ?>
                     </p>
                 </div>
-                <div><img src="http://placekitten.com/500/200" alt=""></div>
+                <div><img class="imageArticle" src="../uploads/<?= $allArticles2[$i][5]; ?>" alt=""></div>
             </div>
 
         </div>
@@ -177,11 +179,16 @@ function acceptCookies() {
     localStorage.setItem("cookiesAuthorized", JSON.stringify(cookiesAuthorized));
 }
 
+
 if (localStorage.getItem("cookiesAuthorized") === "true") {
     popup.style.display = "none";
+    <?php setcookie("cookiesok", "GOOD") ?>
 } else {
     popup.style.display = "flex"
 }
+
+var refresh = window.getElementById('refresh');
+refresh.addEventListener('click', location.reload(), false);
 </script>
 
 

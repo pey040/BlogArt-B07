@@ -10,7 +10,7 @@
                     <img src="../AllFront/Assets/dessin_cookies.png" width="50">
                     <span>Voulez vous utiliser les cookies ?</span><br><br>
                     <a href="mentionslegales.php #cookies" target="blank">En savoir plus</a><i></i></a><br> <br>
-                    <button type="button" onClick="acceptCookies()">Accepter</button> </div>
+                    <button type="button" value="Rafraichir" id="refresh" onClick="acceptCookies()">Accepter</button> </div>
             </div>
         </span>
         </div>

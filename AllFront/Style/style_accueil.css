@@ -90,6 +90,11 @@ h2{
     font-weight: lighter;
 }
 
+.imageArticle{
+    width: 500px;
+    height: 200px;
+}
+
 /* .article1 p{
     padding-left: 30px;
 }
