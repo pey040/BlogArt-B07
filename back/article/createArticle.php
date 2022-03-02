@@ -116,7 +116,7 @@ include __DIR__ . '/initArticle.php';
         <div class="control-group">
             <label class="control-label" for="libTitrArt"><b>Titre :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
-                <input type="text" name="libTitrArt" id="libTitrArt" size="100" maxlength="100" value="<? if(isset($_GET['id'])) echo $_POST['libTitrArt']; ?>" tabindex="10" placeholder="Sur 100 car." autofocus="autofocus" />
+                <input type="text" name="libTitrArt" id="libTitrArt" size="100" maxlength="100"  tabindex="10" placeholder="Sur 100 car." autofocus="autofocus" />
             </div>
         </div>
         <br>
@@ -137,7 +137,7 @@ include __DIR__ . '/initArticle.php';
         <div class="control-group">
             <label class="control-label" for="libAccrochArt"><b>Accroche paragraphe 1 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
-                <input type="text" name="libAccrochArt" id="libAccrochArt" size="100" maxlength="100" value="<? if(isset($_GET['id'])) echo $_POST['libAccrochArt']; else echo $libAccrochArt; ?>" tabindex="40" placeholder="Sur 100 car." />
+                <input type="text" name="libAccrochArt" id="libAccrochArt" size="100" maxlength="100" tabindex="40" placeholder="Sur 100 car." />
             </div>
         </div>
         <br>
@@ -149,9 +149,9 @@ include __DIR__ . '/initArticle.php';
         </div>
         <br>
         <div class="control-group">
-            <label class="control-label" for="libSsTitr1Art"><b>Sous-titre 1 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>b></label>
+            <label class="control-label" for="libSsTitr1Art"><b>Sous-titre 1 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
-                <input type="text" name="libSsTitr1Art" id="libSsTitr1Art" size="100" maxlength="100" value="<? if(isset($_GET['id'])) echo $_POST['libSsTitr1Art']; else echo $libSsTitr1Art; ?>" tabindex="60" placeholder="Sur 100 car." />
+                <input type="text" name="libSsTitr1Art" id="libSsTitr1Art" size="100" maxlength="100" tabindex="60" placeholder="Sur 100 car." />
             </div>
         </div>
         <br>
@@ -163,9 +163,9 @@ include __DIR__ . '/initArticle.php';
         </div>
         <br>
         <div class="control-group">
-            <label class="control-label" for="libSsTitr2Art"><b>Sous-titre 2 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>b></label>
+            <label class="control-label" for="libSsTitr2Art"><b>Sous-titre 2 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
-                <input type="text" name="libSsTitr2Art" id="libSsTitr2Art" size="100" maxlength="100" value="<? if(isset($_GET['id'])) echo $_POST['libSsTitr2Art']; else echo $libSsTitr2Art; ?>" tabindex="80" placeholder="Sur 100 car." />
+                <input type="text" name="libSsTitr2Art" id="libSsTitr2Art" size="100" maxlength="100" tabindex="80" placeholder="Sur 100 car." />
             </div>
         </div>
         <br>

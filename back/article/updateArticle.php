@@ -117,12 +117,24 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <?php
     // Modif : récup id à modifier
     // id passé en GET
-
-
-
-
-
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monArticle->get_1Article($id);
+        $id = $row["numArt"];
+        $dtCreArt = $row["dtCreArt"];
+        $libTitrArt = $row["libTitrArt"];
+        $libChapoArt = $row["libChapoArt"];
+        $libAccrochArt = $row["libAccrochArt"];
+        $parag1Art = $row["parag1Art"];
+        $libSsTitr1Art = $row["libSsTitr1Art"];
+        $parag2Art = $row["parag2Art"];
+        $libSsTitr2Art = $row["libSsTitr2Art"];
+        $parag3Art = $row["parag3Art"];
+        $libConclArt = $row["libConclArt"];
+        $urlPhotArt = $row["urlPhotArt"];
+        $numAngl = $row["numAngl"];
+        $numThem = $row["numThem"];
+    }
 
 
 ?>
@@ -228,8 +240,8 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                 </p>
                 <?php
                 
-                $numArt = $_POST["id"];
-                $recupImage = $monArticle->get_1Article($numArt);
+                
+                $recupImage = $monArticle->get_1Article($id);
                 ?>
                 <p><b><i>Image actuelle :&nbsp;&nbsp;<img src="<?= $targetDir . htmlspecialchars($recupImage["urlPhotArt"]); ?>" height="183" width="275" /></i></b></p>
 

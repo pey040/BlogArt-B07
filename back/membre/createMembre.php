@@ -70,10 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $eMail2Memb = ctrlSaisies($_POST['eMail2Memb']);
 
         $idStat = ctrlSaisies($_POST['TypStat']);
-        
-        $accordMemb = "";
 
-        $boolaccordMemb ="";
+        $accordMemb = $_POST['accordMemb'];
+        
 
         if ($accordMemb == "on"){
             $boolaccordMemb = 1;
@@ -81,11 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $boolaccordMemb = 0;
         }
 
+        var_dump($_POST);
+        var_dump($boolaccordMemb);
+
         $date = "11/11/11";
 
         if(($pass1Memb === $pass2Memb) AND ($eMail1Memb === $eMail2Memb)){
             $erreur = false;    
-        $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $pass1Memb, $eMail1Memb, 1, $idStat);
+        $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $pass1Memb, $eMail1Memb, $boolaccordMemb, $idStat);
         }
         else{
             $erreur = true;

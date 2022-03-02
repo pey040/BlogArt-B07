@@ -21,7 +21,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
-
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+$monArticle = new ARTICLE();
 // Instanciation de la classe Article
 
 
@@ -49,17 +50,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    // controle CIR
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
-    // delete effective du article
+        header("Location: ./createArticle.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (((isset($_POST['id'])) and !empty($_POST['id']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    ) {
 
-
-
-
-
-
-
-
+        $numArt = ctrlSaisies(($_POST['id']));
+        
+        $monArticle->delete($numArt);
+        header("Location: ./article.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
 
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
@@ -89,7 +102,24 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <?php
     // Supp : récup id à supprimer
     // id passé en GET
-
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+        $row = $monArticle->get_1Article($id);
+        $id = $row["numArt"];
+        $dtCreArt = $row["dtCreArt"];
+        $libTitrArt = $row["libTitrArt"];
+        $libChapoArt = $row["libChapoArt"];
+        $libAccrochArt = $row["libAccrochArt"];
+        $parag1Art = $row["parag1Art"];
+        $libSsTitr1Art = $row["libSsTitr1Art"];
+        $parag2Art = $row["parag2Art"];
+        $libSsTitr2Art = $row["libSsTitr2Art"];
+        $parag3Art = $row["parag3Art"];
+        $libConclArt = $row["libConclArt"];
+        $urlPhotArt = $row["urlPhotArt"];
+        $numAngl = $row["numAngl"];
+        $numThem = $row["numThem"];
+    }
 
 
 
