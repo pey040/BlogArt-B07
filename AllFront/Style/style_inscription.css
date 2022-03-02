@@ -28,8 +28,15 @@ fieldset{
 }
 
 .control-group{
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
     margin: 50px;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

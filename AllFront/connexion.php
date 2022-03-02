@@ -1,4 +1,7 @@
-<?php require_once('../AllFront/header.php') ?>
+<?php require_once('../AllFront/header.php'); 
+require_once __DIR__ . '/../CLASS_CRUD/membre.class.php';
+$monMembre = new MEMBRE();
+?>
 
 <html>
     <head>
@@ -12,53 +15,66 @@
     </head>
 </html>
 <?php
-//On simule ma base de données
-$user = 'gwendal';
-/* $pass = 'password'; */ // A ete remplace par en dessous
-$pass = '$2y$10$kHrRUCyaEM1N3zx5oyEGi.n.ohkJLWDevEVXH25tqohqC1mspFS6W'; //Mot de passe hashé
 
 /* password_hash($pass, PASSWORD_DEFAULT); */ //Lors de linscription on va inserer ca en DB a partir du pass en clair
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //echo($_POST['pass'] . '<br>');
-    if (password_verify($_POST['pass'], $pass) === true) {
-        echo ('<p>Bon mot de passe</p>');
-        setcookie('user', $user, time() + 3600); // 1h
-        setcookie('pass', $pass /* ICI ON STOCK LE HASH DU PASSWORD EVIDEMENT */, time() + 3600); // 1h
-    } else {
-        echo ('<p>Mauvais mot de passe</p>');
+
+    $allMembres = $monMembre->get_AllMembersByStat();
+
+    if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
+    AND isset($_POST['pass']) AND !empty($_POST['pass'])){
+
+    foreach($allMembres as $row) {
+        if (($_POST['eMail'] == $row['eMailMemb']) AND ($_POST['pass'] == $row['passMemb'])){
+            setcookie('user', $row['pseudoMemb']);  
+        }
+
+        
     }
+
+
 }
 
+}
 if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
     //on fais un select du user pour voir son hash
     if ($_COOKIE['pass'] == $LePassRecuperéParLeSelect) {
         echo 'Bonjour ' . $_COOKIE['user'] . '<br>';
     }
-} else {
-    echo "Connexionpodvsipvnisdvsiunvsihbvhdbvsjsdjvbqjcfbqbc suhbvsjbvsbvjdshbvcksdvbsdcbqsjkscb, cela commence à me courir sur le haricot :) hahahaa" . '<br>';
-}
+} 
 ?>
 
 <!--login form-->
 <html>
     <div class="connexion-case">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <fieldset>
             <h2>CONNEXION</a></h2>
             <div class="control-group">
-                <label class="control-label" for="user">User</label>
-                <input type="text" name="user" id="user" value="<?php echo $user; ?>" />
+                <label class="control-label" for="eMail">eMail  </label>
+                <input type="text" name="eMail" id="eMail" style="width:350px; height:30px" />
             </div>
             <div class="control-group">
-                <label class="control-label" for="pass">Password</label>
-                <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" />
+                <label class="control-label" for="pass">Mot de passe  </label>
+                <input type="password" name="pass" id="pass" style="width:350px; height:30px" />
             </div>
             <div class="control-group">
                 <div class="controls">
                     <input type="submit" value="Se connecter" style="cursor:pointer; padding:10px 40px; background-color:#FCC967;" name="Valider" />
-                </div>
+                    </div>
             </div>
+            <?php   
+            
+            if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
+            AND isset($_POST['pass']) AND !empty($_POST['pass'])){
+
+              if (isset($_COOKIE['user']) == false){
+
+                   ?> <html><div class="error-login"> <h2>Le mot de passe et/ou l'adrese mail ne sont pas correct(s)</h2></div></html> <?php
+                }
+            }
+            ?>
             <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
         </fieldset>
     </div>
