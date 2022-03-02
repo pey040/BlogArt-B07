@@ -133,8 +133,7 @@ include __DIR__ . '/initLangue.php';
 
                 <?php
                 if (isset($_GET["id"])) {
-                    $numPays = $row["numPays"];
-                }
+                $numPays = $row["numPays"];}
             ?>
 
             

@@ -14,7 +14,8 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Comment
-
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+$monComment = new COMMENT();
 // Instanciation de la classe Comment
 
 
@@ -27,19 +28,54 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
+
+        header("Location: ./updateComment.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['delLogiq']) AND !empty($_POST['delLogiq'])
+        AND isset($_POST['attModOK']) AND !empty($_POST['attModOK'])
+        AND isset($_POST['notifComKOAff']) AND !empty($_POST['notifComKOAff'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
 
 
-    // controle des saisies du formulaire
-
-    // modification effective du comment
 
 
+        $attModOK = $_POST['attModOK'];
 
-    // Gestion des erreurs => msg si saisies ko
+        if ($attModOK == "on"){
+            $boolattModOK = 1;
+        } elseif ($attModOK == "off"){
+            $boolattModOK = 0;
+        }
+        // Saisies valides
 
+        $delLogiq = $_POST['delLogiq'];
 
+        if ($delLogiq == "on"){
+            $booldelLogiq = 1;
+        } elseif ($delLogiq == "off"){
+            $booldelLogiq = 0;
+        }
 
+        $notifComKOAff = $_POST['notifComKOAff'];
 
+        $erreur = false;
+
+        $monComment->update($_POST("idCom"), $_POST("idArt"), $boolattModOK, $notifComKOAff, $booldelLogiq);
+        
+        header("Location: ./comment.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
 
 
 
@@ -72,16 +108,16 @@ $description = "";
 <body>
     <h1>BLOGART22 Admin - CRUD Commentaire</h1>
     <h2>Mise à jour d'un commentaire</h2>
-<?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
-
-
+    <?php
+    if (isset($_GET["idArt"]) AND isset($_GET["idCom"])) {
+        $numArt = $_GET["idArt"];
+        $numSeqCom = $_GET["idCom"];
+        var_dump($monComment->get_1Comment($numSeqCom, $numArt));
+        $row = $monComment->get_1Comment($numSeqCom, $numArt);
+        $numArt = $row["numArt"];
+        $numMemb = $row["numMemb"];
+        $libCom = $row["libCom"];
+    }
 
 ?>
 
@@ -104,12 +140,10 @@ $description = "";
             <label class="control-label" for="LibTypAngl">
                 <b>Quel membre :&nbsp;&nbsp;&nbsp;</b>
             </label>
-            <input type="hidden" id="idTypMemb" name="idTypMemb" value="<?= $numMemb; ?>" />
 
-            <input type="text" name="idMemb" id="idMemb" size="5" maxlength="5" value="<?= $idMemb; ?>" autocomplete="on" />
+<input type="text" name="numMemb" id="numMemb" size="80" maxlength="80" value="<?= $numMemb; ?>" tabindex="20" disabled/>
 
-            <!-- Listbox membre => 2ème temps -->
-
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Membre -->
@@ -122,12 +156,9 @@ $description = "";
             <label class="control-label" for="LibTypThem">
                 <b>Quel article :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
             </label>
-            <input type="hidden" id="idTypArt" name="idTypArt" value="<?= $numArt; ?>" />
 
-            <input type="text" name="idArt" id="idArt" size="5" maxlength="5" value="<?= $idArt; ?>" autocomplete="on" />
-
-            <!-- Listbox article => 2ème temps -->
-
+            
+<input type="text" name="numArt" id="numArt" size="80" maxlength="80" value="<?= $numArt; ?>" tabindex="20" disabled />
             </div>
         </div>
     <!-- FIN Listbox Article -->
@@ -184,7 +215,7 @@ $description = "";
                <fieldset>
                   <input type="radio" name="delLogiq"
                   <? if($delLogiq == 1) echo 'checked="checked"'; ?>
-                  value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+                  value="on" />& nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type="radio" name="delLogiq"
                   <? if($delLogiq == 0) echo 'checked="checked"'; ?>
                   value="off" />&nbsp;&nbsp;Non

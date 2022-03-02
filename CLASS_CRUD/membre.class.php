@@ -103,15 +103,15 @@ class MEMBRE{
 		}
 	}
 
-	function update($prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $num){
+	function update($prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $accordMemb, $num){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 			
-			$query = 'UPDATE MEMBRE set prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?, idStat=? where numMemb=? ';
+			$query = 'UPDATE MEMBRE set prenomMemb="?", nomMemb="?", passMemb="?", eMailMemb="?", idStat="?", accordMemb="?" where numMemb="?" ';
 			$request = $db->prepare($query);
-			$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $num]);
+			$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $accordMemb, $num]);
 				$db->commit();
 				$request->closeCursor();
 			}
