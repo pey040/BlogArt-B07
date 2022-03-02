@@ -24,10 +24,18 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			padding-bottom: 40px;
 			margin-bottom: 0px;
 			margin-left: 60px;
+			display: flex;
 		}
-        span {
+        /* span {
             background-color: yellow;
-        }
+        } */
+
+		a{
+			background-color: red;
+			margin: 20px;
+			padding: 20px;
+		}
+
 		hr {
 			border: none;
 			height: 3px;
@@ -45,6 +53,69 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"></script>
 </head>
 <body>
+	<br />
+	<h1>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h1>
+	<small><span><i>CRUD fini et valide (reste à intégrer et à tester)</i></span></small>
+	<br /><br /><hr />
+	<p>
+		<h2>Connexion...</h2>
+	</p>
+	<hr class="hr1" />
+	<div>
+	<a href="./BACK/angle/angle.php"><span>Angle (*)</span></a>
+	<br /><br />
+	<a href="./BACK/article/article.php"><span>Article (*)</span></a>
+	<br /><br />
+	<a href="./BACK/comment/comment.php"><span>Commentaire (*)</span></a>
+	<br /><br />
+	<a href="./BACK/commentplus/commentplus.php">Réponse sur Commentaire</a>
+	<br /><br />
+	<a href="./BACK/langue/langue.php"><span>Langue (*)</span></a>
+	<br /><br />
+	<a href="./BACK/likeart/likeart.php"><span>Like Article (*)</span></a>
+	<br /><br />
+	<a href="./BACK/likecom/likecom.php"><span>Like Commentaire (*)</span></a>
+	<br /><br />
+<!-- Membre (*) - reCaptcha à ajouter -->
+	<a href="./BACK/membre/membre.php"><span>Membre (*)</span></a>
+	<br /><br />
+	<a href="./BACK/motcle/motcle.php"><span>Mot-clé (*)</span></a>
+	<br /><br />
+	<a href="#">Mot-clé Article => dans Article</a>
+	<br /><br />
+	<a href="./BACK/statut/statut.php"><span>Statut (*)</span></a>
+	<br /><br />
+	<a href="./BACK/thematique/thematique.php"><span>Thématique (*)</span></a>
+	<br /><br />
+<!-- User (*) - reCaptcha à ajouter -->
+	<a href="./BACK/user/user.php"><span>User (*)</span></a>
+	<br /><br /><hr class="hr1" /><br />
+	Barre de recherche :
+	<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles (*)</span></a>
+	<br>(F1 en GET)
+	<br /><br />
+	Barre de recherche :
+	<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques (*)</span></a>
+	<br /><br />
+	Barre de recherche :
+	<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article (*)</span></a>
+	<br /><br />
+	Barre de recherche :
+	<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
+	<br /><br />
+	</div>
+<?php
+require_once __DIR__ . '/footer.php';
+?>
+</body>
+</html>
+
+
+
+
+
+
+<!-- <body>
 	<br />
 	<h1>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h1>
 	<small><span><i>CRUD fini et valide (reste à intégrer et à tester)</i></span></small>
@@ -75,8 +146,8 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	CRUD :
 	<a href="./BACK/likecom/likecom.php"><span>Like Commentaire (*)</span></a>
 	<br /><br />
-<!-- Membre (*) - reCaptcha à ajouter -->
-	CRUD :
+Membre (*) - reCaptcha à ajouter -->
+	<!-- CRUD :
 	<a href="./BACK/membre/membre.php"><span>Membre (*)</span></a>
 	<br /><br />
 	CRUD :
@@ -91,8 +162,8 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	CRUD :
 	<a href="./BACK/thematique/thematique.php"><span>Thématique (*)</span></a>
 	<br /><br />
-<!-- User (*) - reCaptcha à ajouter -->
-	CRUD :
+ User (*) - reCaptcha à ajouter -->
+	<!-- CRUD :
 	<a href="./BACK/user/user.php"><span>User (*)</span></a>
 	<br /><br /><hr class="hr1" /><br />
 	Barre de recherche :
@@ -108,9 +179,6 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	Barre de recherche :
 	<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
 	<br /><br />
-	</div>
-<?php
-require_once __DIR__ . '/footer.php';
-?>
-</body>
-</html>
+	</div> --> 
+
+

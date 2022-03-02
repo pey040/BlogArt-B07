@@ -45,8 +45,11 @@ class MOTCLE{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM MOTCLE MO INNER JOIN LANGUE LA ON MO.numLang = LA.numLang";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allMotsClesByLang = $result->fetchAll();
 		return($allMotsClesByLang);
 	}
 

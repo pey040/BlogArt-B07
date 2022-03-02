@@ -56,13 +56,17 @@ class MEMBRE{
 	}
 
 	function get_AllMembersByStat(){
-		global $db;
+        global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allMembersByStat);
-	}
+        // select
+        $query = "SELECT * FROM MEMBRE ME INNER JOIN STATUT ST ON ME.idStat = ST.idStat";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allMembersByStat = $result->fetchAll();
+
+        return($allMembersByStat);
+    }
 
 	function get_NbAllMembersByidStat($idStat){
 		global $db;

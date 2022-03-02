@@ -54,7 +54,7 @@ $errDel = 0;
 
 <?php
     // Appel méthode : Get toutes les mots cles en BDD
-    $allMotCle = $monMotCle->get_AllMotCles();
+    $allMotCle = $monMotCle->get_AllMotsClesByLang();
     // Boucle pour afficher
     foreach($allMotCle as $row) {
 ?>
@@ -64,7 +64,7 @@ $errDel = 0;
 
         <td>&nbsp; <?= $row["libMotCle"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row["numLang"]; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["lib2Lang"]; ?> &nbsp;</td>
 
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMotCle.php?id=<?=$row["numMotCle"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier mot clé" title="Modifier mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>

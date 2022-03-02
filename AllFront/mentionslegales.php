@@ -81,7 +81,7 @@
             </p>
 
 
-            <p class="textmlegalestitle">ARTICLE 7 : Cookies</p>
+            <p id="cookies" class="textmlegalestitle">ARTICLE 7 : Cookies</p>
             <p class="textmlegalestext">
             Les cookies sont de petits fichiers stockés temporairement sur le disque dur de l’ordinateur de l’Utilisateur par votre navigateur et qui sont nécessaires à l’utilisation du site sculpeaux.com. <br>
             L’information contenue dans les cookies est utilisée pour améliorer le site. En naviguant sur le site, L’Utilisateur les accepte. <br>

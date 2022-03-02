@@ -74,7 +74,7 @@ $errDel = 0;
     <tbody>
 <?php
     // Appel méthode : Get tous les angles en BDD
-    $allAngle = $monAngle->get_AllAngles();
+    $allAngle = $monAngle->get_AllAnglesByLang();
     // Boucle pour afficher
     foreach($allAngle as $row) {
 
@@ -84,7 +84,7 @@ $errDel = 0;
 
         <td>&nbsp; <?= $row["libAngl"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row["numLang"]; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["lib2Lang"]; ?> &nbsp;</td>
 
 		<td>&nbsp;&nbsp;&nbsp;&nbsp<a href="./updateAngle.php?id=<?=$row["numAngl"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier angle" title="Modifier angle" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp
 		<br /></td>

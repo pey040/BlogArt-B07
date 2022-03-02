@@ -70,7 +70,6 @@ $errDel = 0;
             <th>&nbsp;Pseudo&nbsp;</th>
             <th>&nbsp;eMail&nbsp;</th>
             <th>&nbsp;Date création&nbsp;</th>
-            <th>&nbsp;Connexion&nbsp;<br />&nbsp;auto&nbsp;</th>
             <th>&nbsp;Accord&nbsp;<br />&nbsp;RGPD&nbsp;</th>
             <th>&nbsp;Statut&nbsp;</th>
             <th colspan="2">&nbsp;Action&nbsp;</th>
@@ -84,7 +83,8 @@ $errDel = 0;
     $to = 'd/m/Y H:i:s';
 
     // Appel méthode : Get toutes les membres en BDD
-    $allMembres = $monMembre->get_AllMembres();
+    $allMembres = $monMembre->get_AllMembersByStat();
+
     // Boucle pour afficher
     foreach($allMembres as $row) {
 
@@ -106,7 +106,7 @@ $errDel = 0;
 
             <td>&nbsp; <?= $row["accordMemb"]; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= $row["idStat"]; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row["libStat"]; ?> &nbsp;</td>
 
             <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMembre.php?id=<?=$row["numMemb"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier membre" title="Modifier membre" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <br /></td>

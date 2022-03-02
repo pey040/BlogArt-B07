@@ -46,8 +46,11 @@ class ANGLE{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM ANGLE AN INNER JOIN LANGUE LA ON AN.numLang = LA.numLang";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allAnglesByLang = $result->fetchAll();
 		return($allAnglesByLang);
 	}
 

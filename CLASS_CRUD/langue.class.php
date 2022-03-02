@@ -54,8 +54,11 @@ class LANGUE{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM LANGUE LA INNER JOIN PAYS PA ON LA.numPays = PA.numPays";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allLanguesByLib1Lang = $result->fetchAll();
 		return($allLanguesByLib1Lang);
 	}
 

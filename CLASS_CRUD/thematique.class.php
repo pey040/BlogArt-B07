@@ -45,8 +45,11 @@ class THEMATIQUE{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM THEMATIQUE TH INNER JOIN LANGUE LA ON TH.numLang = LA.numLang";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allThematiquesByLang = $result->fetchAll();
 		return($allThematiquesByLang);
 	}
 

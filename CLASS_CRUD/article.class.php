@@ -73,8 +73,11 @@ class ARTICLE{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM ARTICLE AR , ANGLE AN , THEMATIQUE TH WHERE AR.numAngl = AN.numAngl AND AR.numThem = TH.numThem";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allArticlesByNumAnglNumThem = $result->fetchAll();
 		return($allArticlesByNumAnglNumThem);
 	}
 
