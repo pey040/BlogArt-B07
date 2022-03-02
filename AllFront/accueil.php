@@ -1,4 +1,5 @@
 <?php 
+setcookie("user", null, -1, '/');
 require_once('../AllFront/header.php');
 
 // Insertion classe Article
