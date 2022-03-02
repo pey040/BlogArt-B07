@@ -21,7 +21,7 @@ $monArticle = new ARTICLE();
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
     </head>
 
-
+    
 
     <body>
         
@@ -41,6 +41,116 @@ $monArticle = new ARTICLE();
 
         <img class="dessinQuinconces" src="Assets/statuequinconces.png" alt="">
         </div>
+
+
+        
+    
+
+        <h2>Les articles récents :</h2>
+
+        <?php 
+        // Appel méthode : Get tous les articles en BDD
+        $allArticles = (array)$monArticle->get_AllArticles();
+
+        //compter le nbre de ligne en php
+        $allArticles2 = array(array());
+        $pair = 0;
+        $i = 0; $j = 0;
+        $nombreMax = count($allArticles);
+        $nombreInit = 1;
+
+        // Boucle pour afficher
+        // var_dump($allArticles);
+        foreach($allArticles as $row) {
+            // var_dump($row);
+            if ($nombreInit <= $nombreMax){ //impaire
+                if($pair == 0){
+                    $allArticles2[$i][$j] = $row['libTitrArt'];
+                    $allArticles2[$i][$j+1] = $row['libChapoArt'];
+
+                    $pair = 1;
+                    $nombreInit ++;
+                    
+                }
+                else{ //pair
+                    $allArticles2[$i][$j+2] = $row['libTitrArt'];
+                    $allArticles2[$i][$j+3] = $row['libChapoArt'];
+
+                    $pair = 0;
+                    $nombreInit ++;
+                    $i++;
+                }
+                
+            }
+        }	// End of foreach1
+        // echo('<pre>');
+        // print_r($allArticles2);
+        // echo('</pre>');
+        $nombreMax2 = count($allArticles2);
+        $i = 0;
+        $rest = (int)($nombreMax2 / 2);
+        // echo($rest . ' ' . $nombreMax2);
+        $finished = false;
+        // for($i = 0; $i < count($allArticles2); $i++ ) {
+        while($i < count($allArticles2) AND $finished == false) {
+            // echo('echo du while' . $i);
+            if ( $rest != 0 AND $i >= $nombreMax2-1){ ?>
+                <div class="accueilMiddle grid-container">
+                <div class="article1 grid-item">
+                <div><img src="http://placekitten.com/500/200" alt=""></div>
+                <div>
+                    <h3><?= $allArticles2[$i][0]; ?></h3>
+                    <p>
+                    <?= $allArticles2[$i][1]; ?>
+                    </p>
+                </div>
+                </div>
+        <?php
+            $finished = true;
+            } //impair
+            else {
+                // echo('echo du début else' . $i);
+
+                ?>
+            
+            <div class="accueilMiddle grid-container">
+            <div class="article1 grid-item">
+                <div><img src="http://placekitten.com/500/200" alt=""></div>
+                <div>
+                    <h3><?= $allArticles2[$i][0]; ?></h3>
+                    <p>
+                    <?= $allArticles2[$i][1]; ?>
+                    </p>
+                </div>
+            </div>
+
+
+
+            <div class="article2 grid-item">
+                <div>
+                    <h3><?= $allArticles2[$i][2]; ?></h3>
+                    <p>
+                    <?= $allArticles2[$i][3]; ?>
+                    </p>
+                </div>
+                <div><img src="http://placekitten.com/500/200" alt=""></div>
+            </div>
+
+        </div>
+        
+        <?php
+        $i++;
+            } // end of if else
+        
+        }	// End of while
+    
+    
+        ?>
+    
+
+        
+
+        
   
 
 

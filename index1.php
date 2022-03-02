@@ -47,6 +47,22 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			width: 60%;
 			background-color: #CCCCCC;	/* => grey */
 		}
+
+		/* GRID CONTAINER AND ITEM */
+		.grid-container {
+			display: grid;
+			grid-template-rows: 1fr 1fr;
+			
+		}
+
+		.grid-item {
+			text-align: start;
+			display: flex;
+			/* flex-direction: column; */
+			justify-content: space-between;
+			padding: 10px;
+			/* margin: 6%; */
+		}
     </style>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"></script>

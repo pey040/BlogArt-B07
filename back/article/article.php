@@ -69,7 +69,7 @@ $monArticle = new ARTICLE();
     $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
     // Boucle pour afficher
     foreach($allArticles as $row) {
-
+        // var_dump($row);
 ?>
         <tr>
 		<td><h4>&nbsp; <?= $row["numArt"]; ?> &nbsp;</h4></td>
