@@ -62,13 +62,6 @@ class ARTICLE{
 	}
 
 
-
-
-
-
-
-	
-
 	function get_AllArticlesByNumAnglNumThem(){
 		global $db;
 
@@ -240,11 +233,13 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query = 'DELETE FROM ARTICLE where numArt=?;';
+			$request = $db->prepare($query);
+			$request->execute([$numArt]);
+			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
+			return($count);
 		}
 		catch (PDOException $e) {
 			$db->rollBack();
