@@ -4,13 +4,41 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class COMMENT{
+
+	function get_AllArticles(){
+		global $db;
+
+		$query = 'SELECT * FROM ARTICLE;';
+		$result = $db->query($query);
+		$allArticles = $result->fetchAll();
+		return($allArticles);
+	}
+
+	function get_AllMembres(){
+		global $db;
+
+		$query = 'SELECT * FROM MEMBRE;';
+		$result = $db->query($query);
+		$allMembres = $result->fetchAll();
+		return($allMembres);
+	}
+
 	function get_1Comment($numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		$query = 'SELECT * FROM COMMENT WHERE numSeqCom=? AND numArt=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numSeqCom, $numArt]);
+		return($request->fetch());
+	}
+
+	function get_AllComment(){
+		global $db;
+
+		$query = 'SELECT * FROM COMMENT;';
+		$result = $db->query($query);
+		$allComments = $result->fetchAll();
+		return($allComments);
 	}
 
 	function get_AllCommentByArticle($numArt){
@@ -67,6 +95,16 @@ class COMMENT{
 		return($allNbAllCommentsBynumMemb);
 	}
 
+	function get_1Pseudo($numMemb)
+	{
+		global $db;
+
+		$query = 'SELECT * FROM MEMBRE WHERE numMemb=?;';
+		$request = $db->prepare($query);
+		$request->execute([$numMemb]);
+		return ($request->fetch());
+	}
+
 	// Fonction : recupérer next numéro séquence de article recherché (PK COMMENT)
 	// Commentaire suivant sur un article
 	// => Pour table COMMENT & table COMMENTPLUS
@@ -103,15 +141,15 @@ class COMMENT{
 	} // End of function
 
 	// comment en attente : Moderation affComOK à FALSE
-	function create($numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb){
+	function create($numSeqCom, $numArt, $libCom, $numMemb){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO COMMENT (numSeqCom, numArt, dtCreCom, libCom, numMemb, delLogiq, attModOK, notifComKOAff) VALUES (?, ?, NOW(), ?, ?, 0, 0, "")';
+			$request = $db->prepare($query);
+			$request->execute([$numSeqCom, $numArt, $libCom, $numMemb]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -124,15 +162,15 @@ class COMMENT{
 
 	// Moderation : TRUE si comment affiché, FALSE sinon
 	// et remarques possibles admin si non affiché
-	function update($numSeqCom, $numArt, $attModOK, $dtModCom, $notifComKOAff, $delLogiq){
+	function update($numSeqCom, $numArt, $attModOK, $notifComKOAff, $delLogiq){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query = 'UPDATE COMMENT set attMembOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=?, numArt=? ';
+			$request = $db->prepare($query);
+			$request->execute([$attModOK, $notifComKOAff, $delLogiq, $numSeqCom, $numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}

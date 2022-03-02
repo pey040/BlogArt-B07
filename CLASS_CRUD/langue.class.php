@@ -159,9 +159,6 @@ class LANGUE{
 			$query = 'UPDATE LANGUE set numLang=?, lib1Lang=?, lib2Lang=?, numPays=? where numLang=? ';
 			$request = $db->prepare($query);
 			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays, $id]);
-			// update
-			// prepare
-			// execute
 			$db->commit();
 			$request->closeCursor();
 		}

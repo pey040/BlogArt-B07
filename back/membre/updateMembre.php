@@ -64,10 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $idStat = ctrlSaisies($_POST['TypStat']);
         
+        $accordMemb = $_POST['accordMemb'];
+        
+
+        if ($accordMemb == "on"){
+            $boolaccordMemb = 1;
+        } elseif ($accordMemb == "off"){
+            $boolaccordMemb = 0;
+        }
 
         if(($pass1Memb === $pass2Memb) AND ($eMail1Memb === $eMail2Memb)){
             $erreur = false;    
-        $monMembre->update($prenomMemb, $nomMemb, $pass1Memb, $eMail1Memb, $idStat, $_POST["id"]);
+        $monMembre->update($prenomMemb, $nomMemb, $pass1Memb, $eMail1Memb, $idStat, $boolaccordMemb, $_POST["id"]);
         }
         else{
             $erreur = true;

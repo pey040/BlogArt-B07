@@ -16,7 +16,8 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Comment
-
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+$monComment = new COMMENT();
 // Instanciation de la classe Comment
 
 
@@ -25,10 +26,36 @@ $erreur = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // controle des saisies du formulaire
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+    if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
+        header("Location: ./createComment.php");
+    }   // End of if ((isset($_POST["submit"])) ...
+    if (isset($_POST['TypMemb']) AND !empty($_POST['TypMemb'])
+        AND isset($_POST['TypArt']) AND !empty($_POST['TypArt'])
+        AND isset($_POST['libCom']) AND !empty($_POST['libCom'])
+        AND !empty($_POST['Submit']) AND $Submit === "Valider") {
+    
+        // Saisies valides
+        $erreur = false;
 
-    // insertion classe comment
+        $numMemb = ctrlSaisies($_POST['TypMemb']);
+        $numArt = ctrlSaisies($_POST['TypArt']);
+        $libCom = ctrlSaisies($_POST['libCom']);
+
+        $monComment->create($numCom, $numArt, $libCom, $numMemb);
+
+        header("Location: ./comment.php");
+    }   // Fin if ((isset($_POST['libStat'])) ...
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }   // End of else erreur saisies
 
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -73,10 +100,34 @@ include __DIR__ . '/initComment.php';
             <label class="control-label" for="LibTypAngl">
                 <b>Quel membre :&nbsp;&nbsp;&nbsp;</b>
             </label>
-            <input type="text" name="idMemb" id="idMemb" size="5" maxlength="5" value="<?= ""; ?>" autocomplete="on" />
 
-            <!-- Listbox membre => 2ème temps -->
+            <?php
+            $numMemb = "";
+            ?>
 
+            
+            <input type="hidden" id="idTypMemb" name="idTypMemb" value="<?= $numMemb; ?>" />
+            <select size="1" name="TypMemb" id="TypMemb" class="form-control form-control-create" title="Sélectionnez le membre !" >
+                <option value="-1">- - - Choisissez un membre - - -</option>
+<?php
+                $listNumMemb = "";
+                $listpseudoMemb = "";
+
+                $result = $monComment->get_AllMembres();
+                // var_dump($result);
+                if($result){
+                    foreach($result as $row){
+                        $listNumMemb = $row["numMemb"]; //
+                        $listpseudoMemb = $row["pseudoMemb"];
+?>
+                        <option value="<?= $listNumMemb; ?>">
+                            <?= $listpseudoMemb; ?>
+                        </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Membre -->
@@ -89,10 +140,34 @@ include __DIR__ . '/initComment.php';
             <label class="control-label" for="LibTypThem">
                 <b>Quel article :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
             </label>
-            <input type="text" name="idArt" id="idArt" size="5" maxlength="5" value="<?= ""; ?>" autocomplete="on" />
 
-            <!-- Listbox Article => 2ème temps -->
+            <?php
+            $numArt = "";
+            ?>
 
+            
+            <input type="hidden" id="idTypArt" name="idTypArt" value="<?= $numArt; ?>" />
+            <select size="1" name="TypArt" id="TypArt" class="form-control form-control-create" title="Sélectionnez l'article !" >
+                <option value="-1">- - - Choisissez un article - - -</option>
+<?php
+                $listNumArt = "";
+                $listlibTitrArt = "";
+
+                $result = $monComment->get_AllArticles();
+                // var_dump($result);
+                if($result){
+                    foreach($result as $row){
+                        $listNumArt = $row["numArt"]; //
+                        $listlibTitrArt = $row["libTitrArt"];
+?>
+                        <option value="<?= $listNumArt; ?>">
+                            <?= $listlibTitrArt; ?>
+                        </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Article -->
