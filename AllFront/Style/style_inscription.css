@@ -11,3 +11,25 @@
     font-weight: 300;
     text-decoration: none
 }
+
+.inscription-case{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+fieldset{
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    margin: 100px;
+    padding: 100px;
+    background-color: #7E8ACF;
+}
+
+.control-group{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 50px;
+}
