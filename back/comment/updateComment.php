@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }   // End of if ((isset($_POST["submit"])) ...
     if (isset($_POST['delLogiq']) AND !empty($_POST['delLogiq'])
         AND isset($_POST['attModOK']) AND !empty($_POST['attModOK'])
-        AND isset($_POST['notifComKOAff']) AND !empty($_POST['notifComKOAff'])
         AND !empty($_POST['Submit']) AND $Submit === "Valider") {
     
 
@@ -190,12 +189,12 @@ $description = "";
             <label class="control-label" for="attModOK"><b>En tant que modérateur, je valide le post :</b></label>
             <div class="controls">
                <fieldset>
-                  <input type="radio" name="attModOK"
+                  <input type="radio" name="attModOK" value="on"
                   <? if($attModOK == 1) echo 'checked="checked"'; ?>
-                  value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="attModOK"
+                   Oui
+                  <input type="radio" name="attModOK" value="off"
                   <? if($attModOK == 0) echo 'checked="checked"'; ?>
-                  value="off" />&nbsp;&nbsp;Non
+                    Non
                </fieldset>
             </div>
         </div>
@@ -219,12 +218,12 @@ $description = "";
             <label class="control-label" for="delLogiq"><b>En tant que modérateur, je veux que le post soit supprimé :</b></label>
             <div class="controls">
                <fieldset>
-                  <input type="radio" name="delLogiq"
+                  <input type="radio" name="delLogiq" value="on"
                   <? if($delLogiq == 1) echo 'checked="checked"'; ?>
-                  value="on" />& nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="delLogiq"
+                    Oui
+                  <input type="radio" name="delLogiq" value="off"
                   <? if($delLogiq == 0) echo 'checked="checked"'; ?>
-                  value="off" />&nbsp;&nbsp;Non
+                   Non
                </fieldset>
             </div>
         </div>
