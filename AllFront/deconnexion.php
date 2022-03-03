@@ -1,5 +1,6 @@
 <?php 
 setcookie("user", null, -1, '/');
+setcookie("useradmin", null, -1, '/');
 require_once('../AllFront/header.php'); 
  ?>
 <html>

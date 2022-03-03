@@ -9,7 +9,7 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
-// require_once ROOT . '/front/includes/commons/___headerFront.php';
+// require_once ('AllFront/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -82,6 +82,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 		}
+		
 
 		.grid-item {
 			text-align: center;
@@ -115,24 +116,24 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
 <body>
 	<br />
-	<h1>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h1>
-	<small><span><i>CRUD fini et valide</i></span></small>
-	<br /><br /><hr />
+	<h1>Panneau d'Admin : CRUD</h1>
+	<!-- <small><span><i>CRUD fini et valide</i></span></small> -->
+	<!-- <br /><br /><hr /> -->
 	<p>
-		<h2>Connexion...</h2>
+		<!-- <h2>Connexion...</h2> -->
 	</p>
 	<hr class="hr1" />
 	<div class="grid-container">
 		<div class="grid-item">
-		<a class="element" href="./BACK/angle/angle.php"><span>Angle (*)</span></a>
+		<a class="element" href="./BACK/angle/angle.php"><span>Angle</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/article/article.php"><span>Article (*)</span></a>
+		<a class="element" href="./BACK/article/article.php"><span>Article</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/comment/comment.php"><span>Commentaire (*)</span></a>
+		<a class="element" href="./BACK/comment/comment.php"><span>Commentaire</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
@@ -140,15 +141,15 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/langue/langue.php"><span>Langue (*)</span></a>
+		<a class="element" href="./BACK/langue/langue.php"><span>Langue</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/likeart/likeart.php"><span>Like Article (*)</span></a>
+		<a class="element" href="./BACK/likeart/likeart.php"><span>Like Article</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/likecom/likecom.php"><span>Like Commentaire (*)</span></a>
+		<a class="element" href="./BACK/likecom/likecom.php"><span>Like Commentaire</span></a>
 		<br /><br />
 		</div>
 		
@@ -159,11 +160,11 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		
 	<!-- Membre (*) - reCaptcha à ajouter -->
 		<div class="grid-item">
-		<a class="element" href="./BACK/membre/membre.php"><span>Membre (*)</span></a>
+		<a class="element" href="./BACK/membre/membre.php"><span>Membre</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/motcle/motcle.php"><span>Mot-clé (*)</span></a>
+		<a class="element" href="./BACK/motcle/motcle.php"><span>Mot-clé</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
@@ -171,11 +172,11 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/statut/statut.php"><span>Statut (*)</span></a>
+		<a class="element" href="./BACK/statut/statut.php"><span>Statut</span></a>
 		<br /><br />
 		</div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/thematique/thematique.php"><span>Thématique (*)</span></a>
+		<a class="element" href="./BACK/thematique/thematique.php"><span>Thématique</span></a>
 		<br /><br />
 		</div>
 		
@@ -185,53 +186,45 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	<!-- User (*) - reCaptcha à ajouter -->
 		<div class="grid-item"></div>
 		<div class="grid-item">
-		<a class="element" href="./BACK/user/user.php"><span>User (*)</span></a>
+		<a class="element" href="./BACK/user/user.php"><span>User</span></a>
 		<br /><br /><hr class="hr1" /><br />
 		</div>
 		<div class="grid-item"></div>
 	</div>
 
-	<item class="recherche">
+	"RECHERCHE" ici
+	<!-- <item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles (*)</span></a>
+		<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles </span></a>
 		<br>(F1 en GET)
 		<br /><br /> <br>
 	</item>
 	<item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques (*)</span></a>
+		<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques</span></a>
 		<br /><br /><br>
 	</item>
 	<item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article (*)</span></a>
+		<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article</span></a>
 		<br /><br /><br>
 	</item>
 	<item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
+		<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article</span></a>
 		<br /><br /><br>
-	</item>
+	</item> -->
 	
-	
-	
-	
-	
-		
-		
-		
+
 		
 		
 	
 <?php
-require_once __DIR__ . '/footer.php';
-require_once ('AllFront/footer.php');
+require_once __DIR__ . '/footeradmin.php';
+// require_once ('AllFront/footer.php');
 ?>
 </body>
 </html>
-
-
-
 
 
 
