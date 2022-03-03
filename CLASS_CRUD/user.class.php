@@ -16,9 +16,9 @@ class USER{
 	function get_AllUsers(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM USER;';
+		$result = $db->query($query);
+		$allUsers = $result->fetchAll();
 		return($allUsers);
 	}
 
