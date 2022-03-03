@@ -153,6 +153,9 @@ class COMMENT{
 	function create($numSeqCom, $numArt, $libCom, $numMemb){
 		global $db;
 
+
+		
+
 		try {
 			$db->beginTransaction();
 
@@ -180,7 +183,6 @@ class COMMENT{
 		var_dump($notifComKOAff);
 		var_dump($delLogiq);
 		
-
 
 
 		try {
@@ -228,7 +230,7 @@ class COMMENT{
 		var_dump($numArt);
 
 		exit;
-		
+
 		try {
 			$db->beginTransaction();
 
