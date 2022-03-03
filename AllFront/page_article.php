@@ -8,6 +8,8 @@ require_once __DIR__ . '../../CLASS_CRUD/thematique.class.php';
 $maThematique = new THEMATIQUE();
 require_once __DIR__ . '../../CLASS_CRUD/angle.class.php';
 $monAngle = new ANGLE();
+require_once __DIR__ . '../../CLASS_CRUD/comment.class.php';
+$monComment = new COMMENT();
 ?>
 
 <html>
@@ -32,6 +34,7 @@ $monAngle = new ANGLE();
     $allArticles = $monArticle->get_1Article($id);
     $allThematiques = $maThematique->get_1ThematiqueByLang($id);
     $allAngles = $monAngle->get_1AngleByLang($id);
+    $allComments = $monComment->get_AllCommentsByNumArt($id);
 
     // echo('<pre>');
     // print_r($allArticles);
@@ -110,6 +113,35 @@ $monAngle = new ANGLE();
             <p>
                <label>Ecrivez votre commentaire</label> : <input type="text"></input>
             </p>
+
+            <?php
+            foreach ($allComments as $row){
+                // var_dump($row['numArt']);
+                // var_dump($id);
+                if ($row['numArt']==$id){?>  
+           
+           <div class="bulle-com">
+            <div>
+            <p>
+                <?= $row["numMemb"];?>
+            </p>
+                
+            <p>
+                <?= $row["libCom"];?>
+            </p> 
+                </div>
+            <div>
+                <p>
+                    <?= $row["dtCreCom"];?> 
+                </p>
+            </div>
+           </div>
+          
+            <?php 
+                }
+                    
+            }	// End of foreach
+            ?>
             
 
         </div>
