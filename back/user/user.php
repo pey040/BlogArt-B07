@@ -66,7 +66,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les users en BDD
+    // Appel méthode : Get tous les users en bdd
 
     // Boucle pour afficher
     //foreach($all as $row) {

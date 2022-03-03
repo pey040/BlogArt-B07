@@ -72,7 +72,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les users en BDD
+    // Appel méthode : Get tous les users en bdd
 
     // Boucle pour afficher
     //foreach($all as $row) {

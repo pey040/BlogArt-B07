@@ -1,13 +1,13 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/AllFront/Style/style_cookies.css">
+        <link rel="stylesheet" href="/allfront/styles/style_cookies.css">
     </head>
     <body>
         <div id="popup">
             <span class="popuptext">
             <div>
                 <div class="cookies">
-                    <img src="../AllFront/Assets/dessin_cookies.png" width="50">
+                    <img src="../allfront/assets/dessin_cookies.png" width="50">
                     <span>Voulez vous utiliser les cookies ?</span><br><br>
                     <a href="mentionslegales.php #cookies" target="blank">En savoir plus</a><i></i></a><br> <br>
                     <button type="button" value="Rafraichir" id="refresh" onClick="acceptCookies()">Accepter</button> </div>
@@ -19,7 +19,7 @@
 
 <!-- <html>
     <head>
-        <link rel="stylesheet" href="/AllFront/Style/style_cookies.css">
+        <link rel="stylesheet" href="/allfront/styles/style_cookies.css">
     </head>
     <body>
         <div id="popup">

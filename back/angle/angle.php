@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 $monAngle = new ANGLE();
 // Instanciation de la classe angle
 
@@ -73,7 +73,7 @@ $errDel = 0;
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les angles en BDD
+    // Appel méthode : Get tous les angles en bdd
     $allAngle = $monAngle->get_AllAnglesByLang();
     // Boucle pour afficher
     foreach($allAngle as $row) {

@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 $monMembre = new MEMBRE();
 // Instanciation de la classe Membre
 
@@ -82,7 +82,7 @@ $errDel = 0;
     $from = 'Y-m-d H:i:s';
     $to = 'd/m/Y H:i:s';
 
-    // Appel méthode : Get toutes les membres en BDD
+    // Appel méthode : Get toutes les membres en bdd
     $allMembres = $monMembre->get_AllMembersByStat();
 
     // Boucle pour afficher

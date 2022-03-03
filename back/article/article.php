@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 
 // Insertion classe Article
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 $monArticle = new ARTICLE();
 // Instanciation de la classe Article
 
@@ -65,7 +65,7 @@ $monArticle = new ARTICLE();
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les articles en BDD
+    // Appel méthode : Get tous les articles en bdd
     $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
     // Boucle pour afficher
     foreach($allArticles as $row) {

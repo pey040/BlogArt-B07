@@ -25,16 +25,16 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Insertion classe Article
 
 // Instanciation de la classe Article
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 $monArticle = new ARTICLE();
 
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+require_once __DIR__ . '/../../class_crud/langue.class.php';
 $maLangue = new LANGUE();
 
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 $monAngle = new ANGLE();
 
-require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../class_crud/thematique.class.php';
 $maThematique = new THEMATIQUE();
 
 // Gestion des erreurs de saisie

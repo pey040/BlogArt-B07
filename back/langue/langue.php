@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Langue
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+require_once __DIR__ . '/../../class_crud/langue.class.php';
 $maLangue = new LANGUE();
 // Instanciation de la classe langue
 
@@ -72,7 +72,7 @@ $errDel = 0;
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get toutes les langues en BDD
+    // Appel méthode : Get toutes les langues en bdd
     $allLangues = $maLangue->get_AllLanguesByLib1Lang();
     // Boucle pour afficher
     foreach($allLangues as $row) {

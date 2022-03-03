@@ -84,7 +84,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     $from = 'Y-m-d H:i:s';
     $to = 'd/m/Y H:i:s';
 
-    // Appel méthode : Get tous les articles en BDD
+    // Appel méthode : Get tous les articles en bdd
 
     // Boucle pour afficher
     //foreach($all as $row) {

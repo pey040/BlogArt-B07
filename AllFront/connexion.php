@@ -1,5 +1,5 @@
-<?php require_once('../AllFront/header.php'); 
-require_once __DIR__ . '/../CLASS_CRUD/membre.class.php';
+<?php require_once('../allfront/header.php'); 
+require_once __DIR__ . '/../class_crud/membre.class.php';
 $monMembre = new MEMBRE();
 ?>
 
@@ -8,7 +8,7 @@ $monMembre = new MEMBRE();
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="Style/style_connexion.css">
+        <link rel="stylesheet" href="styles/style_connexion.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
@@ -86,4 +86,4 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
     </div>
 </html>
 
-<?php require_once('../AllFront/footer.php') ?>
+<?php require_once('../allfront/footer.php') ?>

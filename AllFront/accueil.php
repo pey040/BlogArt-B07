@@ -1,18 +1,18 @@
 <?php 
-setcookie("user", null, -1, '/');
-require_once('../AllFront/header.php');
+require_once('../connect/config.php');
+require_once('../allfront/header.php');
 
 // Insertion classe Article
-require_once __DIR__ . '../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '../../class_crud/article.class.php';
 $monArticle = new ARTICLE();
 ?>
 
 <html>
 
     <head>
-        <!-- <link rel="stylesheet" href="Style/style_header.css"> -->
-        <link rel="stylesheet" href="Style/style_accueil.css">
-        <link rel="stylesheet" href="Style/style_cookies.css">
+        <!-- <link rel="stylesheet" href="styles/style_header.css"> -->
+        <link rel="stylesheet" href="styles/style_accueil.css">
+        <link rel="stylesheet" href="styles/style_cookies.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@ $monArticle = new ARTICLE();
             </div>
         
 
-        <img class="dessinQuinconces" src="Assets/statuequinconces.png" alt="">
+        <img class="dessinQuinconces" src="assets/statuequinconces.png" alt="">
         </div>
 
 
@@ -49,7 +49,7 @@ $monArticle = new ARTICLE();
         <h2>Les articles récents :</h2>
 
         <?php 
-        // Appel méthode : Get tous les articles en BDD
+        // Appel méthode : Get tous les articles en bdd
         $allArticles = (array)$monArticle->get_AllArticles();
 
         //compter le nbre de ligne en php
@@ -158,8 +158,8 @@ $monArticle = new ARTICLE();
 
     </body>
 </html>
-<?php include('../AllFront/popup.php') ?>
-<?php require_once('../AllFront/footer.php') ?>
+<?php include('../allfront/popup.php') ?>
+<?php require_once('../allfront/footer.php') ?>
 
 
 <script>

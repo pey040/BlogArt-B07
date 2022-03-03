@@ -7,10 +7,11 @@ $nomBD = "BLOGART22";
 // Avec encodage UTF8
 $serverBD = "mysql:dbname=$nomBD;host=$hostBD;charset=utf8";
 
-// nom utilisateur de connexion à la BDD
+// nom utilisateur de connexion à la bdd
 $userBD = 'root';         // Votre login
-// mot de passe de connexion à la BDD
+// mot de passe de connexion à la bdd
 $passBD = '';         // Votre Pass
 
-define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BlogArt-B07');
-define('ROOTFRONT', "http://" . $_SERVER['SERVER_NAME'] . '/BlogArt-B07'); 
+define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BLOGART22/BlogArt-B07');
+define('ROOTFRONT', "http://" . $_SERVER['SERVER_NAME'] . '/BLOGART22/BlogArt-B07'); 
+var_dump(ROOTFRONT);

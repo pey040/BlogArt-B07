@@ -31,12 +31,12 @@
     var dismissLinkId = 'cookieChoiceDismiss';
 
     function _createHeaderElement(cookieText, dismissText, linkText, linkHref) {
-      var butterBarStyles = 'position:fixed;width:100%;background-color:#FFA500;color:#000000;' +
+      var butterBarstyless = 'position:fixed;width:100%;background-color:#FFA500;color:#000000;' +
           'margin:0; left:0; bottom:0; padding:4px;z-index:1000;text-align:center;';
 
       var cookieConsentElement = document.createElement('div');
       cookieConsentElement.id = cookieConsentId;
-      cookieConsentElement.style.cssText = butterBarStyles;
+      cookieConsentElement.style.cssText = butterBarstyless;
       cookieConsentElement.appendChild(_createConsentText(cookieText));
 
 			      if (!!linkText && !!linkHref) {
@@ -48,24 +48,24 @@
     }
 
     function _createDialogElement(cookieText, dismissText, linkText, linkHref) {
-      var glassStyle = 'position:fixed;width:100%;height:100%;z-index:999;' +
+      var glassstyles = 'position:fixed;width:100%;height:100%;z-index:999;' +
           'bottom:0;left:0;opacity:0.5;filter:alpha(opacity=50);' +
           'background-color:#ccc;';
-      var dialogStyle = 'z-index:1000;position:fixed;left:50%;top:50%';
-      var contentStyle = 'position:relative;left:-50%;margin-top:-25%;' +
+      var dialogstyles = 'z-index:1000;position:fixed;left:50%;top:50%';
+      var contentstyles = 'position:relative;left:-50%;margin-top:-25%;' +
           'background-color:#fff;padding:20px;box-shadow:4px 4px 25px #888;';
 
       var cookieConsentElement = document.createElement('div');
       cookieConsentElement.id = cookieConsentId;
 
       var glassPanel = document.createElement('div');
-      glassPanel.style.cssText = glassStyle;
+      glassPanel.style.cssText = glassstyles;
 
       var content = document.createElement('div');
-      content.style.cssText = contentStyle;
+      content.style.cssText = contentstyles;
 
       var dialog = document.createElement('div');
-      dialog.style.cssText = dialogStyle;
+      dialog.style.cssText = dialogstyles;
 
       var dismissLink = _createDismissLink(dismissText);
       dismissLink.style.display = 'block';

@@ -1,5 +1,5 @@
 <?php
-// CONNEXION BDD
+// CONNEXION bdd
 // Variables connexion
 require_once __DIR__.'/config.php';
 

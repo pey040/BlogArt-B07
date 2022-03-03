@@ -1,14 +1,14 @@
 <?php 
-require_once('../AllFront/header.php');
+require_once('../allfront/header.php');
 
 // Insertion classe Article
-require_once __DIR__ . '../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '../../class_crud/article.class.php';
 $monArticle = new ARTICLE();
-require_once __DIR__ . '../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '../../class_crud/thematique.class.php';
 $maThematique = new THEMATIQUE();
-require_once __DIR__ . '../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '../../class_crud/angle.class.php';
 $monAngle = new ANGLE();
-require_once __DIR__ . '../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '../../class_crud/comment.class.php';
 $monComment = new COMMENT();
 
 ?>
@@ -16,7 +16,7 @@ $monComment = new COMMENT();
 <html>
 
     <head>      
-        <link rel="stylesheet" href="Style/page_article.css">
+        <link rel="stylesheet" href="styles/page_article.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@ $monComment = new COMMENT();
     if (isset($_GET["id"])) {
         $id = $_GET["id"];
     }
-    // Appel méthode : Get tous les articles en BDD
+    // Appel méthode : Get tous les articles en bdd
     $allArticles = $monArticle->get_1Article($id);
     $allThematiques = $maThematique->get_1ThematiqueByLang($id);
     $allAngles = $monAngle->get_1AngleByLang($id);
@@ -151,4 +151,4 @@ $monComment = new COMMENT();
     </body>
 </html>
 
-<?php require_once('../AllFront/footer.php') ?>
+<?php require_once('../allfront/footer.php') ?>
