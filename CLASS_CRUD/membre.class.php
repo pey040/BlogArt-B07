@@ -68,6 +68,10 @@ class MEMBRE{
         return($allMembersByStat);
     }
 
+
+
+
+
 	function get_NbAllMembersByidStat($idStat){
 		global $db;
 

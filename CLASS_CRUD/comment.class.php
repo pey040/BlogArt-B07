@@ -87,8 +87,11 @@ class COMMENT{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM COMMENT CO , ARTICLE AR , MEMBRE ME WHERE CO.numArt = AR.numArt AND CO.numMemb = ME.numMemb";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allCommentsByArticleByMemb = $result->fetchAll();
 		return($allCommentsByArticleByMemb);
 	}
 

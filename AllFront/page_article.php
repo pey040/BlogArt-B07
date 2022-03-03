@@ -10,6 +10,7 @@ require_once __DIR__ . '../../CLASS_CRUD/angle.class.php';
 $monAngle = new ANGLE();
 require_once __DIR__ . '../../CLASS_CRUD/comment.class.php';
 $monComment = new COMMENT();
+
 ?>
 
 <html>
@@ -35,6 +36,7 @@ $monComment = new COMMENT();
     $allThematiques = $maThematique->get_1ThematiqueByLang($id);
     $allAngles = $monAngle->get_1AngleByLang($id);
     $allComments = $monComment->get_AllCommentsByNumArt($id);
+    $allpseudoComment = $monComment->get_AllCommentsByArticleByMemb($id);
 
     // echo('<pre>');
     // print_r($allArticles);
@@ -115,7 +117,7 @@ $monComment = new COMMENT();
             </p>
 
             <?php
-            foreach ($allComments as $row){
+            foreach ($allpseudoComment as $row){
                 // var_dump($row['numArt']);
                 // var_dump($id);
                 if ($row['numArt']==$id){?>  
@@ -123,7 +125,7 @@ $monComment = new COMMENT();
            <div class="bulle-com">
             <div>
             <p>
-                <?= $row["numMemb"];?>
+                <?= $row["pseudoMemb"];?>
             </p>
                 
             <p>
