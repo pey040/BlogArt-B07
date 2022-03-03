@@ -9,7 +9,7 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
-require_once('AllFront/header.php');
+// require_once ROOT . '/front/includes/commons/___headerFront.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -112,6 +112,7 @@ require_once('AllFront/header.php');
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"></script>
 </head>
+
 <body>
 	<br />
 	<h1>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h1>

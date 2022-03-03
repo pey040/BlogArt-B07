@@ -183,7 +183,6 @@ function acceptCookies() {
 
 if (localStorage.getItem("cookiesAuthorized") === "true") {
     popup.style.display = "none";
-    <?php setcookie("cookiesok", "GOOD") ?>
 } else {
     popup.style.display = "flex"
 }

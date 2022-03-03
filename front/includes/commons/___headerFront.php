@@ -7,7 +7,7 @@
     </head>
     <body>
         <header>
-            <a href="accueil.php"><img src="Assets/LogoSculpeaux.png" alt="Sculp'eaux" width="332px" height="135px"></a>
+            <a href="accueil.php"><img src="/AllFront/Assets/LogoSculpeaux.png" alt="Sculp'eaux" width="332px" height="135px"></a>
             <div class="headerButtons">
                 <a href="accueil.php">Accueil</a>
                 <a href="connexion.php">Connexion</a>

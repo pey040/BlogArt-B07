@@ -35,7 +35,6 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-
 		$query = 'SELECT * FROM ARTICLE WHERE numArt=?;';
 		$request = $db->prepare($query);
 		$request->execute([$numArt]);

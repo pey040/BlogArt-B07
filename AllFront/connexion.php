@@ -69,9 +69,14 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
             if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
             AND isset($_POST['pass']) AND !empty($_POST['pass'])){
 
-                if (isset($_COOKIE['user']) == false){
+                if (isset($_COOKIE['user']) == true){
+                    ?> <html><div class="true-login"> <h2> Bonjour <?php echo $_COOKIE['user'] . '<br>'; ?> </h2></div></html> <?php
+                }
+
+                else{
                     ?> <html><div class="error-login"> <h2>Le mot de passe et/ou l'adrese mail ne sont pas correct(s)</h2></div></html> <?php
                 }
+
             }
             ?>
             <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
