@@ -44,9 +44,12 @@ class COMMENT{
 	function get_AllCommentByArticle($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		// // select
+        // $query = "SELECT * FROM COMMENT CO INNER JOIN ARTICLE AR ON CO.numArt= AR.numArt";
+        // // prepare
+        // $result=$db->query($query);
+        // // execute
+        // $result->fetchAll();
 		return($result->fetchAll());
 	}
 
@@ -54,8 +57,11 @@ class COMMENT{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM COMMENT CO INNER JOIN ARTICLE AR ON CO.numArt= AR.numArt";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allCommentsByArt = $result->fetchAll();
 		return($allCommentsByArt);
 	}
 
