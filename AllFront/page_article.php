@@ -4,6 +4,10 @@ require_once('../AllFront/header.php');
 // Insertion classe Article
 require_once __DIR__ . '../../CLASS_CRUD/article.class.php';
 $monArticle = new ARTICLE();
+require_once __DIR__ . '../../CLASS_CRUD/thematique.class.php';
+$maThematique = new THEMATIQUE();
+require_once __DIR__ . '../../CLASS_CRUD/angle.class.php';
+$monAngle = new ANGLE();
 ?>
 
 <html>
@@ -19,6 +23,28 @@ $monArticle = new ARTICLE();
     </head>
 
     <body>
+
+    <?php
+    if (isset($_GET["id"])) {
+        $id = $_GET["id"];
+    }
+    // Appel méthode : Get tous les articles en BDD
+    $allArticles = $monArticle->get_1Article($id);
+    $allThematiques = $maThematique->get_1ThematiqueByLang($id);
+    $allAngles = $monAngle->get_1AngleByLang($id);
+
+    // echo('<pre>');
+    // print_r($allArticles);
+    // echo('</pre>');
+
+    // Supprimer les doublons
+	// $unique = array_unique($allArticles);
+    // echo('<pre>');
+	// print_r($unique);
+    // echo('</pre>');
+
+    // foreach ($allArticles as $row){
+    ?>
         <div class="flux">
             <div class="motcletop">
                 <div>
@@ -38,54 +64,47 @@ $monArticle = new ARTICLE();
                 </div>
             </div>
 
-            <h1>TITRE</h1>
-            <h2>Chapo !</h2>
+            <h1><?= $allArticles["libTitrArt"]; ?></h1>
+            <div class="entete">
+                <div>
+                <p>Article n°<?= $allArticles["numArt"]; ?></p>
+                <p>Écrit le <?= $allArticles["dtCreArt"]; ?></p>
+                </div>
+                <div>
+                <p><?= $allArticles["numAngl"]; ?></p>
+                <p><?= $allArticles["numThem"]; ?></p>
+                </div>
+            </div>
             
-
+            <h2><?= $allArticles["libChapoArt"]; ?></h2>
+            
+            
         </div>
-        <img class ="noflux" src="http://place-puppy.com/1519x300" alt="">
+        <div class="image-frame" style="background-image: url('../uploads/<?= $allArticles['urlPhotArt']; ?>');"></div>
         
         <div class="flux">
-            <h3>Accroche</h3>
-            <h4>Sous-titre 1</h4>
-            <h4>Titre Paragraphe1</h4>
+            <h3><?= $allArticles["libAccrochArt"]; ?></h3>
+            <h4><?= $allArticles["libSsTitr1Art"]; ?></h4>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
+            <?= $allArticles["parag1Art"]; ?>
             </p>
 
-            <h4>Sous-titre 2</h4>
-            <h4>Titre Paragraphe2</h4>
+            <h4><?= $allArticles["libSsTitr2Art"]; ?></h4>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
+            <?= $allArticles["parag2Art"]; ?>
             </p>
 
-            <h4>Titre Paragraphe3</h4>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
+            <?= $allArticles["parag3Art"]; ?>
             </p>
 
-            <h4>Conclusion</h4>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan. 
-            Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan.
+            <?= $allArticles["libConclArt"]; ?>
             </p>
 
-
+    <?php
+    // }	// End of foreach
+    ?>
 
             <h3>Commentaires</h3>
             <p>
