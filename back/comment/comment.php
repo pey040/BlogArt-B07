@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Comment
-require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '/../../class_crud/comment.class.php';
 $monComment = new COMMENT();
 // Instanciation de la classe Comment
 
@@ -84,7 +84,7 @@ $monComment = new COMMENT();
     $from = 'Y-m-d H:i:s';
     $to = 'd/m/Y H:i:s';
 
-    // Appel méthode : Get tous les comments en BDD
+    // Appel méthode : Get tous les comments en bdd
 
     $allComments = $monComment->get_AllComment();
     // Boucle pour afficher

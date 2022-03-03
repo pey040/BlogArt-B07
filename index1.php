@@ -9,7 +9,7 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
-// require_once ('AllFront/header.php');
+// require_once ('allfront/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -195,23 +195,23 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	"RECHERCHE" ici
 	<!-- <item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles </span></a>
+		<a href="./searchbar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles </span></a>
 		<br>(F1 en GET)
 		<br /><br /> <br>
 	</item>
 	<item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques</span></a>
+		<a href="./searchbar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques</span></a>
 		<br /><br /><br>
 	</item>
 	<item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article</span></a>
+		<a href="./searchbar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article</span></a>
 		<br /><br /><br>
 	</item>
 	<item class="recherche">
 		Barre de recherche :
-		<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article</span></a>
+		<a href="./searchbar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article</span></a>
 		<br /><br /><br>
 	</item> -->
 	
@@ -221,7 +221,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	
 <?php
 require_once __DIR__ . '/footeradmin.php';
-// require_once ('AllFront/footer.php');
+// require_once ('allfront/footer.php');
 ?>
 </body>
 </html>
@@ -280,17 +280,17 @@ Membre (*) - reCaptcha à ajouter -->
 	<a href="./BACK/user/user.php"><span>User (*)</span></a>
 	<br /><br /><hr class="hr1" /><br />
 	Barre de recherche :
-	<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles (*)</span></a>
+	<a href="./searchbar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles (*)</span></a>
 	<br>(F1 en GET)
 	<br /><br />
 	Barre de recherche :
-	<a href="./SearchBar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques (*)</span></a>
+	<a href="./searchbar/barreCONCAT.php"><span>CONCAT : Mots clés dans articles & thématiques (*)</span></a>
 	<br /><br />
 	Barre de recherche :
-	<a href="./SearchBar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article (*)</span></a>
+	<a href="./searchbar/barreJOIN.php"><span>JOIN : Liste des Mots clés par article (*)</span></a>
 	<br /><br />
 	Barre de recherche :
-	<a href="./SearchBar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
+	<a href="./searchbar/barreLes2.php"><span>Les 2 (CONCAT, JOIN) : Mots clés dans articles, thématiques & liste des Mots clés par article (*)</span></a>
 	<br /><br />
 	</div> --> 
 

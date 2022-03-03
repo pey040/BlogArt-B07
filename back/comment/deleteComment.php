@@ -3,12 +3,10 @@
 //
 //  CRUD COMMENT (PDO) - Modifié : 4 Juillet 2021
 //
-//  Script  : deleteComment.php  -  (ETUD)  BLOGART22
+//  Script  : updateComment.php  -  (ETUD)  BLOGART22
 //
 ////////////////////////////////////////////////////////////
 
-// Del logique du Comment
-//
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
 
@@ -16,20 +14,20 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Comment
-require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '/../../class_crud/comment.class.php';
 $monComment = new COMMENT();
 // Instanciation de la classe Comment
+
+
+//--> Appel parser BBCode
 
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Init variables form
-include __DIR__ . '/initComment.php';
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En GET
-if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    
     if(isset($_POST['Submit'])){
         $Submit = $_POST['Submit'];
     } else {
@@ -37,18 +35,43 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
     if (isset($_POST["Submit"]) AND $Submit === "Initialiser") {
 
-        header("Location: ./deleteComment.php");
+        header("Location: ./updateComment.php");
     }   // End of if ((isset($_POST["submit"])) ...
     if (!empty($_POST['Submit']) AND $Submit === "Valider") {
     
-        $erreur = false;
+
+
+
+
+        $attModOK = $_POST['attModOK'];
+
+        if ($attModOK == "on"){
+            $boolattModOK = 1;
+        } elseif ($attModOK == "off"){
+            $boolattModOK = 0;
+        }
+        // Saisies valides
+
+        $delLogiq = $_POST['delLogiq'];
+
+        if ($delLogiq == "on"){
+            $booldelLogiq = 1;
+        } elseif ($delLogiq == "off"){
+            $booldelLogiq = 0;
+        }
+
+        $notifComKOAff = $_POST['notifComKOAff'];
 
         $idCom = $_POST['idCom'];
 
         $idArt = $_POST['idArt'];
 
-        $monComment->delete($idCom, $idArt);
-        
+        $erreur = false;
+
+
+
+        $monComment->update($idCom, $idArt, "0", "", "1");
+    
         header("Location: ./comment.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
     else {
@@ -75,7 +98,7 @@ $description = "";
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-  <!-- Style du formulaire et des boutons -->
+  <!-- styles du formulaire et des boutons -->
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <script src="./script_global.js"></script>
 
@@ -87,7 +110,7 @@ $description = "";
 </head>
 <body>
     <h1>BLOGART22 Admin - CRUD Commentaire</h1>
-    <h2>Suppréssion d'un commentaire</h2>
+    <h2>Mise à jour d'un commentaire</h2>
     <?php
     if (isset($_GET["idArt"]) AND isset($_GET["idCom"])) {
         $numArt = $_GET["idArt"];
@@ -106,8 +129,8 @@ $description = "";
       <fieldset>
         <legend class="legend1">Modération : validez un commentaire...</legend>
 
-        <input type="hidden" id="idArt" name="idArt" value="<?= isset($_GET['idArt']) ? $_GET['idArt'] : '' ?>" />
         <input type="hidden" id="idCom" name="idCom" value="<?= isset($_GET['idCom']) ? $_GET['idCom'] : '' ?>" />
+        <input type="hidden" id="idArt" name="idArt" value="<?= isset($_GET['idArt']) ? $_GET['idArt'] : '' ?>" />
 
 <!-- --------------------------------------------------------------- -->
     <!-- FK : Membre, Article -->
@@ -150,7 +173,7 @@ $description = "";
     <!-- textarea comment -->
         <br>
         <div class="control-group">
-            <label class="control-label" for="libCom"><b>Commentaire à supprimer :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+            <label class="control-label" for="libCom"><b>Commentaire à valider :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
 
             <textarea name="libCom" id="libCom" tabindex="30"  rows="20" cols="70" style="background-color:white;" disabled="disabled"><?= $libCom; ?></textarea>
@@ -159,16 +182,10 @@ $description = "";
     <!-- End textarea comment -->
 <!-- --------------------------------------------------------------- -->
 
-<!-- --------------------------------------------------------------- -->
-    <!-- Suppression logique du commentaire -->
-       <br>
-        <div class="control-group">
-            <label class="control-label" for="delLogiq"><b>Supprimer (logiquement) se commentaire?</b></label>
-            <div class="controls">
-            </div>
-        </div>
         <br>
-<!-- --------------------------------------------------------------- -->
+
+            <label class="control-label" for="attModOK"><b>Supprimer (logiquement) se commentaire</b></label>
+            
 
         <div class="control-group">
             <div class="error">

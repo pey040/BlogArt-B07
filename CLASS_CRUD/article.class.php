@@ -1,7 +1,7 @@
 <?php
 // CRUD ARTICLE
 // ETUD
-require_once __DIR__ . '/../CONNECT/database.php';
+require_once __DIR__ . '/../connect/database.php';
 
 class ARTICLE{
 
@@ -17,7 +17,7 @@ class ARTICLE{
 	function get_AllThematiques(){
 		global $db;
 
-		$query = 'SELECT * FROM THEMATIQUE;';
+		$query = 'SELECT * FROM thematique;';
 		$result = $db->query($query);
 		$allThematiques = $result->fetchAll();
 		return($allThematiques);
@@ -26,7 +26,7 @@ class ARTICLE{
 	function get_AllAngles() {
 		global $db;
 
-		$query = 'SELECT * FROM ANGLE;';
+		$query = 'SELECT * FROM angle;';
 		$result = $db->query($query);
 		$allAngles = $result->fetchAll();
 		return($allAngles);
@@ -35,7 +35,7 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-		$query = 'SELECT * FROM ARTICLE WHERE numArt=?;';
+		$query = 'SELECT * FROM article WHERE numArt=?;';
 		$request = $db->prepare($query);
 		$request->execute([$numArt]);
 		$oneArticle = $request->fetch();
@@ -54,7 +54,7 @@ class ARTICLE{
 	function get_AllArticles(){
 		global $db;
 
-		$query = 'SELECT * FROM ARTICLE;';
+		$query = 'SELECT * FROM article;';
 		$result = $db->query($query);
 		$allArticles = $result->fetchAll();
 		return($allArticles);
@@ -65,7 +65,7 @@ class ARTICLE{
 		global $db;
 
 		// select
-        $query = "SELECT * FROM ARTICLE AR , ANGLE AN , THEMATIQUE TH WHERE AR.numAngl = AN.numAngl AND AR.numThem = TH.numThem";
+        $query = "SELECT * FROM article ar , angle an , thematique th WHERE ar.numAngl = an.numAngl AND ar.numThem = th.numThem";
         // prepare
         $result=$db->query($query);
         // execute
@@ -96,7 +96,7 @@ class ARTICLE{
 		global $db;
 
 		// Recherche plusieurs mots clés (CONCAT)
-		$textQuery = 'SELECT * FROM ARTICLE AR INNER JOIN THEMATIQUE TH ON AR.numThem = TH.numThem WHERE CONCAT(libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, libThem) LIKE "%'.$motcle.'%" ORDER BY numArt DESC';
+		$textQuery = 'SELECT * FROM article ar INNER JOIN thematique th ON ar.numThem = th.numThem WHERE CONCAT(libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, libThem) LIKE "%'.$motcle.'%" ORDER BY numArt DESC';
 		$result = $db->query($textQuery);
 		$allArticlesByMotsCles = $result->fetchAll();
 		return($allArticlesByMotsCles);
@@ -111,7 +111,7 @@ class ARTICLE{
 		SELECT * FROM MOTCLE WHERE libMotCle IN ('Bordeaux', 'bleu');
 		*/
 		// Recherche mot clé (INNER JOIN) dans tables MOTCLE & (ARTICLE)
-		$textQuery = 'SELECT AR.numArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt FROM MOTCLE MC INNER JOIN MOTCLEARTICLE MCA ON MC.numMotCle = MCA.numMotCle INNER JOIN ARTICLE AR ON MCA.numArt = AR.numArt WHERE libMotCle IN (' . $listMotcles . ');';
+		$textQuery = 'SELECT ar.numArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt FROM motcle mc INNER JOIN motclearticle mca ON mc.numMotCle = mca.numMotCle INNER JOIN article ar ON mca.numArt = ar.numArt WHERE libMotCle IN (' . $listMotcles . ');';
 		$result = $db->prepare($textQuery);
 		$result->execute([$listMotcles]);
 		$allArticlesByNumAnglNumThem = $result->fetchAll();
@@ -122,7 +122,7 @@ class ARTICLE{
 	function getNextNumArt() {
 		global $db;
 
-		$requete = "SELECT MAX(numArt) AS numArt FROM ARTICLE;";
+		$requete = "SELECT MAX(numArt) AS numArt FROM article;";
 		$result = $db->query($requete);
 
 		if ($result) {
@@ -139,7 +139,7 @@ class ARTICLE{
 	function get_LastNumArt(){
 		global $db;
 
-		$requete = "SELECT MAX(numArt) AS numArt FROM ARTICLE;";
+		$requete = "SELECT MAX(numArt) AS numArt FROM article;";
 		$result = $db->query($requete);
 
 		if ($result) {
@@ -156,7 +156,7 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO ARTICLE (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$query = 'INSERT INTO article (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 			$request = $db->prepare($query);
 			$request->execute([$dtCreArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem]);
 			$db->commit();
@@ -165,7 +165,7 @@ class ARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert ARTICLE : ' . $e->getMessage());
+			die('Erreur insert article : ' . $e->getMessage());
 		}
 	}
 
@@ -175,7 +175,7 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO ARTICLE (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (NOW(), "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", ?, ?, ?);';
+			$query = 'INSERT INTO article (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (NOW(), "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", "Test", ?, ?, ?);';
 			$request = $db->prepare($query);
 			$request->execute([$urlPhotArt, $numAngl, $numThem]);
 			$db->commit();
@@ -184,7 +184,7 @@ class ARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert ARTICLE : ' . $e->getMessage());
+			die('Erreur insert article : ' . $e->getMessage());
 		}
 	}
 
@@ -194,7 +194,7 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE ARTICLE set dtCreArt=?, libTitrArt=?, libChapoArt=?, libAccrochArt=?, parag1Art=?, libSsTitr1Art=?, parag2Art=?, libSsTitr2Art=?, parag3Art=?, libConclArt=?, urlPhotArt=?, numAngl=?, numThem=? where numArt=? ';
+			$query = 'UPDATE article set dtCreArt=?, libTitrArt=?, libChapoArt=?, libAccrochArt=?, parag1Art=?, libSsTitr1Art=?, parag2Art=?, libSsTitr2Art=?, parag3Art=?, libConclArt=?, urlPhotArt=?, numAngl=?, numThem=? where numArt=? ';
 			$request = $db->prepare($query);
 			$request->execute([$dtCreArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem, $numArt]);
 			$db->commit();
@@ -203,7 +203,7 @@ class ARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update ARTICLE : ' . $e->getMessage());
+			die('Erreur update article : ' . $e->getMessage());
 		}
 	}
 
@@ -213,7 +213,7 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE ARTICLE set urlPhotArt=?, numAngl=?, numThem=? where numArt=? ';
+			$query = 'UPDATE article set urlPhotArt=?, numAngl=?, numThem=? where numArt=? ';
 			$request = $db->prepare($query);
 			$request->execute([$urlPhotArt, $numAngl, $numThem, $id]);
 			$db->commit();
@@ -222,7 +222,7 @@ class ARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update ARTICLE : ' . $e->getMessage());
+			die('Erreur update article : ' . $e->getMessage());
 		}
 	}
 
@@ -232,7 +232,7 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'DELETE FROM ARTICLE where numArt=?;';
+			$query = 'DELETE FROM article where numArt=?;';
 			$request = $db->prepare($query);
 			$request->execute([$numArt]);
 			$count = $request->rowCount();
@@ -243,7 +243,7 @@ class ARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete ARTICLE : ' . $e->getMessage());
+			die('Erreur delete article : ' . $e->getMessage());
 		}
 	}
 }	// End of class

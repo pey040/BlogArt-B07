@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe MotCle
-require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
+require_once __DIR__ . '/../../class_crud/motcle.class.php';
 $monMotCle = new MOTCLE();
 // Instanciation de la classe MotCle
 
@@ -53,7 +53,7 @@ $errDel = 0;
     <tbody>
 
 <?php
-    // Appel méthode : Get toutes les mots cles en BDD
+    // Appel méthode : Get toutes les mots cles en bdd
     $allMotCle = $monMotCle->get_AllMotsClesByLang();
     // Boucle pour afficher
     foreach($allMotCle as $row) {

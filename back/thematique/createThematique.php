@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Thematique
-require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../class_crud/thematique.class.php';
 $maThematique = new THEMATIQUE();
 // Instanciation de la classe thématique
 

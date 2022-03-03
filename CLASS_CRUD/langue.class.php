@@ -1,13 +1,13 @@
 <?php
 // CRUD LANGUE
 // ETUD
-require_once __DIR__ . '../../CONNECT/database.php';
+require_once __DIR__ . '../../connect/database.php';
 
 class LANGUE{
 	function get_AllPays(){
     global $db;
 
-    $query = 'SELECT * FROM PAYS;';
+    $query = 'SELECT * FROM pays;';
     $result = $db->query($query);
     $allPays = $result->fetchAll();
     return($allPays);
@@ -17,7 +17,7 @@ class LANGUE{
 		global $db;
 
 
-		$query = 'SELECT * FROM LANGUE WHERE numLang=?;';
+		$query = 'SELECT * FROM langue WHERE numLang=?;';
 		$request = $db->prepare($query);
 		$request->execute([$numLang]);
 		return($request->fetch());
@@ -35,7 +35,7 @@ class LANGUE{
 	function get_AllLangues(){
 		global $db;
 
-		$query = 'SELECT * FROM LANGUE;';
+		$query = 'SELECT * FROM langue;';
 		$result = $db->query($query);
 		$allLangues = $result->fetchAll();
 		return($allLangues);
@@ -54,7 +54,7 @@ class LANGUE{
 		global $db;
 
 		// select
-        $query = "SELECT * FROM LANGUE LA INNER JOIN PAYS PA ON LA.numPays = PA.numPays";
+        $query = "SELECT * FROM langue la INNER JOIN pays pa ON la.numPays = pa.numPays";
         // prepare
         $result=$db->query($query);
         // execute
@@ -72,7 +72,7 @@ class LANGUE{
 		$numPaysSelect = $numPays;  // exemple : 'CHIN'
 		$parmNumLang = $numPaysSelect . '%';
 	
-		$requete = "SELECT MAX(numLang) AS numLang FROM LANGUE WHERE numLang LIKE '$parmNumLang';";
+		$requete = "SELECT MAX(numLang) AS numLang FROM langue WHERE numLang LIKE '$parmNumLang';";
 	
 		$result = $db->query($requete);
 	
@@ -109,7 +109,7 @@ class LANGUE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO Langue (numLang, lib1Lang, lib2Lang, numPays) VALUES (?, ?, ?, ?)';
+			$query = 'INSERT INTO langue (numLang, lib1Lang, lib2Lang, numPays) VALUES (?, ?, ?, ?)';
 			$request = $db->prepare($query);
 			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays]);
 			$db->commit();
@@ -118,7 +118,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert LANGUE : ' . $e->getMessage());
+			die('Erreur insert langue : ' . $e->getMessage());
 		}
 	}
 
@@ -138,7 +138,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert LANGUE : ' . $e->getMessage());
+			die('Erreur insert langue : ' . $e->getMessage());
 		}
 	}
 
@@ -156,7 +156,7 @@ class LANGUE{
 
 		try {
 			$db->beginTransaction();
-			$query = 'UPDATE LANGUE set numLang=?, lib1Lang=?, lib2Lang=?, numPays=? where numLang=? ';
+			$query = 'UPDATE langue set numLang=?, lib1Lang=?, lib2Lang=?, numPays=? where numLang=? ';
 			$request = $db->prepare($query);
 			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays, $id]);
 			$db->commit();
@@ -165,7 +165,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update LANGUE : ' . $e->getMessage());
+			die('Erreur update langue : ' . $e->getMessage());
 		}
 	}
 
@@ -189,7 +189,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete LANGUE : ' . $e->getMessage());
+			die('Erreur delete langue : ' . $e->getMessage());
 		}
 	}
 }	// End of class

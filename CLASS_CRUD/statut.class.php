@@ -1,7 +1,7 @@
 <?php
 // CRUD STATUT
 // ETUD
-require_once __DIR__ . '../../CONNECT/database.php';
+require_once __DIR__ . '../../connect/database.php';
 
 class STATUT
 {
@@ -9,7 +9,7 @@ class STATUT
 	{
 		global $db;
 
-		$query = 'SELECT * FROM STATUT WHERE idStat=?;';
+		$query = 'SELECT * FROM statut WHERE idStat=?;';
 		$request = $db->prepare($query);
 		$request->execute([$idStat]);
 		return ($request->fetch());
@@ -19,7 +19,7 @@ class STATUT
 	{
 		global $db;
 
-		$query = 'SELECT * FROM STATUT;';
+		$query = 'SELECT * FROM statut;';
 		$result = $db->query($query);
 		$allStatuts = $result->fetchAll();
 		return ($allStatuts);
@@ -32,7 +32,7 @@ class STATUT
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO STATUT (libStat) VALUES (?)';
+			$query = 'INSERT INTO statut (libStat) VALUES (?)';
 			$request = $db->prepare($query);
 			$request->execute([$libStat]);
 			$db->commit();
@@ -40,7 +40,7 @@ class STATUT
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert STATUT : ' . $e->getMessage());
+			die('Erreur insert statut : ' . $e->getMessage());
 		}
 	}
 
@@ -62,7 +62,7 @@ class STATUT
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update STATUT : ' . $e->getMessage());
+			die('Erreur update statut : ' . $e->getMessage());
 		}
 	}
 
@@ -87,7 +87,7 @@ class STATUT
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete STATUT : ' . $e->getMessage());
+			die('Erreur delete statut : ' . $e->getMessage());
 		}
 	}
 	// End of class
@@ -108,7 +108,7 @@ function TestIfStat($idStat, $table) {
 	catch (PDOException $e) {
 		$db->rollBack();
 		$request->closeCursor();
-		die('Erreur insert LANGUE : ' . $e->getMessage());
+		die('Erreur insert langue : ' . $e->getMessage());
 	}
 }
 

@@ -1,7 +1,7 @@
 <?php
 // CRUD COMMENT
 // ETUD
-require_once __DIR__ . '../../CONNECT/database.php';
+require_once __DIR__ . '../../connect/database.php';
 
 class COMMENT{
 
@@ -87,8 +87,11 @@ class COMMENT{
 		global $db;
 
 		// select
-		// prepare
-		// execute
+        $query = "SELECT * FROM COMMENT CO , ARTICLE AR , MEMBRE ME WHERE CO.numArt = AR.numArt AND CO.numMemb = ME.numMemb";
+        // prepare
+        $result=$db->query($query);
+        // execute
+        $allCommentsByArticleByMemb = $result->fetchAll();
 		return($allCommentsByArticleByMemb);
 	}
 
@@ -142,7 +145,7 @@ class COMMENT{
 			return $numSeqCom;
 		}   // End of if ($result)
 		else {
-		return -1;  // Pbl select / BDD
+		return -1;  // Pbl select / bdd
 		}
 	} // End of function
 
@@ -150,10 +153,13 @@ class COMMENT{
 	function create($numSeqCom, $numArt, $libCom, $numMemb){
 		global $db;
 
+
+		
+
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO COMMENT (numSeqCom, numArt, dtCreCom, libCom, numMemb, delLogiq, attModOK, notifComKOAff) VALUES (?, ?, NOW(), ?, ?, 0, 0, "")';
+			$query = 'INSERT INTO comment (numSeqCom, numArt, dtCreCom, libCom, numMemb, delLogiq, attModOK, notifComKOAff) VALUES (?, ?, NOW(), ?, ?, 0, 0, "")';
 			$request = $db->prepare($query);
 			$request->execute([$numSeqCom, $numArt, $libCom, $numMemb]);
 			$db->commit();
@@ -162,7 +168,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert COMMENT : ' . $e->getMessage());
+			die('Erreur insert comment : ' . $e->getMessage());
 		}
 	}
 
@@ -179,11 +185,10 @@ class COMMENT{
 		
 
 
-
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE COMMENT set attModOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=? AND numArt=?';
+			$query = 'UPDATE comment set attModOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=? AND numArt=?';
 			$request = $db->prepare($query);
 			$request->execute([$attModOK, $notifComKOAff, $delLogiq, $numSeqCom, $numArt]);
 			$db->commit();
@@ -192,7 +197,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update COMMENT : ' . $e->getMessage());
+			die('Erreur update comment : ' . $e->getMessage());
 		}
 	}
 
@@ -212,7 +217,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert Or Update COMMENT : ' . $e->getMessage());
+			die('Erreur insert Or Update comment : ' . $e->getMessage());
 		}
 	}
 
@@ -225,11 +230,11 @@ class COMMENT{
 		var_dump($numArt);
 
 		exit;
-		
+
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE COMMENT set attModOK=0, dtModCom=NOW(), delLogiq=1 where numSeqCom=? AND numArt=? ';
+			$query = 'UPDATE comment set attModOK=0, dtModCom=NOW(), delLogiq=1 where numSeqCom=? AND numArt=? ';
 			$request = $db->prepare($query);
 			$request->execute([$numSeqCom, $numArt]);
 			$db->commit();
@@ -238,7 +243,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete COMMENT : ' . $e->getMessage());
+			die('Erreur delete comment : ' . $e->getMessage());
 		}
 	}
 }	// End of class

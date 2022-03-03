@@ -1,6 +1,8 @@
 
  
-<?php require_once('../AllFront/header.php') ?>
+<?php 
+require_once('../connect/config.php');
+require_once('../allfront/header.php') ?>
 
 <html>
     <head>
@@ -10,13 +12,13 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="Style/style_mentionslegales.css">
+        <link rel="stylesheet" href="styles/style_mentionslegales.css">
         
     </head>
     <body>
         <section class="pageMentionsLegales">
             <div class="toppage">
-                <img class="dessinMontaigne" src="Assets/dessin_montaigne.png" alt="">
+                <img class="dessinMontaigne" src="assets/dessin_montaigne.png" alt="">
                 <div class="textML">
                     <p class="textmlegalestitle1">Conditions générales d'utilisation</p>
                         <p>En vigueur au 14/02/2022</p>
@@ -103,4 +105,4 @@
     </body>
 </html> 
 
-<?php require_once('../AllFront/footer.php') ?>
+<?php require_once('../allfront/footer.php') ?>

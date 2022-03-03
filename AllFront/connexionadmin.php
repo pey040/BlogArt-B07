@@ -1,5 +1,7 @@
-<?php require_once('../AllFront/header.php'); 
-require_once __DIR__ . '/../CLASS_CRUD/user.class.php';
+<?php 
+require_once('../connect/config.php');
+require_once('../allfront/header.php'); 
+require_once __DIR__ . '/../class_crud/user.class.php';
 $monUser = new USER();
 ?>
 
@@ -8,7 +10,7 @@ $monUser = new USER();
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="Style/style_connexionadmin.css">
+        <link rel="stylesheet" href="styles/style_connexionadmin.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
@@ -85,4 +87,4 @@ if (isset($_COOKIE['useradmin']) && isset($_COOKIE['pass'])) {
     </div>
 </html>
 
-<?php require_once('../AllFront/footer.php') ?>
+<?php require_once('../allfront/footer.php') ?>

@@ -1,24 +1,25 @@
 <?php 
-setcookie("user", null, -1, '/');
-require_once('../AllFront/header.php');
+require_once('../connect/config.php');
+require_once('../allfront/header.php');
 
 // Insertion classe Article
-require_once __DIR__ . '../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '../../class_crud/article.class.php';
 $monArticle = new ARTICLE();
 ?>
 
 <html>
 
     <head>
-        <!-- <link rel="stylesheet" href="Style/style_header.css"> -->
-        <link rel="stylesheet" href="Style/style_accueil.css">
-        <link rel="stylesheet" href="Style/style_cookies.css">
+        <!-- <link rel="stylesheet" href="styles/style_header.css"> -->
+        <link rel="stylesheet" href="styles/style_accueil.css">
+        <link rel="stylesheet" href="styles/style_cookies.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
+
     </head>
 
     
@@ -39,7 +40,7 @@ $monArticle = new ARTICLE();
             </div>
         
 
-        <img class="dessinQuinconces" src="Assets/statuequinconces.png" alt="">
+        <img class="dessinQuinconces" src="assets/statuequinconces.png" alt="">
         </div>
 
 
@@ -49,7 +50,7 @@ $monArticle = new ARTICLE();
         <h2>Les articles récents :</h2>
 
         <?php 
-        // Appel méthode : Get tous les articles en BDD
+        // Appel méthode : Get tous les articles en bdd
         $allArticles = (array)$monArticle->get_AllArticles();
 
         //compter le nbre de ligne en php
@@ -68,6 +69,8 @@ $monArticle = new ARTICLE();
                     $allArticles2[$i][$j] = $row['libTitrArt'];
                     $allArticles2[$i][$j+1] = $row['libChapoArt'];
                     $allArticles2[$i][$j+2] = $row['urlPhotArt'];
+                    $allArticles2[$i][$j+6] = $row['numArt'];
+
 
                     $pair = 1;
                     $nombreInit ++;
@@ -77,6 +80,7 @@ $monArticle = new ARTICLE();
                     $allArticles2[$i][$j+3] = $row['libTitrArt'];
                     $allArticles2[$i][$j+4] = $row['libChapoArt'];
                     $allArticles2[$i][$j+5] = $row['urlPhotArt'];
+                    $allArticles2[$i][$j+7] = $row['numArt'];
 
                     $pair = 0;
                     $nombreInit ++;
@@ -101,7 +105,7 @@ $monArticle = new ARTICLE();
                 <div class="article1 grid-item">
                 <div><img class="imageArticle" src="../uploads/<?= $allArticles2[$i][2]; ?>" alt=""></div>
                 <div>
-                    <h3><?= $allArticles2[$i][0]; ?></h3>
+                    <a class="lienArticle" href="./page_article.php?id=<?=$allArticles2[$i][6]; ?>"><h3><?= $allArticles2[$i][0]; ?></h3></a>
                     <p>
                     <?= $allArticles2[$i][1]; ?>
                     </p>
@@ -112,25 +116,25 @@ $monArticle = new ARTICLE();
             } //impair
             else {
                 // echo('echo du début else' . $i);
-
+                
                 ?>
             
             <div class="accueilMiddle grid-container">
             <div class="article1 grid-item">
                 <div><img class="imageArticle" src="../uploads/<?= $allArticles2[$i][2]; ?>" alt=""></div>
                 <div>
-                    <h3><?= $allArticles2[$i][0]; ?></h3>
+                    <a class="lienArticle" href="./page_article.php?id=<?=$allArticles2[$i][6]; ?>"><h3><?= $allArticles2[$i][0]; ?></h3></a>
                     <p>
                     <?= $allArticles2[$i][1]; ?>
                     </p>
                 </div>
             </div>
-
+            
 
 
             <div class="article2 grid-item">
                 <div>
-                    <h3><?= $allArticles2[$i][3]; ?></h3>
+                    <a class="lienArticle" href="./page_article.php?id=<?=$allArticles2[$i][7]; ?>"><h3><?= $allArticles2[$i][3]; ?></h3></A>
                     <p>
                     <?= $allArticles2[$i][4]; ?>
                     </p>
@@ -158,11 +162,12 @@ $monArticle = new ARTICLE();
 
     </body>
 </html>
-<?php include('../AllFront/popup.php') ?>
-<?php require_once('../AllFront/footer.php') ?>
+
+<?php require_once('../allfront/footer.php') ?>
 
 
-<script>
+<!-- COOKIES EN JS
+    <script>
 
 popup = document.getElementById("popup");
 acceptPopupButton = document.getElementById("acceptPopupButton")
@@ -189,6 +194,6 @@ if (localStorage.getItem("cookiesAuthorized") === "true") {
 
 var refresh = window.getElementById('refresh');
 refresh.addEventListener('click', location.reload(), false);
-</script>
+</script> -->
 
 

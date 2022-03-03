@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Statut
-require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+require_once __DIR__ . '/../../class_crud/statut.class.php';
 $monStatut = new STATUT();
 
 // Instanciation de la classe Statut
@@ -67,7 +67,7 @@ $errCIR = 0;
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les statuts en BDD
+    // Appel méthode : Get tous les statuts en bdd
 $allStatuts = $monStatut->get_AllStatuts();
     // Boucle pour afficher
     foreach($allStatuts as $row) {

@@ -106,5 +106,24 @@ h2{
     padding-right: 30px;
 } */
 
+a {
+    color: var(--grey);
+    text-decoration: none;
+}
+
+/* a:hover{
+    font-size: larger;
+} */
+
+.accueilMiddle h3:hover{ 
+    /* background-color: var(--blue); */
+    color: var(--grey);
+    font-size: larger;
+}
+
+.accueilMiddle a:visited{
+    color: var(--grey);
+}
+
 
 

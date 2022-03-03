@@ -1,14 +1,14 @@
 <?php 
 setcookie("user", null, -1, '/');
 setcookie("useradmin", null, -1, '/');
-require_once('../AllFront/header.php'); 
+require_once('../allfront/header.php'); 
  ?>
 <html>
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="Style/style_connexion.css">
+        <link rel="stylesheet" href="styles/style_connexion.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
@@ -22,4 +22,4 @@ require_once('../AllFront/header.php');
         </fieldset>
     </div>
 </html>
-<?php require_once('../AllFront/footer.php') ?>
+<?php require_once('../allfront/footer.php') ?>

@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/delAccents.php';
 
 // Insertion classe Thematique
-require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../class_crud/thematique.class.php';
 $maThematique = new THEMATIQUE();
 // Instanciation de la classe Thematique
 
@@ -80,7 +80,7 @@ $errDel = 0;
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get toutes les Thematiques en BDD
+    // Appel méthode : Get toutes les Thematiques en bdd
     $allThematique = $maThematique->get_AllThematiquesByLang();
     // Boucle pour afficher
     foreach($allThematique as $row) {
