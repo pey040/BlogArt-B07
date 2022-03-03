@@ -14,4 +14,4 @@ $passBD = '';         // Votre Pass
 
 define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BLOGART22/BlogArt-B07');
 define('ROOTFRONT', "http://" . $_SERVER['SERVER_NAME'] . '/BLOGART22/BlogArt-B07'); 
-var_dump(ROOTFRONT);
+// var_dump(ROOTFRONT);

@@ -1,4 +1,7 @@
-<?php require_once('../allfront/header.php') ?>
+
+<?php 
+require_once('../connect/config.php');
+require_once('../allfront/header.php') ?>
 
 <html>
     <head>
