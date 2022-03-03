@@ -4,6 +4,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles/style_footer.css">
+        <link rel="stylesheet" href="styles/style_cookies.css">
         
     </head>
     <body>

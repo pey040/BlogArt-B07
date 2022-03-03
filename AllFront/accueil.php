@@ -19,7 +19,7 @@ $monArticle = new ARTICLE();
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles/style_cookies.css">
+
     </head>
 
     
@@ -162,7 +162,7 @@ $monArticle = new ARTICLE();
 
     </body>
 </html>
-<!-- <?php include('../allfront/popup.php') ?> -->
+
 <?php require_once('../allfront/footer.php') ?>
 
 
