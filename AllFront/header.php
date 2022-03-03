@@ -7,11 +7,11 @@
     </head>
     <body>
         <header>
-            <a href="../../BlogArt/BlogArt-B07/AllFront/accueil.php"><img src="Assets/LogoSculpeaux.png" alt="Sculp'eaux" width="332px" height="135px"></a>
+            <a href="accueil.php"><img src="Assets/LogoSculpeaux.png" alt="Sculp'eaux" width="332px" height="135px"></a>
             <div class="headerButtons">
-                <a href="../../BlogArt/BlogArt-B07/AllFront/accueil.php">Accueil</a>
-                <a href="../../BlogArt/BlogArt-B07/AllFront/connexion.php">Connexion</a>
-                <a href="../../BlogArt/BlogArt-B07/AllFront/connexion.php"><img src="Assets/recherche.png" alt="BarredeRecherche" width="175" height="55"></a>
+                <a href="accueil.php">Accueil</a>
+                <a href="connexion.php">Connexion</a>
+                <a href="connexion.php"><img src="Assets/recherche.png" alt="BarredeRecherche" width="175" height="55"></a>
                 
                 <!--Barre de recherche-->
             </div>
