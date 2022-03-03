@@ -4,8 +4,15 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles/style_footer.css">
+        
     </head>
     <body>
+        <?php if(isset($_COOKIE['accept_cookie'])){
+        $showCookie = false;
+        }else{
+        $showCookie = true;
+        }
+        require_once('footer.view.php');?>
         <footer>
             <div class="footerButtons">
                 <a class ="sculpHome" href="<?php echo ROOTFRONT; ?>/allfront/accueil.php">SCULP'EAUX </a>

@@ -1,4 +1,6 @@
-<?php require_once('../allfront/header.php') ;
+<?php 
+require_once('../connect/config.php');
+require_once('../allfront/header.php') ;
 require_once __DIR__ . '/../class_crud/membre.class.php';
 require_once __DIR__ . '/../util/ctrlSaisies.php';
 $monMembre = new MEMBRE();

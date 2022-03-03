@@ -1,4 +1,5 @@
 <?php 
+require_once('../connect/config.php');
 require_once('../allfront/header.php');
 
 // Insertion classe Article

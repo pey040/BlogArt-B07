@@ -45,7 +45,7 @@
 
   div .cookies{
     background-color: rgba(88, 100, 172 , 0.8);
-    border: 1px solid #FCC967;
+    border: 2px solid #FCC967;
     border-radius: 10px;
     margin: 20px;
     padding: 10px;
@@ -109,3 +109,38 @@
   } */
 
 
+  .cookie-alert{
+    position: fixed;
+    bottom: 20px;
+    right:20px;
+    border-radius: 10px;
+    /* background:#2f2f2f; */
+    color:var(--grey);
+    padding:10px 15px;
+    width:280px;
+    z-index:100;
+ }
+ .cookie-alert a{
+    display:block;
+    text-align: center;
+    padding:5px 10px;
+    margin:8px auto 0 auto;
+    border-radius: 10px;
+    background:transparent;
+    border: 2px solid var(--gold);
+    color:var(--gold);
+    transition: all .3s ease;
+ }
+ .cookie-alert a:hover{
+    background: var(--blue);
+    color:var(--gold);
+ }
+ @media only screen and (max-width:480px){
+    .cookie-alert{
+       text-align: center;
+       left: 0; right: 0;;
+       margin: 0 auto;
+       max-width:700px;
+       padding:10px 30px;
+    }
+ }
