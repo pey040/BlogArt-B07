@@ -46,8 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $numMemb = ctrlSaisies($_POST['TypMemb']);
         $numArt = ctrlSaisies($_POST['TypArt']);
         $libCom = ctrlSaisies($_POST['libCom']);
+        $numSeqCom = $monComment->getNextNumCom($numArt);
 
-        $monComment->create($numCom, $numArt, $libCom, $numMemb);
+        $monComment->create($numSeqCom, $numArt, $libCom, $numMemb);
 
         header("Location: ./comment.php");
     }   // Fin if ((isset($_POST['libStat'])) ...

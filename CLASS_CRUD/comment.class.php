@@ -171,10 +171,19 @@ class COMMENT{
 	function update($numSeqCom, $numArt, $attModOK, $notifComKOAff, $delLogiq){
 		global $db;
 
+		var_dump($numSeqCom);
+		var_dump($numArt);
+		var_dump($attModOK);
+		var_dump($notifComKOAff);
+		var_dump($delLogiq);
+		
+
+
+
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE COMMENT set attMembOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=?, numArt=? ';
+			$query = 'UPDATE COMMENT set attModOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=? AND numArt=?';
 			$request = $db->prepare($query);
 			$request->execute([$attModOK, $notifComKOAff, $delLogiq, $numSeqCom, $numArt]);
 			$db->commit();
@@ -211,12 +220,18 @@ class COMMENT{
 	function delete($numSeqCom, $numArt){	// OU à utiliser pour del logique : del => update
 		global $db;
 
+
+		var_dump($numSeqCom);
+		var_dump($numArt);
+
+		exit;
+		
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query = 'UPDATE COMMENT set attModOK=0, dtModCom=NOW(), delLogiq=1 where numSeqCom=? AND numArt=? ';
+			$request = $db->prepare($query);
+			$request->execute([$numSeqCom, $numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}

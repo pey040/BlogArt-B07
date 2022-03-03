@@ -65,10 +65,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $notifComKOAff = $_POST['notifComKOAff'];
 
+        $idCom = $_POST['idCom'];
+
+        $idArt = $_POST['idArt'];
+
         $erreur = false;
 
-        $monComment->update($_POST("idCom"), $_POST("idArt"), $boolattModOK, $notifComKOAff, $booldelLogiq);
-        
+
+
+        $monComment->update($idCom, $idArt, $boolattModOK, $notifComKOAff, $booldelLogiq);
+    
         header("Location: ./comment.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
     else {
@@ -126,8 +132,8 @@ $description = "";
       <fieldset>
         <legend class="legend1">Modération : validez un commentaire...</legend>
 
-        <input type="hidden" id="id1" name="id1" value="<?= isset($_GET['id1']) ? $_GET['id1'] : '' ?>" />
-        <input type="hidden" id="id2" name="id2" value="<?= isset($_GET['id2']) ? $_GET['id2'] : '' ?>" />
+        <input type="hidden" id="idCom" name="idCom" value="<?= isset($_GET['idCom']) ? $_GET['idCom'] : '' ?>" />
+        <input type="hidden" id="idArt" name="idArt" value="<?= isset($_GET['idArt']) ? $_GET['idArt'] : '' ?>" />
 
 <!-- --------------------------------------------------------------- -->
     <!-- FK : Membre, Article -->

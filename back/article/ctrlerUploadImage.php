@@ -25,7 +25,7 @@ if (!is_dir(TARGET)) {
 
 /*-- --------------------------------------------------------------- --*/
 // Recuperation extension fichier
-$extension  = pathinfo($_FILES['server']['name'], PATHINFO_EXTENSION);
+$extension  = pathinfo($_FILES['monfichier']['name'], PATHINFO_EXTENSION);
 
 // verif extension fichier
 if (in_array(strtolower($extension), $tabExt)) {
