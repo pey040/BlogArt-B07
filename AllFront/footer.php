@@ -16,14 +16,14 @@
         require_once('footer.view.php');?>
         <footer>
             <div class="footerButtons">
-                <a class ="sculpHome" href="<?php echo ROOTFRONT; ?>/allfront/accueil.php">SCULP'EAUX </a>
+                <a class ="sculpHome" href="<?php echo ROOTFRONT; ?>/../../blogArt/allfront/accueil.php">SCULP'EAUX </a>
                 <div class ="subFooter">
                     <div class="foot1">
-                        <a href="<?php echo ROOTFRONT; ?>/allfront/accueil.php">Accueil</a>
-                        <a href="<?php echo ROOTFRONT; ?>/allfront/connexion.php">Connexion</a>
+                        <a href="<?php echo ROOTFRONT; ?>/../../blogArt/allfront/accueil.php">Accueil</a>
+                        <a href="<?php echo ROOTFRONT; ?>/../../blogArt/allfront/connexion.php">Connexion</a>
                     </div>
-                    <a href="<?php echo ROOTFRONT; ?>/allfront/mentionslegales.php">Mentions <br/> légales</a>
-                    <a href="<?php echo ROOTFRONT; ?>/allfront/apropos.php">À propos <br/> de nous</a>
+                    <a href="<?php echo ROOTFRONT; ?>/../../blogArt/allfront/mentionslegales.php">Mentions <br/> légales</a>
+                    <a href="<?php echo ROOTFRONT; ?>/../../blogArt/allfront/apropos.php">À propos <br/> de nous</a>
                 </div>
             </div>
         </footer>

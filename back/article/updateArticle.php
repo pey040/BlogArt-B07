@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //AND isset($_FILES['monfichier']['tmp_name']) AND !empty($_FILES['monfichier']['tmp_name'])
         AND isset($_POST['angle']) AND !empty($_POST['angle'])
         AND isset($_POST['libTitrArt']) AND !empty($_POST['libTitrArt'])
-        AND isset($_POST['dtCreArt']) AND !empty($_POST['dtCreArt'])
         AND isset($_POST['libChapoArt']) AND !empty($_POST['libChapoArt'])
         AND isset($_POST['libAccrochArt']) AND !empty($_POST['libAccrochArt'])
         AND isset($_POST['parag1Art']) AND !empty($_POST['parag1Art'])
@@ -87,8 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $libTitrArt = ctrlSaisies($_POST['libTitrArt']);
 
-        $dtCreArt = ctrlSaisies($_POST['dtCreArt']);
-
         $libChapoArt = ctrlSaisies($_POST['libChapoArt']);
 
         $libAccrochArt = ctrlSaisies($_POST['libAccrochArt']);
@@ -107,9 +104,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $urlPhotArt = $nomImage;
 
-        $numThem = $_GET['id'];
+        $numArt = $_POST['id'];
+        var_dump($_POST);
 
-        $monArticle->update($dtCreArt ,$libTitrArt ,$libChapoArt, $libAccrochArt, $parag1Art, $libSsTitre1Art,$parag2Art, $libSstitre2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem, $numThem);
+        $monArticle->update($numArt, $libTitrArt ,$libChapoArt, $libAccrochArt, $parag1Art, $libSsTitre1Art,$parag2Art, $libSstitre2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
 
         header("Location: ./article.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
@@ -117,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Saisies invalides
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
-        var_dump($_POST);
+
     }   // End of else erreur saisies
 
 

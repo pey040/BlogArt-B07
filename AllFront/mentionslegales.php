@@ -23,10 +23,10 @@ require_once('../allfront/header.php') ?>
                     <p class="textmlegalestitle1">Conditions générales d'utilisation</p>
                         <p>En vigueur au 14/02/2022</p>
                         <P class="textmlegalestext">
-                        Les conditions générales d'utilisation ont pour objet de définir les conditions d’accès et d’utilisation des services par « l'Utilisateur ». <br><br>
-                        Toute inscription ou utilisation du site sculpeaux.com implique l'acceptation sans aucune réserve ni restriction des présentes CGU par l’utilisateur. <br><br>
-                        En cas de refus des CGU stipulées dans le présent contrat, l'Utilisateur se doit de renoncer à l'accès des services proposés par le site. <br><br>
-                        sculpeaux.com se réserve le droit de modifier à tout moment le contenu des présentes CGU.<p>
+                        Les conditions générales d'utilisation ont pour objet de définir les conditions d’accès et d’utilisation des services par « l'Utilisateur ».<br><br>
+Toute inscription ou utilisation du site Sculpeaux implique l'acceptation sans aucune réserve ni restriction des présentes CGU par l’utilisateur.<br><br>
+En cas de refus des CGU stipulées dans le présent contrat, l'Utilisateur se doit de renoncer à l'accès des services proposés par le site.<br><br>
+Sculpeaux se réserve le droit de modifier à tout moment le contenu des présentes CGU.<p>
                 </div>
             </div>
             
@@ -34,24 +34,24 @@ require_once('../allfront/header.php') ?>
             <div class="textML">
             
             <p class="textmlegalestitle">Article 1 : Les mentions légales</p>
-            <p class="textmlegalestext">L’édition et la direction de la publication du site sculpeaux.com est assurée par le groupe Tutel Corp’, domicilié à Bordeaux. <br>
-                Propriétaire : Tutel Corp - IUT Bordeaux Montaigne <br>
-                Numéro de téléphone : 00 00 00 00 00 <br>
-                Adresse e-mail : sculpeau@gmail.com. <br>
-                L'hébergeur du site sculpeaux.com est la société Netlify.
+            <p class="textmlegalestext">L’édition et la direction de la publication du site Sculpeaux est assurée par le groupe Tutel Corp’, domicilié à Bordeaux.
+Propriétaire : Tutel Corp - IUT Bordeaux Montaigne<br>
+Numéro de téléphone : 00 00 00 00 00<br>
+Adresse e-mail : sculpeaux@gmail.com<br>
+L'hébergeur du site Sculpeaux est l’hébergeur de l’iut Bordeaux Montaigne.
             </p>
 
 
             <p class="textmlegalestitle">ARTICLE 2 : Accès au site</p>
             <p class="textmlegalestext">
-            Le site sculpeaux.com permet à l'Utilisateur un accès gratuit aux services suivants : <br>
+            Le site Sculpeaux permet à l'Utilisateur un accès gratuit aux services suivants : <br>
             - information, <br>
             - échange <br>
             - et communication. <br>
             Le site est accessible gratuitement pour tout Utilisateur ayant un accès à Internet. <br>
             L’Utilisateur non membre n'a pas accès aux services réservés. <br>
             Pour cela, il doit s’inscrire en remplissant le formulaire. Tout Utilisateur membre pourra également se désinscrire. <br>
-            Tout événement ayant pour conséquence un dysfonctionnement du site, n'engage pas la responsabilité de sculpeaux.com. <br>
+            Tout événement ayant pour conséquence un dysfonctionnement du site, n'engage pas la responsabilité de Sculpeaux. <br>
             L'Utilisateur a la possibilité de contacter le site par messagerie électronique à l’adresse email de l’éditeur.
             </p>
 
@@ -70,22 +70,22 @@ require_once('../allfront/header.php') ?>
 
             <p class="textmlegalestitle">ARTICLE 5 : Responsabilité</p>
             <p class="textmlegalestext">
-            Les sources des informations diffusées sur le site sculpeaux.com sont fiables mais le site ne garantit pas qu’il soit exempt de défauts ou d’erreurs. <br>
-            Les informations communiquées sont présentées à titre indicatif et général. Malgré des mises à jour régulières, le site sculpeaux.com ne peut être responsable de la modification des dispositions administratives et juridiques survenant après la publication. <br>
+            Les sources des informations diffusées sur le site Sculpeaux sont fiables mais le site ne garantit pas qu’il soit exempt de défauts ou d’erreurs. <br>
+            Les informations communiquées sont présentées à titre indicatif et général. Malgré des mises à jour régulières, le site Sculpeaux ne peut être responsable de la modification des dispositions administratives et juridiques survenant après la publication. <br>
             L'Utilisateur s'assure de garder son mot de passe secret. Toute divulgation d’un mot de passe est interdite. Il assume les risques liés à l'utilisation de son identifiant et mot de passe. Le site n’est pas responsable. <br>
-            Le site sculpeaux.com ne peut être tenu pour responsable d’éventuels virus suite à une utilisation, à l’accès, ou au téléchargement provenant de ce site. <br>
+            Le site Sculpeaux ne peut être tenu pour responsable d’éventuels virus suite à une utilisation, à l’accès, ou au téléchargement provenant de ce site. <br>
             </p>
 
 
             <p class="textmlegalestitle">ARTICLE 6 : Liens hypertextes</p>
             <p class="textmlegalestext">
-            Des liens hypertextes peuvent être présents sur le site. L’Utilisateur est informé qu’en cliquant sur ces liens, il sortira du site sculpeaux.com.
+            Des liens hypertextes peuvent être présents sur le site. L’Utilisateur est informé qu’en cliquant sur ces liens, il sortira du site Sculpeaux.
             </p>
 
 
             <p id="cookies" class="textmlegalestitle">ARTICLE 7 : Cookies</p>
             <p class="textmlegalestext">
-            Les cookies sont de petits fichiers stockés temporairement sur le disque dur de l’ordinateur de l’Utilisateur par votre navigateur et qui sont nécessaires à l’utilisation du site sculpeaux.com. <br>
+            Les cookies sont de petits fichiers stockés temporairement sur le disque dur de l’ordinateur de l’Utilisateur par votre navigateur et qui sont nécessaires à l’utilisation du site Sculpeaux. <br>
             L’information contenue dans les cookies est utilisée pour améliorer le site. En naviguant sur le site, L’Utilisateur les accepte. <br>
             L’Utilisateur doit toutefois donner son consentement quant à l’utilisation de certains cookies.En cas de refus, l’Utilisateur est informé que certaines fonctionnalités ou pages risquent de lui être refusées. <br>
             L’Utilisateur pourra désactiver ces cookies par l’intermédiaire des paramètres figurant au sein de son logiciel de navigation. <br>

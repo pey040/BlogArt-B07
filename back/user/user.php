@@ -17,7 +17,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe User
-
+require_once __DIR__ . '/../../class_crud/user.class.php';
+$monUser = new USER();
 // Instanciation de la classe User
 
 
@@ -50,7 +51,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     <h1>BLOGART22 Admin - CRUD User</h1>
 
 	<hr />
-	<h2>Nouveau User :&nbsp;<a href="#" class="superAdmin" title="User déjà créé"><i>Créer un User</i></a></h2>
+	<h2>Nouveau Membre :&nbsp;<a href="./createuser.php"><i>Créer un Membre</i></a></h2>
     <hr />
 	<h2>Tous les Users</h2>
 
@@ -60,37 +61,35 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
             <th>&nbsp;Pseudo&nbsp;</th>
             <th>&nbsp;Identité&nbsp;</th>
             <th>&nbsp;eMail&nbsp;</th>
-            <th>&nbsp;Statut&nbsp;</th>
+
             <th colspan="2">&nbsp;Action&nbsp;</th>
         </tr>
     </thead>
     <tbody>
 <?php
     // Appel méthode : Get tous les users en bdd
-
+    $allUser = $monUser->get_AllUsers();
     // Boucle pour afficher
-    //foreach($all as $row) {
+    foreach($allUser as $row) {
 
 ?>
             <tr>
 
-            <td><h4>&nbsp; <?= "ici pseudoUser"; ?> &nbsp;</h4></td>
+            <td><h4>&nbsp; <?= $row["pseudoUser"]; ?> &nbsp;</h4></td>
 
-            <td>&nbsp; <?= "ici prenomUser" . " " . "ici nomUser"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row["prenomUser"] . " " . $row["nomUser"]; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici eMailUser"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row["eMailUser"]; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici libStat"; ?> &nbsp;</td>
-
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateUser.php?id1=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier user" title="Modifier user" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateuser.php?id1=<?=$row['pseudoUser']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier user" title="Modifier user" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <br /></td>
 
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="superAdmin"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Suppression user impossible" title="Suppression user impossible" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteuser.php?id1=<?=$row['pseudoUser']; ?>" class="superAdmin"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Suppression user impossible" title="Suppression user impossible" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <br /></td>
         </tr>
 <?php
 
-	// }	// End of foreach
+	 }	// End of foreach
 ?>
     </tbody>
     </table>

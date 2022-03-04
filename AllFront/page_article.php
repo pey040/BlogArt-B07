@@ -128,10 +128,14 @@ $monComment = new COMMENT();
             <p>
                 <?= $row["pseudoMemb"];?>
             </p>
-                
+                <?php if ($row['delLogiq'] == 0){?>
             <p>
                 <?= $row["libCom"];?>
             </p> 
+
+            <?php } else { ?>
+                <p> Ce commentaire à été supprimé par un administateur </p> 
+            <?php } ?>
                 </div>
             <div>
                 <p>

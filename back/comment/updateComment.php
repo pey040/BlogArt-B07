@@ -117,7 +117,7 @@ $description = "";
     if (isset($_GET["idArt"]) AND isset($_GET["idCom"])) {
         $numArt = $_GET["idArt"];
         $numSeqCom = $_GET["idCom"];
-        var_dump($monComment->get_1Comment($numSeqCom, $numArt));
+
         $row = $monComment->get_1Comment($numSeqCom, $numArt);
         $numArt = $row["numArt"];
         $numMemb = $row["numMemb"];

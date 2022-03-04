@@ -76,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if(($pass1Memb === $pass2Memb) AND ($eMail1Memb === $eMail2Memb)){
             $erreur = false;    
         $monMembre->update($prenomMemb, $nomMemb, $pass1Memb, $eMail1Memb, $idStat, $boolaccordMemb, $_POST["id"]);
+        var_dump($_POST);
         }
         else{
             $erreur = true;

@@ -171,7 +171,7 @@ include __DIR__ . '/initLangue.php';
                     </label>
 
 
-                    <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= "" ?>" autocomplete="on" />
+                    <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= "$numPays" ?>" autocomplete="on" disabled/>
 
                     <!-- Listbox langue disabled => 2ème temps -->
 

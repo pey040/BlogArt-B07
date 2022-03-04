@@ -19,7 +19,8 @@ require_once __DIR__ . '/../../util/delAccents.php';
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 $monMembre = new MEMBRE();
 // Instanciation de la classe Membre
-
+require_once __DIR__ . '/../../class_crud/user.class.php';
+$monUser = new USER();
 
 // Constantes reCaptcha
 
@@ -80,14 +81,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $boolaccordMemb = 0;
         }
 
-        var_dump($_POST);
-        var_dump($boolaccordMemb);
 
         $date = "11/11/11";
 
         if(($pass1Memb === $pass2Memb) AND ($eMail1Memb === $eMail2Memb)){
             $erreur = false;    
         $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $pass1Memb, $eMail1Memb, $boolaccordMemb, $idStat);
+            if ($idStat == 1){ 
+                $monUser->create($prenomMemb, $nomMemb, $pseudoMemb, $pass1Memb, $eMail1Memb, $idStat);
+            }
         }
         else{
             $erreur = true;

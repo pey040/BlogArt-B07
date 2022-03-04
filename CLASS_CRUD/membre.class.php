@@ -117,7 +117,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 			
-			$query = 'UPDATE membre set prenomMemb="?", nomMemb="?", passMemb="?", eMailMemb="?", idStat="?", accordMemb="?" where numMemb="?" ';
+			$query = 'UPDATE membre set prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?, idStat=?, accordMemb=? where numMemb=? ';
 			$request = $db->prepare($query);
 			$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $accordMemb, $num]);
 				$db->commit();
@@ -127,7 +127,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			if ($passMemb == -1) {
-				$request1->closeCursor();
+				$request->closeCursor();
 			} else {
 				$request->closeCursor();
 			}

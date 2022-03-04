@@ -50,6 +50,10 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
 <!--login form-->
 <html>
     <div class="connexion-case">
+
+    <?php if (isset($_COOKIE['accept_cookie']) == true){ ?> 
+
+
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <fieldset>
             <h2>CONNEXION</a></h2>
@@ -85,6 +89,11 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
             <h3><a href="deconnexion.php">Se déconnecter</a></h3>
             <h3>Vous êtes administrateur ? Connectez-vous &nbsp;<a href="connexionadmin.php"> ici</a>.</h3>
         </fieldset>
+    <?php } else { ?>
+
+<h2> Veuiller accepter les cookies pour vous connecter </h2>
+
+        <?php } ?>
     </div>
 </html>
 

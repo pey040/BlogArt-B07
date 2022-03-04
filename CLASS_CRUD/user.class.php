@@ -56,9 +56,9 @@ class USER{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO user (pseudoUser, passUser, nomUser, prenomUser, emailUser, idStat) VALUES (?, ?, ?, ?, ?, ?)';
+			$request = $db->prepare($query);
+			$request->execute([$pseudoUser, $passUser, $nomUser, $prenomUser, $emailUser, $idStat]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -75,9 +75,9 @@ class USER{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query = 'UPDATE user set passUser=?, nomUser=?, prenomUser=?, emailUser=?, idStat=? where pseudoUser=? ';
+			$request = $db->prepare($query);
+			$request->execute([$passUser, $nomUser, $prenomUser, $emailUser, $idStat, $pseudoUser]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -88,17 +88,19 @@ class USER{
 		}
 	}
 
-	function delete($pseudoUser, $passUser){
+	function delete($pseudoUser){
 		global $db;
 		
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query = 'DELETE FROM thematique where numThem=?;';
+			$request = $db->prepare($query);
+			$request->execute([$pseudoUser]);
+			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
+			return($count);
 		}
 		catch (PDOException $e) {
 			$db->rollBack();
