@@ -31,6 +31,8 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../back/css/style.css">
+
     <style type="text/css">
         .error {
             padding: 2px;

@@ -3,15 +3,47 @@
  *
  * @author Martine Bornerie
  */
+ :root{
+	--white: #F6F6F6;
+	--blue: #7E8ACF;
+	--gold: #FCC967;
+	--grey: #56504D;
+	--black: #000000;
+  }
 
 body {
 	/* Essai :
 	background-color: grey; ou transparent; ou mintcream; ou floralwhite; ou ghostwhite;
 	ou snow; ou whitesmoke; ou silver; ou aliceblue; ou gainsboro; ou lightgrey; ou oldlace; */
-	background-color: lightgrey;
-	color: steelblue;
+	background-color: var(--blue);
+	color: var(--grey);
 	padding-top: 60px;
 	padding-bottom: 40px;
+}
+
+body table{
+	/* border:solid 3px var(--gold); */
+	background-color:  var(--blue);
+	
+
+  }
+
+  body  table,
+  th,
+  td {
+	padding: 10px;
+	border: 1px solid var(--gold);
+	border-collapse: collapse;
+	text-align: center;
+	/* border-radius: 15px; */
+  }
+
+  body h2 a{
+	  color: var(--gold)
+  }
+
+  td a{
+	color: var(--gold)
 }
 
 fieldset {
@@ -100,6 +132,8 @@ textarea {
  background-color:#A6BEDE;
  }
 
+ 
+
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 
@@ -111,7 +145,7 @@ textarea {
  *de fond de notre élément body (donc de notre page) sera orange */
 @media screen and (max-width: 680px){
     body{
-        background-color: orange;
+        background-color: var(--white);
     }
 }
 
@@ -119,7 +153,7 @@ textarea {
  *fond de notre page sera bleue */
 @media screen and (min-width: 681px) and (max-width: 1279px){
     body{
-        background-color: blue;
+        background-color: var(--white);
     }
 }
 
@@ -127,7 +161,8 @@ textarea {
  *de couleur blanche */
 @media screen and (min-width: 1280px){
     body{
-        background-color: white;
+        background-color: var(--white);
+		color: var(--grey);
     }
 }
 

@@ -1,4 +1,5 @@
 <?php 
+require_once('../connect/config.php');
 setcookie("user", null, -1, '/');
 setcookie("useradmin", null, -1, '/');
 require_once('../allfront/header.php'); 
