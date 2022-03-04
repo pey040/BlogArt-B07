@@ -37,7 +37,7 @@ class COMMENTPLUS{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert COMMENTPLUS : ' . $e->getMessage());
+			die('Erreur insert commentplus : ' . $e->getMessage());
 		}
 	}
 }	// End of class

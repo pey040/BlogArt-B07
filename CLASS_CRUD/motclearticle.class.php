@@ -55,7 +55,7 @@ class MOTCLEARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert MOTCLEARTICLE : ' . $e->getMessage());
+			die('Erreur insert motclearticle : ' . $e->getMessage());
 		}
 	}
 
@@ -74,7 +74,7 @@ class MOTCLEARTICLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete MOTCLEARTICLE : ' . $e->getMessage());
+			die('Erreur delete motclearticle : ' . $e->getMessage());
 		}
 	}
 }	// End of class

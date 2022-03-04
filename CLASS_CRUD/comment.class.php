@@ -159,7 +159,7 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO COMMENT (numSeqCom, numArt, dtCreCom, libCom, numMemb, delLogiq, attModOK, notifComKOAff) VALUES (?, ?, NOW(), ?, ?, 0, 0, "")';
+			$query = 'INSERT INTO comment (numSeqCom, numArt, dtCreCom, libCom, numMemb, delLogiq, attModOK, notifComKOAff) VALUES (?, ?, NOW(), ?, ?, 0, 0, "")';
 			$request = $db->prepare($query);
 			$request->execute([$numSeqCom, $numArt, $libCom, $numMemb]);
 			$db->commit();
@@ -168,7 +168,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert COMMENT : ' . $e->getMessage());
+			die('Erreur insert comment : ' . $e->getMessage());
 		}
 	}
 
@@ -188,7 +188,7 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE COMMENT set attModOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=? AND numArt=?';
+			$query = 'UPDATE comment set attModOK=?, dtModCom=NOW(), notifComKOAff=?, delLogiq=? where numSeqCom=? AND numArt=?';
 			$request = $db->prepare($query);
 			$request->execute([$attModOK, $notifComKOAff, $delLogiq, $numSeqCom, $numArt]);
 			$db->commit();
@@ -197,7 +197,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update COMMENT : ' . $e->getMessage());
+			die('Erreur update comment : ' . $e->getMessage());
 		}
 	}
 
@@ -217,7 +217,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert Or Update COMMENT : ' . $e->getMessage());
+			die('Erreur insert Or Update comment : ' . $e->getMessage());
 		}
 	}
 
@@ -234,7 +234,7 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			$query = 'UPDATE COMMENT set attModOK=0, dtModCom=NOW(), delLogiq=1 where numSeqCom=? AND numArt=? ';
+			$query = 'UPDATE comment set attModOK=0, dtModCom=NOW(), delLogiq=1 where numSeqCom=? AND numArt=? ';
 			$request = $db->prepare($query);
 			$request->execute([$numSeqCom, $numArt]);
 			$db->commit();
@@ -243,7 +243,7 @@ class COMMENT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete COMMENT : ' . $e->getMessage());
+			die('Erreur delete comment : ' . $e->getMessage());
 		}
 	}
 }	// End of class

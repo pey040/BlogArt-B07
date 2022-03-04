@@ -11,7 +11,7 @@ class MEMBRE{
 	function get_AllStat(){
 		global $db;
 	
-		$query = 'SELECT * FROM STATUT;';
+		$query = 'SELECT * FROM statut;';
 		$result = $db->query($query);
 		$allStat = $result->fetchAll();
 		return($allStat);
@@ -22,7 +22,7 @@ class MEMBRE{
 		global $db;
 
 
-		$query = 'SELECT * FROM MEMBRE WHERE numMemb=?;';
+		$query = 'SELECT * FROM membre WHERE numMemb=?;';
 		$request = $db->prepare($query);
 		$request->execute([$numMemb]);
 		return($request->fetch());
@@ -40,7 +40,7 @@ class MEMBRE{
 	function get_AllMembres(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE;';
+		$query = 'SELECT * FROM membre;';
 		$result = $db->query($query);
 		$allMembres = $result->fetchAll();
 		return($allMembres);
@@ -59,7 +59,7 @@ class MEMBRE{
         global $db;
 
         // select
-        $query = "SELECT * FROM MEMBRE ME INNER JOIN STATUT ST ON ME.idStat = ST.idStat";
+        $query = "SELECT * FROM membre me INNER JOIN statut st ON me.idStat = st.idStat";
         // prepare
         $result=$db->query($query);
         // execute
@@ -98,7 +98,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO MEMBRE (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?, ?, ?, ?, ?, NOW(), ?, ?)';
+			$query = 'INSERT INTO membre (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?, ?, ?, ?, ?, NOW(), ?, ?)';
 			$request = $db->prepare($query);
 			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $accordMemb, $idStat]);
 			$db->commit();
@@ -107,7 +107,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert MEMBRE : ' . $e->getMessage());
+			die('Erreur insert membre : ' . $e->getMessage());
 		}
 	}
 
@@ -117,7 +117,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 			
-			$query = 'UPDATE MEMBRE set prenomMemb="?", nomMemb="?", passMemb="?", eMailMemb="?", idStat="?", accordMemb="?" where numMemb="?" ';
+			$query = 'UPDATE membre set prenomMemb="?", nomMemb="?", passMemb="?", eMailMemb="?", idStat="?", accordMemb="?" where numMemb="?" ';
 			$request = $db->prepare($query);
 			$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $accordMemb, $num]);
 				$db->commit();
@@ -131,7 +131,7 @@ class MEMBRE{
 			} else {
 				$request->closeCursor();
 			}
-			die('Erreur update MEMBRE : ' . $e->getMessage());
+			die('Erreur update membre : ' . $e->getMessage());
 		}
 	}
 
@@ -142,7 +142,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'DELETE FROM Membre where numMemb=?;';
+			$query = 'DELETE FROM membre where numMemb=?;';
 			$request = $db->prepare($query);
 			$request->execute([$numMemb]);
 			$count = $request->rowCount();
@@ -153,7 +153,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete MEMBRE : ' . $e->getMessage());
+			die('Erreur delete membre : ' . $e->getMessage());
 		}
 	}
 
@@ -173,7 +173,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert LANGUE : ' . $e->getMessage());
+			die('Erreur insert langue : ' . $e->getMessage());
 		}
 	}
 

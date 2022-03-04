@@ -25,7 +25,7 @@ class LIKEART{
 	function get_AllLikesArtByNumArt(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt GROUP BY ART.numArt;';
+		$query = 'SELECT * FROM membre me INNER JOIN likeart lka ON me.numMemb = lka.numMemb INNER JOIN article art ON lka.numArt = art.numArt GROUP BY art.numArt;';
 		$result = $db->query($query);
 		$allLikesArtByNumArt = $result->fetchAll();
 		return($allLikesArtByNumArt);
@@ -34,7 +34,7 @@ class LIKEART{
 	function get_AllLikesArtByNumMemb(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt GROUP BY ME.numMemb;';
+		$query = 'SELECT * FROM membre me INNER JOIN likeart lka ON me.numMemb = lka.numMemb INNER JOIN article art ON lka.numArt = art.numArt GROUP BY me.numMemb;';
 		$result = $db->query($query);
 		$allLikesArtByNumMemb = $result->fetchAll();
 		return($allLikesArtByNumMemb);
@@ -73,7 +73,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert LIKEART : ' . $e->getMessage());
+			die('Erreur insert likeart : ' . $e->getMessage());
 		}
 	}
 
@@ -92,7 +92,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update LIKEART : ' . $e->getMessage());
+			die('Erreur update likeart : ' . $e->getMessage());
 		}
 	}
 
@@ -112,7 +112,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert Or Update LIKEART : ' . $e->getMessage());
+			die('Erreur insert Or Update likeart : ' . $e->getMessage());
 		}
 	}
 
@@ -134,7 +134,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete LIKEART : ' . $e->getMessage());
+			die('Erreur delete likeart : ' . $e->getMessage());
 		}
 	}
 }	// End of class

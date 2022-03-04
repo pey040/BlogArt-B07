@@ -16,7 +16,7 @@ class USER{
 	function get_AllUsers(){
 		global $db;
 
-		$query = 'SELECT * FROM USER;';
+		$query = 'SELECT * FROM user;';
 		$result = $db->query($query);
 		$allUsers = $result->fetchAll();
 		return($allUsers);
@@ -26,7 +26,7 @@ class USER{
 	function get_ExistPseudo($pseudoUser) {
 		global $db;
 
-		$query = 'SELECT * FROM USER WHERE pseudoUser = ?;';
+		$query = 'SELECT * FROM user WHERE pseudoUser = ?;';
 		$result = $db->prepare($query);
 		$result->execute(array($pseudoUser));
 		return($result->rowCount());
@@ -65,7 +65,7 @@ class USER{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert USER : ' . $e->getMessage());
+			die('Erreur insert user : ' . $e->getMessage());
 		}
 	}
 
@@ -84,7 +84,7 @@ class USER{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update USER : ' . $e->getMessage());
+			die('Erreur update user : ' . $e->getMessage());
 		}
 	}
 
@@ -103,7 +103,7 @@ class USER{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete USER : ' . $e->getMessage());
+			die('Erreur delete user : ' . $e->getMessage());
 		}
 	}
 }	// End of class
