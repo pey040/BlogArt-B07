@@ -18,33 +18,33 @@ $monMembre = new MEMBRE();
 </html>
 <?php
 
-/* password_hash($pass, PASSWORD_DEFAULT); */ //Lors de linscription on va inserer ca en DB a partir du pass en clair
+// $monMembre -> $password_hash($pass, PASSWORD_DEFAULT);  //Lors de linscription on va inserer ca en DB a partir du pass en clair
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $allMembres = $monMembre->get_AllMembersByStat();
+//     $allMembres = $monMembre->get_AllMembersByStat();
 
-    if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
-    AND isset($_POST['pass']) AND !empty($_POST['pass'])){
+//     if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
+//     AND isset($_POST['pass']) AND !empty($_POST['pass'])){
 
-    foreach($allMembres as $row) {
-        if (($_POST['eMail'] == $row['eMailMemb']) AND ($_POST['pass'] == $row['passMemb'])){
-            setcookie('user', $row['pseudoMemb'], time() + 7400, '/');  
-        }
+//     foreach($allMembres as $row) {
+//         if (($_POST['eMail'] == $row['eMailMemb']) AND ($_POST['pass'] == $row['passMemb'])){
+//             setcookie('user', $row['pseudoMemb'], time() + 7400, '/');  
+//         }
 
         
-    }
+//     }
 
 
-}
+// }
 
-}
-if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
-    //on fais un select du user pour voir son hash
-    if ($_COOKIE['pass'] == $LePassRecuperéParLeSelect) {
-        echo 'Bonjour ' . $_COOKIE['user'] . '<br>';
-    }
-} 
+// }
+// if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
+//     //on fais un select du user pour voir son hash
+//     if ($_COOKIE['pass'] == $LePassRecuperéParLeSelect) {
+//         echo 'Bonjour ' . $_COOKIE['user'] . '<br>';
+//     }
+// } 
 ?>
 
 <!--login form-->
@@ -70,24 +70,51 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
                     <input type="submit" value="Se connecter" style="cursor:pointer; padding:10px 40px; background-color:#FCC967;" name="Valider" />
                 </div>
             </div>
-            <?php   
+            <?php  
             
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                $allMembres = $monMembre->get_AllMembersByStat();
+            
+                if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
+                AND isset($_POST['pass']) AND !empty($_POST['pass'])){
+            
+                foreach($allMembres as $row) {
+                    if (($_POST['eMail'] == $row['eMailMemb']) AND ($_POST['pass'] == $row['passMemb'])){
+                        setcookie('user', $row['pseudoMemb'], time() + 7400, '/');  
+                        header("Location: ./accueil.php");
+                    }
+            
+                    
+                }
+            
+            
+            }
+            
+            }
+
+
             if (isset($_POST['eMail']) AND !empty($_POST['eMail'])
             AND isset($_POST['pass']) AND !empty($_POST['pass'])){
-
+                // var_dump($_COOKIE);
+                // echo "coucou";
+                
                 if (isset($_COOKIE['user']) == true){
                     ?> <html><div class="true-login"> <h2> Bonjour <?php echo $_COOKIE['user'] . '<br>'; ?> </h2></div></html> <?php
                 }
 
-                else{
+                elseif (isset($_COOKIE['user']) == false){
                     ?> <html><div class="error-login"> <h2>Le mot de passe et/ou l'adrese mail ne sont pas correct(s)</h2></div></html> <?php
+                
                 }
 
             }
+            // var_dump($_COOKIE);
             ?>
             <h2>Pas encore de compte, <a href="inscription.php">Inscrivez-vous</a></h2>
             <h3><a href="deconnexion.php">Se déconnecter</a></h3>
             <h3>Vous êtes administrateur ? Connectez-vous &nbsp;<a href="connexionadmin.php"> ici</a>.</h3>
+            <!-- <?var_dump($_COOKIE);?> -->
         </fieldset>
     <?php } else { ?>
 
@@ -96,5 +123,6 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
         <?php } ?>
     </div>
 </html>
+
 
 <?php require_once('../allfront/footer.php') ?>

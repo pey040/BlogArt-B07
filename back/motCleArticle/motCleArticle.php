@@ -21,6 +21,8 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
     <meta name="author" content="" />
 
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../back/css/style.css">
+
 </head>
 <body>
     <h1>BLOGART22 Admin - CRUD Mots-Clés / Article</h1>

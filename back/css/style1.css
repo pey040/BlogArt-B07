@@ -3,7 +3,13 @@
  *
  * @author Martine Bornerie
  */
-
+ :root{
+  --white: #F6F6F6;
+  --blue: #7E8ACF;
+  --gold: #FCC967;
+  --grey: #56504D;
+  --black: #000000;
+}
 /*  https://a-pellegrini.developpez.com/tutoriels/css/formulaire/    */
 /*  Effet input blanc sur le focus des champs   */
         *:focus {
@@ -107,6 +113,7 @@ input[type=submit] {
           outline: none;
         }
 */
+
 
 textarea {
     border:2px solid black;

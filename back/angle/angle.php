@@ -36,6 +36,7 @@ $errDel = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <link rel="stylesheet" href="../../back/css/style.css">
     <style type="text/css">
         .error {
             padding: 2px;
@@ -62,7 +63,8 @@ $errDel = 0;
     <hr />
 	<h2>Tous les angles</h2>
 
-	<table border="3" bgcolor="aliceblue">
+	<table>
+    <!-- border="3" bgcolor="aliceblue" -->
     <thead>
         <tr>
             <th>&nbsp;Numéro&nbsp;</th>
