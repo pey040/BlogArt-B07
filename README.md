@@ -29,7 +29,7 @@ Accessible depuis : allfront/accueil.php ou http://147.210.174.60/etu-mmi-07/all
 ### Structure et règles de la Base de données
 
 La base de données fournie :
-Angle, Article, Commentaire, Langue, Membre, Statut et Thématique (La base utilise aussi User, mais son CRUD n'est pas inclus
+Angle, Article, Commentaire, Langue, Membre, Statut et Thématique (La base utilise aussi User, mais son CRUD n'est pas inclus)
 
 
 
